@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "Himalayan Firethorn"
+    },
+    {
+      "id": 1,
+      "name": "Taiwan Firethorn"
+    },
+    {
+      "id": 2,
+      "name": "Yellow Firethorn"
+    }
+  ],
+  "info": {
+    "year": 2025,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}
