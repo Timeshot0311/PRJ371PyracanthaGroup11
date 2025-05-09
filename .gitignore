@@ -50,3 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/Source/InvascanWin/InvascanWin/bin
+/Source/InvascanWin/InvascanWin/obj
+/Source/PyracanthaAI/.venv/Lib
