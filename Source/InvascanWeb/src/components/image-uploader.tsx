@@ -105,11 +105,13 @@ export default function ImageUploader() {
             </div>
 
             {imageUrl ? (
-                <AspectRatio ratio={4 / 3}>
-                    <Image src={imageUrl} alt='Image' className='rounded-md object-cover' fill />
-                </AspectRatio>
+                <div className='max-w-3xl w-full'>
+                    <AspectRatio ratio={4 / 3} className='w-full overflow-hidden rounded-md'>
+                        <Image src={imageUrl} alt='Image preview' className='rounded-md object-cover' fill priority />
+                    </AspectRatio>
+                </div>
             ) : (
-                <div className='flex-1 h-full rounded-lg flex justify-center items-center text-muted-foreground text-center'>
+                <div className='flex justify-center items-center text-muted-foreground text-center h-48'>
                     <div>No image selected</div>
                 </div>
             )}
