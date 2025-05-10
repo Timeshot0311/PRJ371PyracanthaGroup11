@@ -82,7 +82,7 @@ export default function ImageUploader() {
 
     return (
         <>
-            <div className='flex flex-col justify-between gap-4'>
+            <div className='flex flex-col justify-between gap-4 min-h-60'>
                 <label
                     htmlFor='file-upload'
                     className='flex-1 w-full flex p-4 border-dashed border rounded-lg text-muted-foreground items-center justify-center cursor-pointer'
