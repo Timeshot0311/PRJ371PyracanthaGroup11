@@ -5,17 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd5ffd75-87a0-403d-8eaa-723aac25eea2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/Dockerfile_old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/data/3745319a-59c7-4cf4-b171-712fe42dcca8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/data/38a115c6-447b-4b48-872e-a1200b363f8c.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/data/609e2a88-6932-486b-a162-1892e0fad87e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/data/c4ae8f85-485f-4f1d-bf3d-f19b46136f4e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/maincontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/maincontroller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/models/helpers/ImageHelper.py" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/models/helpers/ImageHelper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/services/AIEngineService.py" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/services/AIEngineService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +88,7 @@
       <workItem from="1746758736831" duration="3616000" />
       <workItem from="1746764142542" duration="867000" />
       <workItem from="1746765096285" duration="2604000" />
-      <workItem from="1746792874705" duration="11774000" />
+      <workItem from="1746792874705" duration="13100000" />
     </task>
     <servers />
   </component>
