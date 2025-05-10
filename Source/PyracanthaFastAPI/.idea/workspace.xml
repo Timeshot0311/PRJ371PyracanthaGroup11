@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd5ffd75-87a0-403d-8eaa-723aac25eea2" name="Changes" comment="" />
+    <list default="true" id="bd5ffd75-87a0-403d-8eaa-723aac25eea2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,31 +30,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanAIEngineWebAPI/webapi/services&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Development",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanAIEngineWebAPI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanAIEngineWebAPI" />
       <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanAIEngineWebAPI\webapi\services" />
       <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanAIEngineWebAPI\webapi\models" />
       <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanAIEngineWebAPI\webapi" />
       <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\PyracanthaFastAPI\webapi\tools" />
-      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371\Source\PyracanthaFastAPI\webapi\services\runs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanAIEngineWebAPI\webapi" />
@@ -86,7 +88,7 @@
       <workItem from="1746758736831" duration="3616000" />
       <workItem from="1746764142542" duration="867000" />
       <workItem from="1746765096285" duration="2604000" />
-      <workItem from="1746792874705" duration="784000" />
+      <workItem from="1746792874705" duration="13100000" />
     </task>
     <servers />
   </component>

@@ -1,12 +1,15 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-import os
 import uuid
-from models.IdentifyRequest import IdentifyRequest
-from models.GenericResponse import GenericResponse
-from models.helpers.ImageHelper import ImageHelper
-from services.AIEngineService import AIEngineService
+from webapi.models.IdentifyRequest import IdentifyRequest
+from webapi.models.GenericResponse import GenericResponse
+from webapi.models.helpers.ImageHelper import ImageHelper
+from webapi.services.AIEngineService import AIEngineService
 
 app = FastAPI()
 app.add_middleware(
@@ -18,7 +21,10 @@ app.add_middleware(
 )
 
 app_directory = os.getcwd()
-images_directory = app_directory + "/data" # "D:/DATA/PRJ371/apidata/images"
+#images_directory = app_directory + "/data" # "D:/DATA/PRJ371/apidata/images"
+
+#images_directory = "../data/images"
+images_directory = f"{app_directory}/webapi/data"
 
 @app.get("/")
 def root():
@@ -40,6 +46,7 @@ def identifyasync(request: IdentifyRequest):
             success = ImageHelper.base64_to_image(request.imagedata, image_path)
             if success:
                 response = AIEngineService.verify(image_path)
+                ImageHelper.delete_image(image_path)
                 return GenericResponse(status=response.status, statuscode=response.statuscode, message=response.message, img=response.img)
                 #return {response.img}
             else:
