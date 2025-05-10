@@ -1,6 +1,7 @@
 "use client";
 
 import { analyzeImage } from "@/actions/analyze-image";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
@@ -26,7 +27,6 @@ export default function ImageUploader() {
             setFile(selectedFile);
 
             const imageUrl = URL.createObjectURL(selectedFile);
-
             setImageUrl(imageUrl);
         }
     };
@@ -82,10 +82,10 @@ export default function ImageUploader() {
 
     return (
         <>
-            <div className='h-48 md:h-60 flex flex-col gap-4'>
+            <div className='flex flex-col justify-between gap-4'>
                 <label
                     htmlFor='file-upload'
-                    className='h-full w-full flex p-4 border-dashed border rounded-lg text-muted-foreground items-center justify-center cursor-pointer'
+                    className='flex-1 w-full flex p-4 border-dashed border rounded-lg text-muted-foreground items-center justify-center cursor-pointer'
                 >
                     <input
                         id='file-upload'
@@ -105,15 +105,14 @@ export default function ImageUploader() {
             </div>
 
             {imageUrl ? (
-                <div className='w-full h-48 md:h-60 relative rounded-lg overflow-hidden'>
-                    <Image src={imageUrl} alt='Plant image' fill className='object-cover' />
-                </div>
+                <AspectRatio ratio={4 / 3}>
+                    <Image src={imageUrl} alt='Image' className='rounded-md object-cover' fill />
+                </AspectRatio>
             ) : (
-                <div className='w-full h-48 md:h-60 relative rounded-lg overflow-hidden flex flex-col justify-center items-center gap-2 text-muted-foreground text-center px-4'>
+                <div className='flex-1 h-full rounded-lg flex justify-center items-center text-muted-foreground text-center'>
                     <div>No image selected</div>
                 </div>
             )}
-
             {responseMessage && <div className='mt-4 text-center text-lg col-span-2'>{responseMessage}</div>}
         </>
     );
