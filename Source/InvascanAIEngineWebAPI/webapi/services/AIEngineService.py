@@ -34,7 +34,10 @@ class AIEngineService:
         response = GenericResponse
         defaultImageSize = 640
         confidenceThreshold = 0.5
-        model_location = os.getcwd() + '/tools/yolomodel.pt' #"D:/DATA/PRJ371/apidata/trainedmodel/best.pt"
+        model_path = f"{os.getcwd()}/webapi/tools/yolomodel.pt"
+        print(f"yolo model path: {model_path}")
+        #model_location = os.getcwd() + '/tools/yolomodel.pt' #"D:/DATA/PRJ371/apidata/trainedmodel/best.pt"
+        model_location = model_path #"../tools/yolomodel.pt"
         try:
             model = YOLO(model_location)
             print('model loaded!')
