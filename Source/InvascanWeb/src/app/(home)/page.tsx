@@ -28,7 +28,7 @@ export default function HomeIndex() {
                         </CardDescription>
                     </CardHeader>
 
-                    <CardContent className='grid gap-6 md:grid-cols-2'>
+                    <CardContent className='flex flex-col gap-4 md:flex-none md:grid md:grid-cols-2'>
                         <ImageUploader />
                     </CardContent>
                 </Card>
