@@ -8,4 +8,7 @@ Make sure to run this command on the API base folder where you can see the Docke
     docker build -t invascanwebapi:v1.6 .
 ## 2.2 Creating a docker container for the API
     docker run --name invascanapi_container -p 8006:8006 -d -v invascanwebapi:v1.6
+## 2.3 Access the AI Engine API 
+    http://127.0.0.1:8006/docs#/default
+
     
