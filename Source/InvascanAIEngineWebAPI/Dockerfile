@@ -29,5 +29,5 @@ EXPOSE 8006
 
 # Start Gunicorn with Uvicorn workers
 #CMD ["which", "gunicorn"]
-CMD ["gunicorn", "webapi.maincontroller:app", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8006", "--workers", "4", "--timeout", "60"]
+CMD ["gunicorn", "webapi.maincontroller:app", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8007", "--workers", "4", "--timeout", "60"]
 #CMD ["uvicorn", "webapi.maincontroller:app", "--host", "0.0.0.0", "--port", "8006"]

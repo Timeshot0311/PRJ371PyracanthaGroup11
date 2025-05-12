@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Invascan</string>
+    <string name="ai_identifier">Identify Pyracantha</string>
+    <string name="open_image">Open Image</string>
+    <string name="load_image">Load Image</string>
+    <string name="clear_all">Clear All</string>
+    <string name="logo">Product Logo</string>
+    <string name="identify_invasive_plant_title">Identify Invasive Plants</string>
+    <string name="upload_image_title">Load an image</string>
+    <string name="engine_response_title">API RESPONSE</string>
+    <string name="upload_image_description">Add an image you want to be analyzed for Pyracantha species</string>
+    <string name="image_description">Image (PNG, JPG)</string>
+    <string name="loading">Loading...</string>
+    <string name="detected_name">Name:</string>
+    <string name="detected_score">Score: </string>
+</resources>
