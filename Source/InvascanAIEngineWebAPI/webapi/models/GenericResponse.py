@@ -5,3 +5,5 @@ class GenericResponse(BaseModel):
     statuscode:int
     message: str
     img: str
+    labelname:str
+    score:float

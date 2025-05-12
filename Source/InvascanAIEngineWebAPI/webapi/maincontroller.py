@@ -35,7 +35,7 @@ def root():
 def identifyasync(request: IdentifyRequest):
     try:
         if request.userid == "" or request.imagedata == "":
-            return GenericResponse(status = False, statuscode = 400, message = "Invalid request parameters.", img = "")
+            return GenericResponse(status = False, statuscode = 400, message = "Invalid request parameters.", img = "", labelname= "", score= 0)
         else:
             fileid = uuid.uuid4()
             print(f"fileid: {fileid}")
@@ -47,11 +47,11 @@ def identifyasync(request: IdentifyRequest):
             if success:
                 response = AIEngineService.verify(image_path)
                 ImageHelper.delete_image(image_path)
-                return GenericResponse(status=response.status, statuscode=response.statuscode, message=response.message, img=response.img)
+                return GenericResponse(status=response.status, statuscode=response.statuscode, message=response.message, img=response.img, labelname= response.labelname, score= response.score)
                 #return {response.img}
             else:
-                return GenericResponse(status=False, statuscode=204, message="API failed to save image to disk.", img="")
+                return GenericResponse(status=False, statuscode=204, message="API failed to save image to disk.", img="", labelname= "", score= 0)
     except Exception as e:
         print(e)
         #raise HTTPException(status_code=400, detail=f"Invalid image data: {str(e)}")
-        return GenericResponse(status=False, statuscode=400, message=f"Invalid request parameters: {str(e)}.", img="")
+        return GenericResponse(status=False, statuscode=400, message=f"Invalid request parameters: {str(e)}.", img="", labelname= "", score= 0)
