@@ -12,15 +12,17 @@ export default function HomeIndex() {
           <Link href='/' className='text-xl font-medium'>
             Invascan
           </Link>
-          <Button disabled>
-            <ChartColumn className='mr-2 h-4 w-4' />
-            Analytics (Coming soon)
+          <Button asChild>
+            <Link href='/analytics'>
+              <ChartColumn className='mr-2 h-4 w-4' />
+              Analytics
+            </Link>
           </Button>
         </header>
       </section>
 
       <section className='max-w-3xl mx-auto container px-4 pb-10'>
-        <Card>
+        <Card className='border-none shadow-none'>
           <CardHeader>
             <CardTitle>Upload an image</CardTitle>
             <CardDescription>We will analyze your image to identify if it contains Pyracantha.</CardDescription>
