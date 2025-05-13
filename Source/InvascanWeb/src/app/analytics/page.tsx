@@ -33,7 +33,6 @@ export default function HomeIndex() {
               <Input type='text' placeholder='Western Cape, South Africa' className='truncate placeholder:truncate' />
               <Button>Search</Button>
             </div>
-
             <div>Heatmap here maybe</div>
             <div>some heatmap stats below it maybe</div>
             <Tabs defaultValue='tab-1' className='w-full'>
