@@ -25,7 +25,6 @@ export default function HomeIndex() {
             <CardTitle>Upload an image</CardTitle>
             <CardDescription>We will analyze your image to identify if it contains Pyracantha.</CardDescription>
           </CardHeader>
-
           <CardContent className='flex flex-col gap-4 md:flex-none md:grid md:grid-cols-2'>
             <ImageUploader />
           </CardContent>

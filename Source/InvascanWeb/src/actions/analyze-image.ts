@@ -1,6 +1,23 @@
 "use server";
 
-export const analyzeImage = async (base64Image: string) => {
+type ClientPayload = {
+  success: boolean;
+  message: string;
+  imgUrl: string;
+  label: string;
+  score: number;
+};
+
+type APIResponse = {
+  status: boolean;
+  statuscode: number;
+  message: string;
+  img: string;
+  labelname: string;
+  score: number;
+};
+
+export const analyzeImage = async (base64Image: string): Promise<ClientPayload> => {
   try {
     const apiUrl = "http://localhost:8006";
 
@@ -15,23 +32,27 @@ export const analyzeImage = async (base64Image: string) => {
       }),
     });
 
-    const data = await response.json();
+    const data: APIResponse = await response.json();
 
     if (response.ok) {
       return {
-        success: true,
+        success: data.status,
         message: data.message,
-        imgUrl: data.img ? `data:image/jpeg;base64,${data.img}` : undefined,
+        imgUrl: data.img ? `data:image/jpeg;base64,${data.img}` : "",
+        label: data.labelname,
+        score: data.score,
       };
     } else {
       return {
-        success: false,
+        success: data.status,
         message: data.message,
-        imgUrl: undefined,
+        imgUrl: "",
+        label: "",
+        score: 0,
       };
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    return { success: false, message: errorMessage, imgUrl: undefined };
+    return { success: false, message: errorMessage, imgUrl: "", label: "", score: 0 };
   }
 };

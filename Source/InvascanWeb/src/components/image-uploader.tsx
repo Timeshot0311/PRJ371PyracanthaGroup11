@@ -11,7 +11,8 @@ export default function ImageUploader() {
   const [imageUrl, setImageUrl] = useState<string | undefined>();
   const [file, setFile] = useState<File | undefined>(undefined);
   const [loading, setLoading] = useState(false);
-  const [responseMessage, setResponseMessage] = useState<string>("");
+  const [label, setLabel] = useState<string>("");
+  const [score, setScore] = useState<number>(0);
 
   const maxFileSize = 5 * 1024 * 1024; // 5MB
 
@@ -67,9 +68,10 @@ export default function ImageUploader() {
       }
 
       setImageUrl(result.imgUrl);
-      setResponseMessage(result.message);
+      setLabel(result.label);
+      setScore(result.score);
 
-      toast.success("Successfully analyzed image", {
+      toast.success(result.message, {
         duration: 3000,
       });
     } catch (error) {
@@ -105,11 +107,18 @@ export default function ImageUploader() {
           </AspectRatio>
         </div>
       ) : (
-        <div className='flex justify-center items-center text-muted-foreground text-center h-48'>
+        <div className='flex justify-center items-center text-muted-foreground text-center min-h-60'>
           <div>No image selected</div>
         </div>
       )}
-      {responseMessage && <div className='mt-4 text-center text-lg col-span-2'>{responseMessage}</div>}
+      {label && score && (
+        <div className='mt-4 text-center text-lg col-span-2'>
+          <div className='flex flex-col gap-2'>
+            <div>Label: {label}</div>
+            <div>Score: {score}</div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
