@@ -45,6 +45,7 @@ export default function InteractiveMap({ points, focusPoint }: Props) {
   });
 
   return (
+    
     <DeckGL
       viewState={viewState}
       controller={true}
@@ -52,11 +53,11 @@ export default function InteractiveMap({ points, focusPoint }: Props) {
       onViewStateChange={(e) =>
         setViewState(e.viewState as { longitude: number; latitude: number; zoom: number })
       }
-      style={{ height: "400px", width: "100%" }}
+      style={{ height: "100%", width: "100%" }}
     >
       <Map
               mapStyle="mapbox://styles/mapbox/streets-v11"
-        style={{ width: "100%", height: "100%" }}  // Corrected: Set dimensions via style
+            style={{ width: "100%", height: "100%" }}
         {...viewState}  // Spread the viewState object for map positioning
         onMove={(evt) => setViewState(evt.viewState)}
       />

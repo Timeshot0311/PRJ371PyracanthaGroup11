@@ -1,48 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {UploadIcon } from "lucide-react";
+import { UploadIcon } from "lucide-react";
 import Link from "next/link";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import ObservationChart from "@/components/visualizations/ObservationChart";
 import InteractiveMap from "@/components/visualizations/InteractiveMap";
 import LocationSearch from "@/components/ui/LocationSearch";
-
-// Sample data for chart and map integration
-const chartData = [
-  { month: "January", count: 186, lng: 28.0473, lat: -26.2041 },
-  { month: "February", count: 305, lng: 28.2293, lat: -25.7479 },
-  { month: "March", count: 237, lng: 27.9067, lat: -26.1997 },
-  { month: "April", count: 73, lng: 27.9824, lat: -26.1161 },
-  { month: "May", count: 209, lng: 28.1743, lat: -25.7479 },
-  { month: "June", count: 214, lng: 28.0467, lat: -26.1807 },
-];
-
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "#2563eb",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "#60a5fa",
-  },
-} satisfies ChartConfig;
+import { fetchObservations, Observation } from "@/lib/api";
 
 export default function HomeIndex() {
   const [focusPoint, setFocusPoint] = useState<{ lng: number; lat: number } | null>(null);
+  const [chartData, setChartData] = useState<Observation[]>([]);
+
+  // Fetch iNaturalist data on component mount
+  useEffect(() => {
+    async function loadObservations() {
+      const data = await fetchObservations(54053, 6986); // Taxon ID and Place ID
+      setChartData(data);  // Use the chartData state directly
+    }
+    loadObservations();
+  }, []);
 
   // Handle chart bar click to update map view
   const handlePointClick = (lng: number, lat: number) => {
@@ -73,7 +53,7 @@ export default function HomeIndex() {
       <section className='max-w-3xl mx-auto container px-4 pb-10'>
         <Card className='border-none shadow-none'>
           <CardHeader>
-            <CardTitle>Pyracantha detection analytics</CardTitle>
+            <CardTitle>Pyracantha Detection Analytics</CardTitle>
             <CardDescription>Visualize geographic distribution and analytics for Pyracantha</CardDescription>
           </CardHeader>
           <CardContent className='flex flex-col gap-4 w-full'>
@@ -82,43 +62,25 @@ export default function HomeIndex() {
             </div>
 
             <div>
-              <Card className='min-h-[400px]'>
-                <CardContent>
-                  <InteractiveMap points={chartData} focusPoint={focusPoint} />
+              <Card className="min-h-[400px]">
+                <CardContent className="relative h-[400px]">
+                  <div className="relative w-full h-full">
+                    <InteractiveMap points={chartData} focusPoint={focusPoint} />
+                  </div>
                 </CardContent>
               </Card>
             </div>
 
             <Tabs defaultValue='tab-1' className='w-full'>
               <TabsList className='bg-transparent w-full'>
-                <TabsTrigger
-                  value='tab-1'
-                  className='data-[state=active]:shadow-none data-[state=active]:border-b-black focus-visible:border-none'
-                >
-                  Observation Statistics
-                </TabsTrigger>
-                <TabsTrigger
-                  value='tab-2'
-                  className='data-[state=active]:shadow-none data-[state=active]:border-b-black focus-visible:border-none'
-                >
-                  Distribution Graph
-                </TabsTrigger>
+                <TabsTrigger value='tab-1'>Observation Statistics</TabsTrigger>
+                <TabsTrigger value='tab-2'>Distribution Graph</TabsTrigger>
               </TabsList>
               <TabsContent value='tab-1'>
-                <ChartContainer config={chartConfig} className='min-h-[300px] w-full'>
-                  <ObservationChart data={chartData} onPointClick={handlePointClick} />
-                </ChartContainer>
+                <ObservationChart data={chartData} onPointClick={handlePointClick} />
               </TabsContent>
               <TabsContent value='tab-2'>
-                <ChartContainer config={chartConfig} className='min-h-[300px] w-full'>
-                  <BarChart data={chartData} layout="vertical">
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" type="category" />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <ChartLegend content={<ChartLegendContent />} />
-                    <Bar dataKey="count" fill="var(--color-desktop)" />
-                  </BarChart>
-                </ChartContainer>
+                <ObservationChart data={chartData} onPointClick={handlePointClick} />
               </TabsContent>
             </Tabs>
           </CardContent>

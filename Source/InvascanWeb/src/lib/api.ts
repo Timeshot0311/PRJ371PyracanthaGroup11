@@ -1,10 +1,21 @@
 import axios from "axios";
 
-interface Observation {
+const INATURALIST_API_URL = "https://api.inaturalist.org/v1/observations";
+
+interface InatObservation {
+  id: number;
+  geojson: {
+    coordinates: [number, number];
+  };
+  observed_on: string;
+}
+export interface Observation {
   id: number;
   lat: number;
   lng: number;
   date: string;
+  month: string;
+  count: number;
 }
 
 // Fetch location data from Mapbox API
@@ -32,27 +43,39 @@ export const getLocationData = async (query: string): Promise<{ lng: number; lat
   }
 };
 
-// Fetch observation data from Inaturalist API
-export const getObservations = async (taxonName: string, placeId: number): Promise<Observation[]> => {
+export async function fetchObservations(taxonId: number, placeId: number): Promise<Observation[]> {
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_INATURALIST_API}/observations`, 
-      {
-        params: {
-          taxon_name: taxonName,
-          place_id: placeId,
-          per_page: 50,
-        },
-      }
-    );
-    return response.data.results.map((item: { id: number; geojson: { coordinates: [number, number] }; observed_on: string; }) => ({
-      id: item.id,
-      lat: item.geojson.coordinates[1],
-      lng: item.geojson.coordinates[0],
-      date: item.observed_on,
+    const response = await axios.get(INATURALIST_API_URL, {
+      params: {
+        taxon_id: taxonId,
+        place_id: placeId,
+        per_page: 50,
+      },
+    });
+
+    const monthCounts: { [key: string]: number } = {};
+
+    response.data.results
+      .filter((item: InatObservation) => item.geojson && item.observed_on)
+      .forEach((item: InatObservation) => {
+        const month = new Date(item.observed_on).toLocaleString("default", { month: "long" });
+
+        if (!monthCounts[month]) {
+          monthCounts[month] = 0;
+        }
+        monthCounts[month] += 1;  // Increment the count for the month
+      });
+
+    return Object.entries(monthCounts).map(([month, count]) => ({
+      id: Math.random(),  // Generate a random ID for each aggregated entry
+      lat: 0,  // Placeholder as we don't aggregate coordinates
+      lng: 0,  // Placeholder as we don't aggregate coordinates
+      date: "",  // Placeholder for aggregated data
+      month,
+      count,
     }));
   } catch (error) {
     console.error("Error fetching observations:", error);
     return [];
   }
-};
+}
