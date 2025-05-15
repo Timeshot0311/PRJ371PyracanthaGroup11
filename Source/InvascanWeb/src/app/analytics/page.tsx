@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -10,31 +11,25 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Input } from "@/components/ui/input";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LocateIcon, UploadIcon } from "lucide-react";
+import {UploadIcon } from "lucide-react";
 import Link from "next/link";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import ObservationChart from "@/components/visualizations/ObservationChart";
+import InteractiveMap from "@/components/visualizations/InteractiveMap";
+import LocationSearch from "@/components/ui/LocationSearch";
 
-//TODO => Cleanup code when general design is done
-
-//EXAMPLE TIME SERIES ANALYSIS API QUERY
-//https://api.inaturalist.org/v1/observations/histogram?taxon_name=pyracantha&place_id=97394&interval=month
-
-//EXAMPLE SPECIES DISTRIBUTION API QUERY
-//https://api.inaturalist.org/v1/observations/species_counts?taxon_name=pyracantha&place_id=97394
-
-//DUMMY DATA TO GET IDEA
+// Sample data for chart and map integration
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", count: 186, lng: 28.0473, lat: -26.2041 },
+  { month: "February", count: 305, lng: 28.2293, lat: -25.7479 },
+  { month: "March", count: 237, lng: 27.9067, lat: -26.1997 },
+  { month: "April", count: 73, lng: 27.9824, lat: -26.1161 },
+  { month: "May", count: 209, lng: 28.1743, lat: -25.7479 },
+  { month: "June", count: 214, lng: 28.0467, lat: -26.1807 },
 ];
 
-//DUMMY DATA TO GET IDEA
 const chartConfig = {
   desktop: {
     label: "Desktop",
@@ -47,6 +42,18 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function HomeIndex() {
+  const [focusPoint, setFocusPoint] = useState<{ lng: number; lat: number } | null>(null);
+
+  // Handle chart bar click to update map view
+  const handlePointClick = (lng: number, lat: number) => {
+    setFocusPoint({ lng, lat });
+  };
+
+  // Handle location search to update map view
+  const handleLocationSearch = (lng: number, lat: number) => {
+    setFocusPoint({ lng, lat });
+  };
+
   return (
     <div>
       <section className='mx-auto container py-10 max-w-3xl px-4'>
@@ -71,85 +78,48 @@ export default function HomeIndex() {
           </CardHeader>
           <CardContent className='flex flex-col gap-4 w-full'>
             <div className='flex flex-row gap-2'>
-              <Input type='text' placeholder='Western Cape, South Africa' className='truncate placeholder:truncate' />
-              <Button>Search</Button>
+              <LocationSearch onSearch={handleLocationSearch} />
             </div>
+
             <div>
-              <Card className='min-h-[200px] flex items-center justify-center'>
-                <CardContent>Map here</CardContent>
-              </Card>
-            </div>
-            <div>
-              <Card className='border-none shadow-none'>
-                <CardHeader>
-                  <CardTitle>Observation statistics dummy labels</CardTitle>
-                </CardHeader>
-                <CardContent className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                  <div className='flex flex-row gap-2'>
-                    <LocateIcon />
-                    <div className='flex flex-col gap-2'>
-                      <div>Observed On</div>
-                      <div>2025-05-13</div>
-                    </div>
-                  </div>
-                  <div className='flex flex-row gap-2'>
-                    <LocateIcon />
-                    <div className='flex flex-col gap-2'>
-                      <div>Total Observations</div>
-                      <div>15</div>
-                    </div>
-                  </div>
-                  <div className='flex flex-row gap-2'>
-                    <LocateIcon />
-                    <div className='flex flex-col gap-2'>
-                      <div>Positional Accuracy</div>
-                      <div>9046</div>
-                    </div>
-                  </div>
-                  <div className='flex flex-row gap-2'>
-                    <LocateIcon />
-                    <div className='flex flex-col gap-2'>
-                      <div>Place Gues</div>
-                      <div>Chapel Hill, NC, US</div>
-                    </div>
-                  </div>
+              <Card className='min-h-[400px]'>
+                <CardContent>
+                  <InteractiveMap points={chartData} focusPoint={focusPoint} />
                 </CardContent>
               </Card>
             </div>
+
             <Tabs defaultValue='tab-1' className='w-full'>
               <TabsList className='bg-transparent w-full'>
                 <TabsTrigger
                   value='tab-1'
                   className='data-[state=active]:shadow-none data-[state=active]:border-b-black focus-visible:border-none'
                 >
-                  Example graph 1
+                  Observation Statistics
                 </TabsTrigger>
                 <TabsTrigger
                   value='tab-2'
                   className='data-[state=active]:shadow-none data-[state=active]:border-b-black focus-visible:border-none'
                 >
-                  Example graph 2
+                  Distribution Graph
                 </TabsTrigger>
               </TabsList>
               <TabsContent value='tab-1'>
-                <ChartContainer config={chartConfig} className='min-h-[200px] w-full'>
-                  <BarChart accessibilityLayer data={chartData}>
-                    <CartesianGrid vertical={false} />
-                    <XAxis
-                      dataKey='month'
-                      tickLine={false}
-                      tickMargin={10}
-                      axisLine={false}
-                      tickFormatter={(value) => value.slice(0, 3)}
-                    />
+                <ChartContainer config={chartConfig} className='min-h-[300px] w-full'>
+                  <ObservationChart data={chartData} onPointClick={handlePointClick} />
+                </ChartContainer>
+              </TabsContent>
+              <TabsContent value='tab-2'>
+                <ChartContainer config={chartConfig} className='min-h-[300px] w-full'>
+                  <BarChart data={chartData} layout="vertical">
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" type="category" />
                     <ChartTooltip content={<ChartTooltipContent />} />
                     <ChartLegend content={<ChartLegendContent />} />
-                    <Bar dataKey='desktop' fill='var(--color-desktop)' radius={4} />
-                    <Bar dataKey='mobile' fill='var(--color-mobile)' radius={4} />
+                    <Bar dataKey="count" fill="var(--color-desktop)" />
                   </BarChart>
                 </ChartContainer>
               </TabsContent>
-              <TabsContent value='tab-2'>Species Distribution</TabsContent>
             </Tabs>
           </CardContent>
         </Card>
