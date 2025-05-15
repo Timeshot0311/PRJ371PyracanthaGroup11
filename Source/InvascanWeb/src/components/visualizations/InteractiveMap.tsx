@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import DeckGL from "@deck.gl/react";
 import { ScatterplotLayer } from "@deck.gl/layers";
-import Map from "react-map-gl";  // Corrected import
+import { Map } from "react-map-gl/mapbox"
 import mapboxgl from "mapbox-gl";  // Import the mapbox-gl library
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -55,10 +55,10 @@ export default function InteractiveMap({ points, focusPoint }: Props) {
       style={{ height: "400px", width: "100%" }}
     >
       <Map
-              width={""} height={""} mapStyle="mapbox://styles/mapbox/streets-v11"
-              style={{ width: "100%", height: "100%" }}
-              {...viewState} // Spread the viewState object
-        // Corrected event handler without type
+              mapStyle="mapbox://styles/mapbox/streets-v11"
+        style={{ width: "100%", height: "100%" }}  // Corrected: Set dimensions via style
+        {...viewState}  // Spread the viewState object for map positioning
+        onMove={(evt) => setViewState(evt.viewState)}
       />
     </DeckGL>
   );
