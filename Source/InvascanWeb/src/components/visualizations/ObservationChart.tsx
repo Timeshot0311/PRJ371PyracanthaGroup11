@@ -12,12 +12,12 @@ const ObservationChart: React.FC<Props> = ({ data, onPointClick }) => {
     <VictoryChart domainPadding={20}>
       <VictoryAxis
         style={{ tickLabels: { angle: -45, fontSize: 10 } }}
-         tickFormat={(t) => (typeof t === "string" ? t.slice(0, 3) : String(t).slice(0, 3))}
+        tickFormat={(t) => (typeof t === "string" ? t.slice(0, 3) : String(t).slice(0, 3))}
       />
       <VictoryBar
         data={data}
-        x="month"
-        y="count"
+        x='month'
+        y='count'
         labels={({ datum }) => `Obs: ${datum.count}`}
         labelComponent={<VictoryTooltip />}
         events={[

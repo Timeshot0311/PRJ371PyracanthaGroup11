@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 import { getLocationData } from "@/lib/api";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 
 interface Props {
   onSearch: (lng: number, lat: number) => void;
@@ -19,17 +22,12 @@ const LocationSearch: React.FC<Props> = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex gap-2">
-      <input
-        type="text"
-        placeholder="Search location"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="border p-2 w-full"
-      />
-      <button onClick={handleSearch} className="p-2 bg-blue-600 text-white">
+    <div className='flex gap-2 w-full'>
+      <Input type='text' placeholder='Search location' value={query} onChange={(e) => setQuery(e.target.value)} />
+      <Button onClick={handleSearch}>
+        <Search className='size-4' />
         Search
-      </button>
+      </Button>
     </div>
   );
 };

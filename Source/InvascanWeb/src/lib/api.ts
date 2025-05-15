@@ -22,7 +22,7 @@ export interface Observation {
 export const getLocationData = async (query: string): Promise<{ lng: number; lat: number } | null> => {
   try {
     const response = await axios.get(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json`, 
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json`,
       {
         params: {
           access_token: process.env.NEXT_PUBLIC_MAPBOX_KEY,
@@ -49,31 +49,43 @@ export async function fetchObservations(taxonId: number, placeId: number): Promi
       params: {
         taxon_id: taxonId,
         place_id: placeId,
-        per_page: 50,
+        per_page: 100,
       },
     });
 
-    const monthCounts: { [key: string]: number } = {};
+    const monthCounts: {
+      [key: string]: { count: number; timestamp: number };
+    } = {};
 
+    //sort by date
     response.data.results
       .filter((item: InatObservation) => item.geojson && item.observed_on)
       .forEach((item: InatObservation) => {
-        const month = new Date(item.observed_on).toLocaleString("default", { month: "long" });
+        const dateObj = new Date(item.observed_on);
+        // Get first day of month for consistent timestamp
+        const firstOfMonth = new Date(dateObj.getFullYear(), dateObj.getMonth(), 1);
+        const monthYear = firstOfMonth.toLocaleString("default", { month: "short", year: "numeric" });
+        const timestamp = firstOfMonth.getTime();
 
-        if (!monthCounts[month]) {
-          monthCounts[month] = 0;
+        if (!monthCounts[monthYear]) {
+          monthCounts[monthYear] = { count: 0, timestamp };
         }
-        monthCounts[month] += 1;  // Increment the count for the month
+        monthCounts[monthYear].count += 1;
       });
 
-    return Object.entries(monthCounts).map(([month, count]) => ({
-      id: Math.random(),  // Generate a random ID for each aggregated entry
-      lat: 0,  // Placeholder as we don't aggregate coordinates
-      lng: 0,  // Placeholder as we don't aggregate coordinates
-      date: "",  // Placeholder for aggregated data
-      month,
-      count,
-    }));
+    const results = Object.entries(monthCounts)
+      .map(([monthYear, { count, timestamp }]) => ({
+        id: Math.random(),
+        lat: 0,
+        lng: 0,
+        date: "",
+        month: monthYear,
+        count,
+        timestamp, // add timestamp for sorting
+      }))
+      .sort((a, b) => a.timestamp - b.timestamp);
+
+    return results;
   } catch (error) {
     console.error("Error fetching observations:", error);
     return [];
