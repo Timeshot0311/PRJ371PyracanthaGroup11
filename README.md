@@ -11,4 +11,12 @@ Make sure to run this command on the API base folder where you can see the Docke
 ## 2.3 Access the AI Engine API 
     http://127.0.0.1:8006/docs#/default
 
+# 3. SETTING UP MICROSOFT SQL SERVER(DOCKER CONTAINER)
+The following section is a guide to setup Microsoft SQL Server lastest version to run as a container on Docker.
+## 3.1 Pulling MSSQL Docker Images
+    docker pull mcr.microsoft.com/mssql/server
+
+## 3.2 Creating the docker container.
+    docker run --restart always -e ‘ACCEPT_EULA=Y’ -e "SA_PASSWORD=PRJ371Grp11" --name mssql_container -p 1404:1433 -d mcr.microsoft.com/mssql/server
+
     
