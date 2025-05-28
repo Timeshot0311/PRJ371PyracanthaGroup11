@@ -55,7 +55,9 @@ export default function HomeIndex() {
         <Card className='border-none shadow-none'>
           <CardHeader>
             <CardTitle>Pyracantha Detection Analytics</CardTitle>
-            <CardDescription>Visualize geographic distribution and analytics for Pyracantha</CardDescription>
+            <CardDescription>
+              Visualize geographic distribution and analytics for Pyracantha
+            </CardDescription>
           </CardHeader>
           <CardContent className='flex flex-col gap-6 w-full'>
             <div className='flex flex-row gap-2'>

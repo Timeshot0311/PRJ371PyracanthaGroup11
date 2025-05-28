@@ -49,7 +49,9 @@ export default function InteractiveMap({ points, focusPoint }: Props) {
       viewState={viewState}
       controller={true}
       layers={[scatterLayer]}
-      onViewStateChange={(e) => setViewState(e.viewState as { longitude: number; latitude: number; zoom: number })}
+      onViewStateChange={(e) =>
+        setViewState(e.viewState as { longitude: number; latitude: number; zoom: number })
+      }
       style={{ height: "100%", width: "100%" }}
     >
       <Map

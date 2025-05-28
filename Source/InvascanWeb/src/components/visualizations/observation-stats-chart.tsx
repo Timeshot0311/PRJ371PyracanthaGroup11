@@ -1,4 +1,9 @@
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { Observation } from "@/lib/api";
 import { CartesianGrid, XAxis, YAxis, Bar, BarChart } from "recharts";
 
@@ -22,8 +27,8 @@ export default function ObservationStatsChart({ chartData }: { chartData: Observ
           tickFormatter={(value) => value.slice(0, 3)}
         />
         <YAxis />
-        <ChartTooltip content={<ChartTooltipContent />} />
         <Bar dataKey='count' fill='var(--color-count)' radius={4} />
+        <ChartTooltip content={<ChartTooltipContent />} />
       </BarChart>
     </ChartContainer>
   );
