@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "@tanstack/react-router";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export function SignUpForm() {
     return (
@@ -15,12 +16,30 @@ export function SignUpForm() {
                 </CardHeader>
                 <CardContent className='flex flex-col gap-4'>
                     <div className='grid gap-3'>
-                        <Label htmlFor='username'>Username</Label>
-                        <Input id='username' type='text' placeholder='Concerned citizen' required />
+                        <Label htmlFor='first-name'>First Name</Label>
+                        <Input id='first-name' type='text' placeholder='John' required />
+                    </div>
+                    <div className='grid gap-3'>
+                        <Label htmlFor='last-name'>Last Name</Label>
+                        <Input id='last-name' type='text' placeholder='Doe' required />
                     </div>
                     <div className='grid gap-3'>
                         <Label htmlFor='email'>Email</Label>
                         <Input id='email' type='email' placeholder='m@example.com' required />
+                    </div>
+                    <div className='grid gap-3'>
+                        <Label htmlFor='profession'>Profession</Label>
+                        <Select defaultValue='user'>
+                            <SelectTrigger className='w-full'>
+                                <SelectValue placeholder='User' />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value='user'>User</SelectItem>
+                                <SelectItem value='researcher'>Researcher</SelectItem>
+                                <SelectItem value='nature-conservationist'>Nature Conservationist</SelectItem>
+                                <SelectItem value='ngo'>NGO</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <div className='grid gap-3'>
                         <Label htmlFor='password'>Password</Label>
@@ -30,6 +49,7 @@ export function SignUpForm() {
                         <Label htmlFor='confirm-password'>Confirm Password</Label>
                         <Input id='confirm-password' type='password' required />
                     </div>
+
                     <div className='grid gap-3'>
                         <Label className='hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-primary/50 has-[[aria-checked=true]]:bg-primary/25'>
                             <Checkbox
