@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" afterDir="false" />
-    </list>
+    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
