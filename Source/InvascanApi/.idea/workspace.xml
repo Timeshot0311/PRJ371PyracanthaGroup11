@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/actions/analyze-image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/actions/analyze-image.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/app/(home)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/app/(home)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/best.pt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging Development",
+    "git-widget-placeholder": "Development",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanApi/invascanapi/backend/seeders",
     "node.js.detected.package.eslint": "true",
@@ -163,7 +156,7 @@
       <workItem from="1754552781657" duration="1798000" />
       <workItem from="1754576546054" duration="6006000" />
       <workItem from="1754897818128" duration="3066000" />
-      <workItem from="1755001163888" duration="19886000" />
+      <workItem from="1755001163888" duration="20267000" />
     </task>
     <servers />
   </component>
