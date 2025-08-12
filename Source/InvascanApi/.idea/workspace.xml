@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/entities/detection_status_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/entities/detections_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/entities/geo_data_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/entities/images_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/entities/user_details_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/entities/validations_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/engine_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/seeders/detection_status_seeder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/requests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/responses/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/responses/generic_backend_response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/responses/save_image_response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/services/invascan_engine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/services/token_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/utils/jwt_token_util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/utils/security_util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/lifespan_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/.idea/InvascanAIEngineWebAPI.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/Dockerfile_old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/requirements3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/data/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/data/sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/maincontroller.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/models/GenericResponse.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/models/IdentifyRequest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/models/helpers/ImageHelper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/models/helpers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/services/AIEngineService.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/services/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/services/trainedModel/best.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/tools/yolomodel.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/tools/yolov8nmodel.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/tools/yolov8nmodel_1.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/tools/yolov8nmodel_2.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/tools/yolov8nmodel_3.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/tools/yolov8nmodel_4.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAIEngineWebAPI/webapi/tools/yolov8nmodel_5.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/deploymentTargetSelector.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/migrations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/.vs/Invascan/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWin/.vs/Invascan/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/.vs/Invascan/FileContentIndex/50bd6bf1-dfff-4461-a3c6-44b7a1a79017.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/.vs/Invascan/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWin/.vs/Invascan/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/.vs/Invascan/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWin/.vs/Invascan/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/.vs/ProjectEvaluation/invascan.metadata.v7.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/.vs/ProjectEvaluation/invascan.projects.v7.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/InvascanWin/InvascanWin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWin/InvascanWin/InvascanWin.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWin/InvascanWin/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWin/InvascanWin/MainWindow.xaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Unit Test" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="30BGwlXMuGhTWCVTEdPGtOcePlo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for storagetester.MyTestCase.test_check_email_exists.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in storagetest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in storagetester.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.balancedimagedownloader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.imagedatasets.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maincontroller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.storagetest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanApi/invascanapi/backend/seeders&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\backend\seeders" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\domain\models\machinelearning" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\domain\models" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\backend\seeders" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\domain\models\responses" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\domain\models\requests" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\domain" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\backend" />
+      <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\backend\entities" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Python tests for storagetester.MyTestCase.test_check_email_exists" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="InvascanApi" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/webapi/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;storagetester.MyTestCase.test_check_email_exists&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for storagetester.MyTestCase.test_check_email_exists" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-PY-252.23892.439" />
+        <option value="bundled-python-sdk-b3ae9b5d7125-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.439" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="" />
+      <created>1753093794100</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753093794100</updated>
+      <workItem from="1753093795573" duration="526000" />
+      <workItem from="1753094329107" duration="137000" />
+      <workItem from="1753094490340" duration="4170000" />
+      <workItem from="1753430532967" duration="6393000" />
+      <workItem from="1753690893217" duration="611000" />
+      <workItem from="1753705253916" duration="2913000" />
+      <workItem from="1753719013277" duration="511000" />
+      <workItem from="1753801216192" duration="1473000" />
+      <workItem from="1753811210310" duration="520000" />
+      <workItem from="1753878001237" duration="7288000" />
+      <workItem from="1753891004949" duration="3332000" />
+      <workItem from="1753895267401" duration="1048000" />
+      <workItem from="1753897636146" duration="201000" />
+      <workItem from="1753897864061" duration="1501000" />
+      <workItem from="1753899405773" duration="336000" />
+      <workItem from="1753899757317" duration="5505000" />
+      <workItem from="1753905780683" duration="6767000" />
+      <workItem from="1753950351843" duration="13899000" />
+      <workItem from="1753982019676" duration="10607000" />
+      <workItem from="1754380256359" duration="942000" />
+      <workItem from="1754381527001" duration="2819000" />
+      <workItem from="1754385804125" duration="11537000" />
+      <workItem from="1754400429712" duration="5986000" />
+      <workItem from="1754406478265" duration="1469000" />
+      <workItem from="1754414161759" duration="4883000" />
+      <workItem from="1754475546922" duration="15464000" />
+      <workItem from="1754552781657" duration="1798000" />
+      <workItem from="1754576546054" duration="6006000" />
+      <workItem from="1754897818128" duration="3066000" />
+      <workItem from="1755001163888" duration="19218000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/InvascanApi$balancedimagedownloader.coverage" NAME="balancedimagedownloader Coverage Results" MODIFIED="1753436088754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/InvascanApi$imagedatasets.coverage" NAME="imagedatasets Coverage Results" MODIFIED="1753432136308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/InvascanApi$maincontroller.coverage" NAME="maincontroller Coverage Results" MODIFIED="1753094744598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/InvascanApi$.coverage" NAME=" Coverage Results" MODIFIED="1754384257395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webapi/test" />
+    <SUITE FILE_PATH="coverage/InvascanApi$storagetest.coverage" NAME="storagetest Coverage Results" MODIFIED="1753898215487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/webapi/test" />
+    <SUITE FILE_PATH="coverage/InvascanApi$main.coverage" NAME="main Coverage Results" MODIFIED="1754384670932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/invascanapi" />
+  </component>
+</project>

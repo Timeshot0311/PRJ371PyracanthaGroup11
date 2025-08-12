@@ -1,0 +1,107 @@
+version: '1'
+
+networks:
+  INVASCAN:
+    name: invascan_network
+    driver: bridge
+    #ipam:
+    #  config:
+    #    - subnet: 172.20.0.0/16
+
+services:
+  # Microsoft SQL Server Container
+  mssql_container:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: mssql_container
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrongPassword123!
+    ports:
+      - "1401:1433"
+    networks:
+      - invascan_network
+      #INVASCAN:
+      #  ipv4_address: 172.20.0.2
+    restart: unless-stopped
+    volumes:
+      - mssql_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrongPassword123! -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # INVASCAN API Container
+  invascanapi_container:
+    build:
+      context: .
+      dockerfile: Dockerfile.invascanapi
+    container_name: invascanapi_container
+    ports:
+      - "8080:80"
+    networks:
+      - invascan_network
+      #INVASCAN:
+      #  ipv4_address: 172.20.0.3
+    depends_on:
+      - mssql_container
+    environment:
+      - DB_CONNECTION_STRING=Server=mssql_container;Database=INVASCAN;User Id=sa;Password=YourStrongPassword123!;
+    restart: unless-stopped
+
+  # Data Sync Container
+  datasync_container:
+    build:
+      context: .
+      dockerfile: Dockerfile.datasync
+    container_name: datasync_container
+    ports:
+      - "8081:8081"
+    networks:
+      - invascan_network
+      #INVASCAN:
+      #  ipv4_address: 172.20.0.4
+    depends_on:
+      - mssql_container
+      - invascanapi_container
+    environment:
+      - DB_CONNECTION_STRING=Server=mssql_container;Database=INVASCAN;User Id=sa;Password=YourStrongPassword123!;
+      - API_URL=http://invascanapi_container
+    restart: unless-stopped
+
+  # Web Reporting Container
+  webreporting_container:
+    build:
+      context: .
+      dockerfile: Dockerfile.webreporting
+    container_name: webreporting_container
+    ports:
+      - "80:80"
+    networks:
+      - invascan_network
+      #INVASCAN:
+      #  ipv4_address: 172.20.0.5
+    depends_on:
+      - invascanapi_container
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy Container
+  nginx_proxy:
+    image: nginx:alpine
+    container_name: nginx_proxy
+    ports:
+      - "8000:80"
+    networks:
+      - invascan_network
+      #INVASCAN:
+      #  ipv4_address: 172.20.0.6
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - webreporting_container
+      - invascanapi_container
+      - datasync_container
+    restart: unless-stopped
+
+volumes:
+  mssql_data:

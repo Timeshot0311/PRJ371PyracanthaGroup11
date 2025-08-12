@@ -1,9 +1,0 @@
-FROM python:3.9
-WORKDIR /invascanapi
-LABEL maintainer="PRJ371 Group 11"
-
-COPY ./webapi/requirements.txt .
-RUN pip install -r requirements.txt
-COPY ./webapi ./webapi
-EXPOSE 8006
-CMD ["uvicorn", "webapi.maincontroller:app", "--host", "0.0.0.0", "--port", "8006"]
