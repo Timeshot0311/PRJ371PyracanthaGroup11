@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/best.pt" beforeDir="false" />
-    </list>
+    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +154,7 @@
       <workItem from="1754552781657" duration="1798000" />
       <workItem from="1754576546054" duration="6006000" />
       <workItem from="1754897818128" duration="3066000" />
-      <workItem from="1755001163888" duration="20267000" />
+      <workItem from="1755001163888" duration="20831000" />
     </task>
     <servers />
   </component>
