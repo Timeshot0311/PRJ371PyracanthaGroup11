@@ -42,13 +42,14 @@ services:
 
   # INVASCAN API Container
   invascanapi_container:
-    image: invascan/dev:invascanapi_v3.36
+    image: invascan/dev:invascanapi_v3.38
     logging: # Added logging options and restricting log file growth to only 10MB with rotation to 3 files
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
     container_name: invascanapi_container
+    pull_policy: always
     ports:
       - "8080:80"
     networks:
@@ -71,34 +72,34 @@ services:
       timeout: 10s
       retries: 3
 
-    # Data Sync Container
-    datasync_container:
-      image: invascan/dev:datasync_v1.2
-      logging: # Added logging options and restricting log file growth to only 10MB with rotation to 3 files
-        driver: "json-file"
-        options:
-          max-size: "10m"
-          max-file: "3"
-      container_name: datasync_container
-      ports:
-        - "8081:8081"
-      networks:
-        INVASCAN:
-          ipv4_address: 172.20.0.4
-      depends_on:
-        mssql_container:
-          condition: service_healthy
-        invascanapi_container:
-          condition: service_healthy
-      environment:
-        - DB_CONNECTION_STRING=Server=mssql_container,1433;Database=InvascanDb;User Id=sa;Password=G9e@7I4RiCT#;Encrypt=false;TrustServerCertificate=true;
-        - API_URL=http://invascanapi_container:80
-      restart: unless-stopped
-      healthcheck:
-        test: ["CMD-SHELL", "python3 -c 'import requests; requests.get(\"http://localhost:8081\")' || exit 1"]
-        interval: 30s
-        timeout: 10s
-        retries: 3
+  # Data Sync Container
+  # datasync_container:
+  #   image: invascan/dev:datasync_v1.2
+  #   logging: # Added logging options and restricting log file growth to only 10MB with rotation to 3 files
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+  #   container_name: datasync_container
+  #   ports:
+  #     - "8081:8081"
+  #   networks:
+  #     INVASCAN:
+  #       ipv4_address: 172.20.0.4
+  #   depends_on:
+  #     mssql_container:
+  #       condition: service_healthy
+  #     invascanapi_container:
+  #       condition: service_healthy
+  #   environment:
+  #     - DB_CONNECTION_STRING=Server=mssql_container,1433;Database=InvascanDb;User Id=sa;Password=G9e@7I4RiCT#;Encrypt=false;TrustServerCertificate=true;
+  #     - API_URL=http://invascanapi_container:80
+  #   restart: unless-stopped
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "python3 -c 'import requests; requests.get(\"http://localhost:8081\")' || exit 1"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
 
   # # Enhanced Web Reporting Container
   # webreporting_container:
@@ -147,7 +148,8 @@ services:
       INVASCAN:
         ipv4_address: 172.20.0.6
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    #  - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # file-to-file mount
     depends_on:
       # webreporting_container:
       #   condition: service_healthy
