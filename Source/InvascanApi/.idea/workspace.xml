@@ -4,7 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="" />
+    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/insert_detections_stored_procedure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/insert_geodata_stored_procedure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/insert_images_stored_procedure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/utilz/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/utilz/datetime_extensions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/utils/maps_utilz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/InvascanApi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InvascanApi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d048119d-4059-4cc2-863c-4475e5f86197.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d048119d-4059-4cc2-863c-4475e5f86197.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/detections_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/detections_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/geo_data_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/geo_data_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/images_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/images_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/validations_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/validations_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/repositories/engine_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/engine_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/seeders/users_seeder.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/seeders/users_seeder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/lifespan_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/lifespan_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/routers/engine_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/routers/engine_router.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +60,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -40,37 +71,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for storagetester.MyTestCase.test_check_email_exists.executor": "Run",
-    "Python tests.Python tests in storagetest.py.executor": "Run",
-    "Python tests.Python tests in storagetester.py.executor": "Run",
-    "Python.balancedimagedownloader.executor": "Run",
-    "Python.imagedatasets.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.maincontroller.executor": "Run",
-    "Python.storagetest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Development",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanApi/invascanapi/backend/seeders",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for storagetester.MyTestCase.test_check_email_exists.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in storagetest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in storagetester.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.balancedimagedownloader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.imagedatasets.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maincontroller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.storagetest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/api&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanApi/invascanapi/backend/seeders&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\backend\seeders" />
@@ -113,8 +144,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-PY-252.23892.439" />
-        <option value="bundled-python-sdk-b3ae9b5d7125-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.439" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-PY-252.23892.515" />
+        <option value="bundled-python-sdk-7e47963ff851-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.515" />
       </set>
     </attachedChunks>
   </component>
@@ -155,6 +186,23 @@
       <workItem from="1754576546054" duration="6006000" />
       <workItem from="1754897818128" duration="3066000" />
       <workItem from="1755001163888" duration="20831000" />
+      <workItem from="1755025693156" duration="109000" />
+      <workItem from="1755026802695" duration="1782000" />
+      <workItem from="1755091325887" duration="994000" />
+      <workItem from="1755095122753" duration="1206000" />
+      <workItem from="1755242725490" duration="1397000" />
+      <workItem from="1755261725745" duration="964000" />
+      <workItem from="1755330568453" duration="13000" />
+      <workItem from="1755509050816" duration="3040000" />
+      <workItem from="1755590575918" duration="1532000" />
+      <workItem from="1755678282312" duration="1013000" />
+      <workItem from="1755689528282" duration="2003000" />
+      <workItem from="1755691968755" duration="2015000" />
+      <workItem from="1755694550466" duration="3699000" />
+      <workItem from="1755862042458" duration="14753000" />
+      <workItem from="1755937577523" duration="41000" />
+      <workItem from="1756119890718" duration="7489000" />
+      <workItem from="1756151853481" duration="5763000" />
     </task>
     <servers />
   </component>

@@ -50,14 +50,16 @@ class UserRepository:
             return GenericBackendResponse(
                 success = True,
                 message = "User created",
-                data= user
+                data= user,
+                code= 200
             )
         except Exception as e:
             await self.db.rollback()
             return GenericBackendResponse(
                 success=False,
                 message= f"User creation failed: {str(e)}",
-                data=None
+                data=None,
+                code= 500
             )
 
 
@@ -70,12 +72,14 @@ class UserRepository:
             return GenericBackendResponse(
                 success=True,
                 message="User details created successful",
-                data=user_details
+                data=user_details,
+                code= 200
             )
         except Exception as e:
             await self.db.rollback()
             return GenericBackendResponse(
                 success=False,
                 message= f"User details creation failed: {str(e)}",
-                data=None
+                data=None,
+                code= 500
             )

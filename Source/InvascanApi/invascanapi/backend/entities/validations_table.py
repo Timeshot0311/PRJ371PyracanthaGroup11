@@ -6,6 +6,7 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
 
 from invascanapi.backend.entities.base import Base
+from invascanapi.backend.utilz.datetime_extensions import gmt2_now
 
 
 class Validations(Base):
@@ -24,7 +25,7 @@ class Validations(Base):
         nullable=False)
     Decision = relationship("DetectionStatus", lazy="joined")  # eager load if needed
     Comments = Column(Float, unique=False, index=True, nullable=False)
-    ValidatedAt = Column(DateTime, index=True, nullable=False, default=datetime.datetime.utcnow)
+    ValidatedAt = Column(DateTime, index=True, nullable=False, default=gmt2_now)
 
     # ✅ Table-level constraints
     __table_args__ = (
