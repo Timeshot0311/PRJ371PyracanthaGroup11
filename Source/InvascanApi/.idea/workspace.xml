@@ -4,45 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/1bf70129-cfd2-4def-83ce-0f84acf9468a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/1d047208-85b5-4112-8580-342ce6e74b89.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/2110c984-2860-4a4d-ae91-c0cec98ef32b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/253de597-5622-4e82-b690-c2c0b7d8d602.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/328ee037-3635-492b-b481-e491e473045b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/40f38474-42c5-4841-a646-8ea23e5870d0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/6de32017-4916-48cb-ac83-464feccb7d47.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/895d847c-80e2-4382-b235-57b1923e2823.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/93515ec2-eb0e-49a9-8fd9-a08a187b6f5b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/aff8306d-8a59-4f00-8820-f15af87dc8fb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/bbf3d6a2-743a-47d9-a29b-ff03f8ab0944.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/c3c4aa4d-4b41-4d9d-ae38-eb095f86851f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/d3c46280-1db8-4d44-883c-d6e70957141e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/e2d84bb7-94ae-41de-b7c4-4e97f84b6116.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/fb210d7f-8e9c-4b43-9b74-bcb338a7cdd5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.datasync" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.invascanapi" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.webreporting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/nginx/nginx.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/sql-init/01-init.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.datasync" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.invascanapi" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.webreporting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/nginx/nginx.conf/nginx.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/nginx/nginx.conf~feat_datasync" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/sql-init/01-init.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/validations_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/validations_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/invascan_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/invascan_engine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/server/functions/analyze-image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/server/functions/analyze-image.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
