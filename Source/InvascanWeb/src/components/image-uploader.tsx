@@ -12,31 +12,31 @@ type APIResponse = {
   dynamicModel: {
     speciesName: string;
     confidenceScore: number;
-    imageData: string;  // may be empty
-    imageUrl: string;   // may be base64 OR a URL (/images/... or http...)
+    imageData: string;
+    imageUrl: string;
   } | null;
 };
 
-const API_URL = "http://localhost:8000"; // nginx proxy
+const API_URL = "http://localhost:8000";
 
-// ------- helpers to detect & format image sources -------
-const isProbablyDataUrl = (s: string) => s.startsWith("data:image/");
-const isProbablyHttpUrl = (s: string) => /^https?:\/\//i.test(s);
-const isProbablyBase64 = (s: string) => /^[A-Za-z0-9+/=\r\n]+$/.test(s) && s.length > 100;
+// --- helpers to detect & format image sources ---
+const isDataUrl = (s: string) => s.startsWith("data:image/");
+const isHttpUrl = (s: string) => /^https?:\/\//i.test(s);
+const isB64 = (s: string) => /^[A-Za-z0-9+/=\r\n]+$/.test(s) && s.length > 100;
 
-function toDisplaySrc(fromApiUrl: string | undefined, fromApiData: string | undefined): string | undefined {
-  if (fromApiUrl && isProbablyDataUrl(fromApiUrl)) return fromApiUrl; // explicit data URL
+function toDisplaySrc(fromApiUrl?: string, fromApiData?: string): string | undefined {
+  if (fromApiUrl && isDataUrl(fromApiUrl)) return fromApiUrl;
   const b64 =
-    (fromApiUrl && isProbablyBase64(fromApiUrl)) ? fromApiUrl :
-    (fromApiData && isProbablyBase64(fromApiData)) ? fromApiData :
+    (fromApiUrl && isB64(fromApiUrl)) ? fromApiUrl :
+    (fromApiData && isB64(fromApiData)) ? fromApiData :
     undefined;
-  if (b64) return `data:image/jpeg;base64,${b64}`; // base64 -> data URL
-  if (fromApiUrl && isProbablyHttpUrl(fromApiUrl)) return fromApiUrl; // absolute URL
-  if (fromApiUrl && fromApiUrl.startsWith("/")) return `${API_URL}${fromApiUrl}`; // relative path
+  if (b64) return `data:image/jpeg;base64,${b64}`;
+  if (fromApiUrl && isHttpUrl(fromApiUrl)) return fromApiUrl;
+  if (fromApiUrl && fromApiUrl.startsWith("/")) return `${API_URL}${fromApiUrl}`;
   return undefined;
 }
 
-// ------- image utilities -------
+// --- image utilities ---
 const fileToDataURL = (f: File) =>
   new Promise<string>((resolve, reject) => {
     const r = new FileReader();
@@ -59,7 +59,7 @@ const b64Size = (s: string) => {
   return Math.floor((base64.length * 3) / 4) - padding;
 };
 
-// Standard downscale: reduce longest side + quality until under target
+// downscale longest side, then quality, until under target
 async function downscaleToLimit(
   f: File,
   maxDim = 1280,
@@ -98,7 +98,7 @@ async function downscaleToLimit(
   return { dataUrl: out, outW: w, outH: h };
 }
 
-// NEW: letterbox to a square canvas (fits image and pads to target×target)
+// make a 512x512 “letterboxed” square (helps strict models)
 async function letterboxSquare(f: File, target = 512, quality = 0.9, bg = "#ffffff") {
   const dataUrl = await fileToDataURL(f);
   const img = await loadImage(dataUrl);
@@ -125,7 +125,32 @@ async function letterboxSquare(f: File, target = 512, quality = 0.9, bg = "#ffff
 
 const dataUrlToBase64 = (dataUrl: string) => (dataUrl.startsWith("data:") ? dataUrl.split(",")[1] : dataUrl);
 
-// ------- component -------
+// --- content-type aware fetch wrapper ---
+async function callEngine(base64: string) {
+  const payload = {
+    user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
+    image_data: base64,
+    latitude: 0,
+    longitude: 0,
+    address: "",
+  };
+
+  const res = await fetch(`${API_URL}/api/engine/investigate`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const contentType = res.headers.get("content-type") || "";
+  const text = await res.text();
+  let json: APIResponse | undefined;
+
+  if (contentType.toLowerCase().includes("application/json") && text.trim() !== "") {
+    try { json = JSON.parse(text); } catch { /* fallthrough */ }
+  }
+  return { ok: res.ok, status: res.status, json, text, contentType };
+}
+
 export function ImageUploader() {
   const [file, setFile] = useState<File | undefined>();
   const [imageUrl, setImageUrl] = useState<string | undefined>();
@@ -140,66 +165,54 @@ export function ImageUploader() {
     setImageUrl(URL.createObjectURL(f));
   };
 
-  // request wrapper so we can retry with square input
-  const callEngine = async (base64: string) => {
-    const payload = {
-      user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
-      image_data: base64,
-      latitude: 0,
-      longitude: 0,
-      address: "",
-    };
-
-    const res = await fetch(`${API_URL}/api/engine/investigate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    const text = await res.text();
-    let json: APIResponse;
-    try { json = JSON.parse(text); }
-    catch { throw new Error(`Invalid JSON (HTTP ${res.status}): ${text}`); }
-
-    return { ok: res.ok, json, rawText: text };
-  };
-
   const submitImage = async () => {
     if (!file) return toast.error("No image selected.");
     setLoading(true);
     try {
-      // Diagnostics
       const original = await fileToDataURL(file);
       console.log("[Uploader] original bytes ≈", b64Size(original));
 
-      // 1) Normal compressed attempt
+      // 1) normal compressed attempt
       const comp = await downscaleToLimit(file, 1280, 0.9, 2_000_000);
       console.log("[Uploader] compressed bytes ≈", b64Size(comp.dataUrl), "dims", comp.outW, "x", comp.outH);
-      let { ok, json } = await callEngine(dataUrlToBase64(comp.dataUrl));
+      let r = await callEngine(dataUrlToBase64(comp.dataUrl));
 
-      // 2) If engine complains (non-ok, status false, or vague internal error), retry square 512x512
-      const engineFailed =
-        !ok || !json.status || !json.dynamicModel ||
-        /internal.*engine.*error/i.test(json.statusMessage || "");
-
-      if (engineFailed) {
+      // 2) retry with letterboxed 512 if the server complains or returns bad JSON
+      const needsRetry =
+        !r.ok || !r.json || !r.json.status || !r.json.dynamicModel ||
+        /internal.*engine.*error/i.test(r.json?.statusMessage || "");
+      if (needsRetry) {
         console.warn("[Uploader] retrying with letterboxed 512x512");
         const sq = await letterboxSquare(file, 512, 0.9, "#ffffff");
         console.log("[Uploader] square bytes ≈", b64Size(sq.dataUrl), "dims", sq.outW, "x", sq.outH);
-        const retry = await callEngine(dataUrlToBase64(sq.dataUrl));
-        ok = retry.ok; json = retry.json;
+        r = await callEngine(dataUrlToBase64(sq.dataUrl));
       }
 
-      if (!ok || !json.status || !json.dynamicModel) {
-        throw new Error(json?.statusMessage || "Unknown internal engine error");
+      // --- Web-side fallback for server’s 500 on “no detections” ---
+      if (!r.ok || !r.json) {
+        // Treat HTTP 500/non-JSON as NO DETECTIONS instead of an error
+        setLabel("No detections found");
+        setScore(0);
+        toast.info("No detections found");
+        return;
       }
 
-      const display = toDisplaySrc(json.dynamicModel.imageUrl, json.dynamicModel.imageData);
+      if (!r.json.status || !r.json.dynamicModel) {
+        // API responded but has no dynamicModel – also treat as NO DETECTIONS
+        const msg = r.json.statusMessage || "No detections found";
+        setLabel("No detections found");
+        setScore(0);
+        toast.info(msg);
+        return;
+      }
+
+      // success path
+      const display = toDisplaySrc(r.json.dynamicModel.imageUrl, r.json.dynamicModel.imageData);
       if (display) setImageUrl(display);
 
-      setLabel(json.dynamicModel.speciesName || "");
-      setScore(json.dynamicModel.confidenceScore || 0);
-      toast.success(json.statusMessage, { duration: 3000 });
+      setLabel(r.json.dynamicModel.speciesName || "");
+      setScore(r.json.dynamicModel.confidenceScore || 0);
+      toast.success(r.json.statusMessage || "OK", { duration: 3000 });
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Unknown error";
       toast.error(msg);
