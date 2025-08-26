@@ -1,9 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { $analyzeImage } from "@/server/functions/analyze-image";
 import { Camera, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+
+type APIResponse = {
+    status: boolean;
+    statusCode: number;
+    statusMessage: string;
+    dynamicModel: { speciesName: string; confidenceScore: number; imageData: string; imageUrl: string } | null;
+};
 
 export function ImageUploader() {
     const [file, setFile] = useState<File | undefined>(undefined);
@@ -56,22 +62,34 @@ export function ImageUploader() {
 
         try {
             const base64Image = await convertToBase64(file);
-            const result = await $analyzeImage({ data: base64Image });
 
-            if (!result.success || !result.imgUrl) {
-                toast.error("API error occured", {
-                    duration: 3000,
-                });
+            const payload = {
+                fileData: base64Image,
+                user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
+                latitude: "0",
+                longitude: "0",
+            };
+
+            const response = await fetch("http://localhost:8080/api/engine/investigate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            const result: APIResponse = await response.json();
+
+            if (!result.status || !result.dynamicModel) {
+                toast.error(result.statusMessage || "API error");
                 return;
             }
 
-            setImageUrl(result.imgUrl);
-            setLabel(result.label);
-            setScore(result.score);
+            setImageUrl(result.dynamicModel.imageUrl ? `data:image/jpeg;base64,${result.dynamicModel.imageUrl}` : "");
+            setLabel(result.dynamicModel.speciesName || "");
+            setScore(result.dynamicModel.confidenceScore || 0);
 
-            toast.success(result.message, {
-                duration: 3000,
-            });
+            toast.success(result.statusMessage, { duration: 3000 });
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "Unknown error";
             toast.error(errorMessage);
