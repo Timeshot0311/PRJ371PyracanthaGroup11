@@ -1,7 +1,7 @@
 import datetime
 import uuid
 
-from sqlalchemy import Column, String, DateTime, Date, Float, ForeignKey, PrimaryKeyConstraint
+from sqlalchemy import Column, String, DateTime, Date, Float, ForeignKey, PrimaryKeyConstraint, VARCHAR
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
 
@@ -24,7 +24,7 @@ class Validations(Base):
         index=True,
         nullable=False)
     Decision = relationship("DetectionStatus", lazy="joined")  # eager load if needed
-    Comments = Column(Float, unique=False, index=True, nullable=False)
+    Comments = Column(String(1000), unique=False, index=True, nullable=False)
     ValidatedAt = Column(DateTime, index=True, nullable=False, default=gmt2_now)
 
     # ✅ Table-level constraints

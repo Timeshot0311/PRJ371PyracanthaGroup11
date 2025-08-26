@@ -1,6 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+
 from invascanapi.lifespan_handler import lifespan
 from invascanapi.routers.user_router import router as user_router
 from invascanapi.routers.engine_router import router as engine_router
@@ -25,6 +27,14 @@ app = FastAPI(
     openapi_url = "/openapi.json"   # OpenAPI spec path
 )
 
+# Allow everything 🚨 (use only for dev!)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # allow all origins
+    allow_methods=["*"],  # allow GET, POST, PUT, DELETE
+    allow_headers=["*"],  # allow all headers
+)
+
 #
 # @app.on_event("startup")
 # async def on_startup():
@@ -47,5 +57,5 @@ app.include_router(engine_router)
 app.include_router(version_router)
 
 
-if __name__ == "__main__":
-    uvicorn.run("invascanapi.main:app", host="0.0.0.0", port=8086, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("invascanapi.main:app", host="0.0.0.0", port=8086, reload=True)

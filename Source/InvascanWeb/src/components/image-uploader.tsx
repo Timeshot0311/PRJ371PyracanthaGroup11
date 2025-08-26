@@ -98,6 +98,8 @@ export function ImageUploader() {
         address: ""
       };
 
+      console.log(`calling api ${API_URL}`);
+
       const res = await fetch(`${API_URL}/api/engine/investigate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -108,6 +110,8 @@ export function ImageUploader() {
       let result: APIResponse;
       try {
         result = await res.json();
+
+        console.log(`api response: ${JSON.stringify(result)}`);
       } catch {
         const text = await res.text();
         throw new Error(`HTTP ${res.status}: ${text}`);
@@ -142,9 +146,9 @@ export function ImageUploader() {
       <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex flex-col justify-between gap-4 min-h-60">
           <label htmlFor="file-upload"
-                 className="flex-1 w-full flex p-4 border-dashed border-2 border-primary rounded-sm text-muted-foreground items-center justify-center cursor-pointer">
+            className="flex-1 w-full flex p-4 border-dashed border-2 border-primary rounded-sm text-muted-foreground items-center justify-center cursor-pointer">
             <input id="file-upload" type="file" accept="image/jpeg,image/jpg,image/png"
-                   className="sr-only" onChange={handleImageChange}/>
+              className="sr-only" onChange={handleImageChange} />
             <div className="flex flex-col gap-2 items-center text-center">
               <Camera className="size-10 text-primary" />
               <div className="text-base">{file ? file.name : "Select an image to get started"}</div>
@@ -159,7 +163,7 @@ export function ImageUploader() {
           <div className="relative">
             <img src={imageUrl} alt="Image preview" className="rounded-sm" />
             <Button className="absolute top-2 right-2" variant="ghost" size="icon"
-                    onClick={() => { setFile(undefined); setImageUrl(undefined); }}>
+              onClick={() => { setFile(undefined); setImageUrl(undefined); }}>
               <Trash className="text-destructive" />
             </Button>
             {!!label && (

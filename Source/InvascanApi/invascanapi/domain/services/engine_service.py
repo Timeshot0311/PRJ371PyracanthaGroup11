@@ -123,7 +123,10 @@ class EngineService:
             status_id = uuid.UUID("AEFA556C-A285-4838-B54C-0CD8A50A3D37")  # CONFIRMED DETECTION
             common_name = "Pyracantha Angustifolia"
 
-        province = await get_province(latitude=model.latitude, longitude=model.longitude)
+        province = "Unallocated"
+        if model.latitude != 0.0 and model.latitude != 0.0:
+            province = await get_province(latitude=model.latitude, longitude=model.longitude)
+
         detection_save = Detections(
             SpeciesName=identification_response.dynamicModel.speciesName,
             CommonName=common_name,
@@ -154,10 +157,11 @@ class EngineService:
 
             if identification_response.code == 2002:
                 print(f"we are creating a validation entry")
-                validations = Validations(
-                    DetectionId=save_detection_response.dynamicModel.Id,
-                    DecisionId=uuid.UUID("8B721BD2-5A32-4F85-B5E4-D0979A5A82AF"),
-                )
-                await repo.insert_validations(validations)
+                # validations = Validations(
+                #     DetectionId=save_detection_response.dynamicModel.Id,
+                #     DecisionId=uuid.UUID("8B721BD2-5A32-4F85-B5E4-D0979A5A82AF"),
+                #     Comments= ""
+                # )
+                # await repo.insert_validations(validations)
 
 

@@ -5,115 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.datasync" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.invascanapi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.webreporting" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/nginx/nginx.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/sql-init/01-init.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.datasync" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.invascanapi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.webreporting" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/nginx/nginx.conf~feat_datasync" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/sql-init/01-init.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025_Revised.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/d048119d-4059-4cc2-863c-4475e5f86197/storage_v2/_src_/database/InvascanDb.izo-FQ/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/d048119d-4059-4cc2-863c-4475e5f86197/storage_v2/_src_/database/InvascanDb.izo-FQ/schema/dbo.sYMBAA.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/insert_detections_stored_procedure.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/insert_geodata_stored_procedure.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/backend/scripts/insert_images_stored_procedure.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/backend/utilz/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/backend/utilz/datetime_extensions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/1e7ea6b6-b852-4eea-9a8f-4e43c7f0f5f3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/2c6459b3-cd51-4ff2-bd21-cf8f06988912.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/433ee977-acfa-47ab-9375-2b782bc179bc.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/6768d883-8647-4f14-97b5-5a2c38b6d1e2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/697c3198-647c-4620-97ca-e6606bfb40e1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/6e17d79c-6b0f-4bf8-9600-7fe83695dedd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/7587e1b1-6993-48cb-9913-576a065fe503.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/90ae84fc-57df-490c-a889-1f09d84aed79.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/933cffa2-2bac-455d-856a-d19cc7e99683.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/95aaea4e-0f21-45b4-b00f-b54aa9bd86bd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/c1ddead5-35ca-4bae-802a-7ab45b2cb57a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/f0affa27-3e73-4683-9587-03535b1fdabf.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/f0fb5722-a409-4987-a481-25692797ddba.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invascanapi/domain/utils/maps_utilz.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/CopilotIndices/17.14.995.13737/CodeChunks.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/CopilotIndices/17.14.995.13737/SemanticSymbols.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/1c95ff3a-633d-4f61-b896-15729e09f195.vsidx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/21051cba-2855-437f-9f51-45565abbc5aa.vsidx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/90cfed55-8a13-4425-91b5-1e4f70c3fa67.vsidx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/a312dabd-bf47-4f2a-9047-5206b9292848.vsidx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/dba43e4d-2e5c-479e-afe6-6d6569c94e71.vsidx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/.futdcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/.suo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/DocumentLayout.backup.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/DocumentLayout.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/ProjectEvaluation/invascandatasync.metadata.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/ProjectEvaluation/invascandatasync.projects.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/ProjectEvaluation/invascandatasync.strings.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Data/Entities/DetectionImages.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Data/Entities/Detections.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Data/Entities/GeoData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Data/InvascanDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Data/Repositories/InvascanRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Models/GenericResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Models/Inaturalist/InaturalistUser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Models/Inaturalist/ObservationsResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Models/Inaturalist/Photo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Models/Inaturalist/Taxon.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Models/InaturalistConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Services/INaturalist/InaturalistService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Domain/Services/Invascan/DataService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/InvascanDataSync.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/bin/Debug/net8.0/InvascanDataSync.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/bin/Debug/net8.0/InvascanDataSync.runtimeconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/bin/Debug/net8.0/invascan.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/invascan.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/Invascan.214FEA04.Up2Date" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.csproj.BuildWithSkipAnalyzers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.genruntimeconfig.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.sourcelink.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/InvascanDataSync.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/InvascanDataSync.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/InvascanDataSync.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvascanWeb/src/server/functions/analyze-image.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/InvascanApi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InvascanApi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d048119d-4059-4cc2-863c-4475e5f86197.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d048119d-4059-4cc2-863c-4475e5f86197.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/1bf70129-cfd2-4def-83ce-0f84acf9468a.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/1d047208-85b5-4112-8580-342ce6e74b89.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/2110c984-2860-4a4d-ae91-c0cec98ef32b.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/253de597-5622-4e82-b690-c2c0b7d8d602.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/328ee037-3635-492b-b481-e491e473045b.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/40f38474-42c5-4841-a646-8ea23e5870d0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/6de32017-4916-48cb-ac83-464feccb7d47.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/895d847c-80e2-4382-b235-57b1923e2823.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/93515ec2-eb0e-49a9-8fd9-a08a187b6f5b.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/aff8306d-8a59-4f00-8820-f15af87dc8fb.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/bbf3d6a2-743a-47d9-a29b-ff03f8ab0944.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/c3c4aa4d-4b41-4d9d-ae38-eb095f86851f.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/d3c46280-1db8-4d44-883c-d6e70957141e.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/e2d84bb7-94ae-41de-b7c4-4e97f84b6116.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/images/fb210d7f-8e9c-4b43-9b74-bcb338a7cdd5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.datasync" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.invascanapi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/Dockerfile.webreporting" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/nginx/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025-Original/invascan-project 21-08-2025/sql-init/01-init.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.datasync" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.invascanapi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/Dockerfile.webreporting" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/nginx/nginx.conf/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/nginx/nginx.conf~feat_datasync" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project 21-08-2025/sql-init/01-init.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/detections_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/detections_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/geo_data_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/geo_data_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/images_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/images_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/validations_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/validations_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/repositories/engine_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/engine_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/seeders/users_seeder.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/seeders/users_seeder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/lifespan_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/lifespan_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/routers/engine_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/routers/engine_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/invascan_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/invascan_engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/server/functions/analyze-image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/server/functions/analyze-image.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +95,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging Development",
+    "git-widget-placeholder": "Development",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanApi/invascanapi/backend/seeders",
     "node.js.detected.package.eslint": "true",

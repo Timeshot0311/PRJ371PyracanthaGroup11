@@ -22,6 +22,7 @@ export const $analyzeImage = createServerFn()
     .handler(async ({ data }): Promise<ClientPayload> => {
         try {
             const apiUrl = "http://localhost:8006";
+            console.log(`calling api ${apiUrl}`);
 
             const response = await fetch(`${apiUrl}/identifyasync`, {
                 method: "POST",

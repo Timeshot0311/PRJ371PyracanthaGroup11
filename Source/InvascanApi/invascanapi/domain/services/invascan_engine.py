@@ -25,9 +25,9 @@ class InvascanEngine:
         self.model_location = os.path.join(self.base_dir, "models", "machinelearning", "best.pt")
         #self.model_location = f"{os.getcwd()}/invascanapi/domain/best.pt"
         self.default_image_size = 640
-        self.confidence_threshold_low = 0.5
-        self.confidence_threshold_medium = 0.6
-        self.confidence_threshold_high = 0.7
+        self.confidence_threshold_low = 0.50
+        self.confidence_threshold_medium = 0.60
+        self.confidence_threshold_high = 0.70
         self.model = YOLO(self.model_location)
         logging.info(f"Pyracantha version: {self.model}")
         self.model_classes = self.model.names
@@ -93,27 +93,31 @@ class InvascanEngine:
                 print(f"{det['label']}: {det['confidence']}")
 
             # Encode to base64
+            print(f"Before image_as_base64")
             image_as_base64 = base64.b64encode(jpeg_bytearray).decode("utf-8")
+            print(f"After image_as_base64")
             # image_as_base64 = base64.b64encode(image_buffer_as_jpeg.getvalue()).decode("utf-8")
             # jpeg_image_as_base64 = base64.b64encode(jpeg_bytearray).decode("utf-8")
 
             if detections:
                 first_position_detection = detections[0]
+                print(f"====================================================")
+                print(f"label: {first_position_detection['label']}")
+                print(f"score: {float(first_position_detection['confidence'])}")
+                print(f"====================================================")
                 confidence_score = float(first_position_detection['confidence'])
                 if confidence_score < self.confidence_threshold_low:
                     print('false detection')
                     response.confidenceScore = confidence_score
                     response.speciesName = first_position_detection['label']
                     response.imageData = image_as_base64
-                    # return {"data": response, "message": "no detection"}
                     return GenericBackendResponse(success=True, code = 2001, message="no detection", data= response)
 
-                elif (confidence_score > self.confidence_threshold_low) and (confidence_score < self.confidence_threshold_medium):
+                elif (confidence_score >= self.confidence_threshold_low) and (confidence_score < self.confidence_threshold_high):
                     response.confidenceScore = confidence_score
                     response.speciesName = first_position_detection['label']
                     response.imageData = image_as_base64
                     print('detection requires manual verification, must be recorded into the database')
-                    # return {"data": response, "message": "detection requires manual verification"}
                     return GenericBackendResponse(success=True, code = 2002, message="detection requires manual verification", data=response)
 
                 elif confidence_score >= self.confidence_threshold_high:
@@ -122,12 +126,10 @@ class InvascanEngine:
                     response.imageData = image_as_base64
                     print('detection acceptable and user is notified immediately')
                     return GenericBackendResponse(success=True, code = 2000, message="success", data=response)
-                    # return {"data": response, "message": "success"}
 
                 else:
                     print('Unknown internal engine error.')
                     return GenericBackendResponse(success=False, code = 2004, message="Unknown internal engine error", data=None)
-                    # return {"data": None, "message": "Unknown internal engine error"}
             else:
                 print('no detections found')
                 return GenericBackendResponse(success=False, code = 2003, message="no detections found", data=None)
