@@ -26,7 +26,6 @@ images_upload_directory = os.path.join("invascanapi", "domain", "images")
 async def investigate(model: InvestigateRequest, request: Request, db: AsyncSession = Depends(get_db)):
     service = EngineService(EngineRepository(db))
     base_url = f"{request.base_url}images"
-
     identification_response = await service.do_identification_async(model, base_url)
     return identification_response
 

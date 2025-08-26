@@ -6,6 +6,7 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
 
 from invascanapi.backend.entities.base import Base
+from invascanapi.backend.utilz.datetime_extensions import gmt2_now
 
 
 class Images(Base):
@@ -19,7 +20,7 @@ class Images(Base):
     Detection = relationship("Detections", lazy="joined")  # eager load if needed
     ImageUrl = Column(String(1000), unique=False, index=True, nullable=False)
     ImageData = Column(LargeBinary, nullable=True)
-    UploadedAt = Column(DateTime, index=True, nullable=False, default=datetime.datetime.utcnow)
+    UploadedAt = Column(DateTime, index=True, nullable=False, default=gmt2_now)
 
     # ✅ Table-level constraints
     __table_args__ = (

@@ -6,6 +6,7 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
 
 from invascanapi.backend.entities.base import Base
+from invascanapi.backend.utilz.datetime_extensions import gmt2_now
 
 
 #table for user authentication
@@ -24,7 +25,7 @@ class Users(Base):
     Role = relationship("UserRoles", lazy="joined")  # eager load if needed
     PasswordHash = Column(String, nullable=False)
     PasswordSalt = Column(String, nullable=False)
-    CreatedAt = Column(DateTime, index=True, nullable=False, default=datetime.datetime.utcnow)
+    CreatedAt = Column(DateTime, index=True, nullable=False, default=gmt2_now)
     LastLogin = Column(DateTime, index=True, nullable=True)
     IsActive = Column(Boolean, index=True, nullable=False, default=True)
 

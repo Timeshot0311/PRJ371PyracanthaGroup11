@@ -1,0 +1,262 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\domain\\services\\invascan\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\domain\\services\\invascan\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\domain\\services\\inaturalist\\inaturalistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\domain\\services\\inaturalist\\inaturalistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\data\\repositories\\invascanrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\data\\repositories\\invascanrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\data\\entities\\geodata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\data\\entities\\geodata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\domain\\models\\inaturalist\\observationsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\domain\\models\\inaturalist\\observationsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\invascan.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\invascan.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\data\\entities\\detections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\data\\entities\\detections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\data\\entities\\detectionimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\data\\entities\\detectionimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\domain\\models\\genericresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\domain\\models\\genericresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\domain\\models\\inaturalistconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\domain\\models\\inaturalistconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\invascandatasync.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\invascandatasync.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|d:\\repository\\personal\\belgiumcampus\\prj371pyracanthagroup11\\source\\invascandatasync\\invascandatasync\\data\\invascandbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8211909F-D97E-4AA8-9F52-4FA24FBA14D0}|InvascanDataSync\\InvascanDataSync.csproj|solutionrelative:invascandatasync\\data\\invascandbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Program.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Program.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Program.cs",
+              "RelativeToolTip": "InvascanDataSync\\Program.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAywEMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T11:00:05.727Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "invascan.json",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\invascan.json",
+              "RelativeDocumentMoniker": "InvascanDataSync\\invascan.json",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\invascan.json",
+              "RelativeToolTip": "InvascanDataSync\\invascan.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-25T11:01:44.381Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InaturalistConfig.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Models\\InaturalistConfig.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Domain\\Models\\InaturalistConfig.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Models\\InaturalistConfig.cs",
+              "RelativeToolTip": "InvascanDataSync\\Domain\\Models\\InaturalistConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T11:19:47.919Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DataService.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Services\\Invascan\\DataService.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Domain\\Services\\Invascan\\DataService.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Services\\Invascan\\DataService.cs",
+              "RelativeToolTip": "InvascanDataSync\\Domain\\Services\\Invascan\\DataService.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAIA2wFkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T20:49:16.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GenericResponse.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Models\\GenericResponse.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Domain\\Models\\GenericResponse.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Models\\GenericResponse.cs",
+              "RelativeToolTip": "InvascanDataSync\\Domain\\Models\\GenericResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T19:57:21.063Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InvascanRepository.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Repositories\\InvascanRepository.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Data\\Repositories\\InvascanRepository.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Repositories\\InvascanRepository.cs",
+              "RelativeToolTip": "InvascanDataSync\\Data\\Repositories\\InvascanRepository.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAIA2wE0AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T15:09:32.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DetectionImages.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Entities\\DetectionImages.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Data\\Entities\\DetectionImages.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Entities\\DetectionImages.cs",
+              "RelativeToolTip": "InvascanDataSync\\Data\\Entities\\DetectionImages.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T13:15:32.221Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GeoData.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Entities\\GeoData.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Data\\Entities\\GeoData.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Entities\\GeoData.cs",
+              "RelativeToolTip": "InvascanDataSync\\Data\\Entities\\GeoData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T12:55:56.404Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Detections.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Entities\\Detections.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Data\\Entities\\Detections.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\Entities\\Detections.cs",
+              "RelativeToolTip": "InvascanDataSync\\Data\\Entities\\Detections.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T12:27:47.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ObservationsResponse.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Models\\Inaturalist\\ObservationsResponse.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Domain\\Models\\Inaturalist\\ObservationsResponse.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Models\\Inaturalist\\ObservationsResponse.cs",
+              "RelativeToolTip": "InvascanDataSync\\Domain\\Models\\Inaturalist\\ObservationsResponse.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T12:22:02.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InaturalistService.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Services\\INaturalist\\InaturalistService.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Domain\\Services\\INaturalist\\InaturalistService.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Domain\\Services\\INaturalist\\InaturalistService.cs",
+              "RelativeToolTip": "InvascanDataSync\\Domain\\Services\\INaturalist\\InaturalistService.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAAAGIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T11:16:25.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "InvascanDbContext.cs",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\InvascanDbContext.cs",
+              "RelativeDocumentMoniker": "InvascanDataSync\\Data\\InvascanDbContext.cs",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\Data\\InvascanDbContext.cs",
+              "RelativeToolTip": "InvascanDataSync\\Data\\InvascanDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T11:07:26.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "InvascanDataSync.csproj",
+              "DocumentMoniker": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\InvascanDataSync.csproj",
+              "RelativeDocumentMoniker": "InvascanDataSync\\InvascanDataSync.csproj",
+              "ToolTip": "D:\\Repository\\Personal\\BELGIUMCAMPUS\\PRJ371PyracanthaGroup11\\Source\\InvascanDataSync\\InvascanDataSync\\InvascanDataSync.csproj",
+              "RelativeToolTip": "InvascanDataSync\\InvascanDataSync.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-25T11:01:03.194Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

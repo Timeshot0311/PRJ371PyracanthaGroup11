@@ -13,13 +13,20 @@ LABEL maintainer="PRJ371 Group 11"
 RUN apt-get update && apt-get install -y curl gnupg2 apt-transport-https
 
 # Add Microsoft repository keys
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN mkdir -p /etc/apt/keyrings
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg && \
+    chmod go+r /etc/apt/keyrings/microsoft.gpg && \
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/debian/11/prod bullseye main" > /etc/apt/sources.list.d/mssql-release.list
+
+#RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+
 
 # Add the Microsoft Ubuntu repository (adjust for your base distro version)
-RUN curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+#RUN curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
 
 #RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql18 unixodbc-dev
 RUN apt-get update && \
+    ACCEPT_EULA=Y apt-get install -y --no-install-recommends && \
     ACCEPT_EULA=Y apt-get install -y msodbcsql17 && \
     ACCEPT_EULA=Y apt-get install -y mssql-tools && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
