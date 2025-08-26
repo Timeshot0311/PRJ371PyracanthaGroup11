@@ -25,25 +25,18 @@ const isProbablyHttpUrl = (s: string) => /^https?:\/\//i.test(s);
 const isProbablyBase64 = (s: string) => /^[A-Za-z0-9+/=\r\n]+$/.test(s) && s.length > 100;
 
 function toDisplaySrc(fromApiUrl: string | undefined, fromApiData: string | undefined): string | undefined {
-  // Highest confidence: explicit data URL
-  if (fromApiUrl && isProbablyDataUrl(fromApiUrl)) return fromApiUrl;
-
-  // Base64 provided either in imageUrl or imageData -> build data URL
-  const b64 = fromApiUrl && isProbablyBase64(fromApiUrl) ? fromApiUrl
-            : fromApiData && isProbablyBase64(fromApiData) ? fromApiData
-            : undefined;
-  if (b64) return `data:image/jpeg;base64,${b64}`;
-
-  // Absolute URL returned by API
-  if (fromApiUrl && isProbablyHttpUrl(fromApiUrl)) return fromApiUrl;
-
-  // Relative path like /images/abc.jpg -> route via nginx
-  if (fromApiUrl && fromApiUrl.startsWith("/")) return `${API_URL}${fromApiUrl}`;
-
+  if (fromApiUrl && isProbablyDataUrl(fromApiUrl)) return fromApiUrl; // explicit data URL
+  const b64 =
+    (fromApiUrl && isProbablyBase64(fromApiUrl)) ? fromApiUrl :
+    (fromApiData && isProbablyBase64(fromApiData)) ? fromApiData :
+    undefined;
+  if (b64) return `data:image/jpeg;base64,${b64}`; // base64 -> data URL
+  if (fromApiUrl && isProbablyHttpUrl(fromApiUrl)) return fromApiUrl; // absolute URL
+  if (fromApiUrl && fromApiUrl.startsWith("/")) return `${API_URL}${fromApiUrl}`; // relative path
   return undefined;
 }
 
-// ------- resize/compress to keep payloads small & fast -------
+// ------- image utilities -------
 const fileToDataURL = (f: File) =>
   new Promise<string>((resolve, reject) => {
     const r = new FileReader();
@@ -60,14 +53,20 @@ const loadImage = (dataUrl: string) =>
     img.src = dataUrl;
   });
 
-// More aggressive defaults to help large images succeed
+const b64Size = (s: string) => {
+  const base64 = s.startsWith("data:") ? s.split(",")[1] : s;
+  const padding = base64.endsWith("==") ? 2 : base64.endsWith("=") ? 1 : 0;
+  return Math.floor((base64.length * 3) / 4) - padding;
+};
+
+// Standard downscale: reduce longest side + quality until under target
 async function downscaleToLimit(
   f: File,
-  maxDim = 1280,           // ↓ from 1800 to reduce pixel count
+  maxDim = 1280,
   startQ = 0.9,
-  targetBytes = 2_000_000  // ~2 MB target
+  targetBytes = 2_000_000
 ) {
-  let dataUrl = await fileToDataURL(f);
+  const dataUrl = await fileToDataURL(f);
   const img = await loadImage(dataUrl);
 
   const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
@@ -78,16 +77,9 @@ async function downscaleToLimit(
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas 2D not available");
 
-  const byteLen = (du: string) => {
-    const s = du.split(",")[1] ?? "";
-    const padding = s.endsWith("==") ? 2 : s.endsWith("=") ? 1 : 0;
-    return Math.floor((s.length * 3) / 4) - padding;
-  };
-
   let q = startQ;
-  let out: string;
+  let out = "";
 
-  // up to 10 iterations: reduce quality, then dimensions further
   for (let i = 0; i < 10; i++) {
     canvas.width = w;
     canvas.height = h;
@@ -95,21 +87,45 @@ async function downscaleToLimit(
     ctx.drawImage(img, 0, 0, w, h);
     out = canvas.toDataURL("image/jpeg", q);
 
-    if (byteLen(out) <= targetBytes) return out;
+    if (b64Size(out) <= targetBytes) return { dataUrl: out, outW: w, outH: h };
 
-    // step down
     if (q > 0.6) q = Math.max(0.6, q - 0.1);
     else {
       w = Math.max(720, Math.floor(w * 0.85));
       h = Math.max(720, Math.floor(h * 0.85));
     }
   }
-  // best-effort result
-  return out!;
+  return { dataUrl: out, outW: w, outH: h };
+}
+
+// NEW: letterbox to a square canvas (fits image and pads to target×target)
+async function letterboxSquare(f: File, target = 512, quality = 0.9, bg = "#ffffff") {
+  const dataUrl = await fileToDataURL(f);
+  const img = await loadImage(dataUrl);
+
+  const scale = Math.min(target / img.width, target / img.height);
+  const w = Math.max(1, Math.round(img.width * scale));
+  const h = Math.max(1, Math.round(img.height * scale));
+  const x = Math.floor((target - w) / 2);
+  const y = Math.floor((target - h) / 2);
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas 2D not available");
+
+  canvas.width = target;
+  canvas.height = target;
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, target, target);
+  ctx.drawImage(img, x, y, w, h);
+
+  const out = canvas.toDataURL("image/jpeg", quality);
+  return { dataUrl: out, outW: target, outH: target };
 }
 
 const dataUrlToBase64 = (dataUrl: string) => (dataUrl.startsWith("data:") ? dataUrl.split(",")[1] : dataUrl);
 
+// ------- component -------
 export function ImageUploader() {
   const [file, setFile] = useState<File | undefined>();
   const [imageUrl, setImageUrl] = useState<string | undefined>();
@@ -124,37 +140,58 @@ export function ImageUploader() {
     setImageUrl(URL.createObjectURL(f));
   };
 
+  // request wrapper so we can retry with square input
+  const callEngine = async (base64: string) => {
+    const payload = {
+      user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
+      image_data: base64,
+      latitude: 0,
+      longitude: 0,
+      address: "",
+    };
+
+    const res = await fetch(`${API_URL}/api/engine/investigate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const text = await res.text();
+    let json: APIResponse;
+    try { json = JSON.parse(text); }
+    catch { throw new Error(`Invalid JSON (HTTP ${res.status}): ${text}`); }
+
+    return { ok: res.ok, json, rawText: text };
+  };
+
   const submitImage = async () => {
     if (!file) return toast.error("No image selected.");
     setLoading(true);
     try {
-      const compressed = await downscaleToLimit(file, 1280, 0.9, 2_000_000);
-      const base64 = dataUrlToBase64(compressed);
+      // Diagnostics
+      const original = await fileToDataURL(file);
+      console.log("[Uploader] original bytes ≈", b64Size(original));
 
-      const payload = {
-        user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
-        image_data: base64,
-        latitude: 0,
-        longitude: 0,
-        address: "",
-      };
+      // 1) Normal compressed attempt
+      const comp = await downscaleToLimit(file, 1280, 0.9, 2_000_000);
+      console.log("[Uploader] compressed bytes ≈", b64Size(comp.dataUrl), "dims", comp.outW, "x", comp.outH);
+      let { ok, json } = await callEngine(dataUrlToBase64(comp.dataUrl));
 
-      const res = await fetch(`${API_URL}/api/engine/investigate`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      // 2) If engine complains (non-ok, status false, or vague internal error), retry square 512x512
+      const engineFailed =
+        !ok || !json.status || !json.dynamicModel ||
+        /internal.*engine.*error/i.test(json.statusMessage || "");
 
-      const text = await res.text();
-      let json: APIResponse;
-      try {
-        json = JSON.parse(text);
-      } catch {
-        throw new Error(`Invalid JSON (HTTP ${res.status}): ${text}`);
+      if (engineFailed) {
+        console.warn("[Uploader] retrying with letterboxed 512x512");
+        const sq = await letterboxSquare(file, 512, 0.9, "#ffffff");
+        console.log("[Uploader] square bytes ≈", b64Size(sq.dataUrl), "dims", sq.outW, "x", sq.outH);
+        const retry = await callEngine(dataUrlToBase64(sq.dataUrl));
+        ok = retry.ok; json = retry.json;
       }
 
-      if (!res.ok || !json.status || !json.dynamicModel) {
-        throw new Error(json.statusMessage || `Request failed (${res.status})`);
+      if (!ok || !json.status || !json.dynamicModel) {
+        throw new Error(json?.statusMessage || "Unknown internal engine error");
       }
 
       const display = toDisplaySrc(json.dynamicModel.imageUrl, json.dynamicModel.imageData);
@@ -166,7 +203,7 @@ export function ImageUploader() {
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Unknown error";
       toast.error(msg);
-      console.error(msg);
+      console.error("[Uploader] error:", msg);
     } finally {
       setLoading(false);
     }
