@@ -17,7 +17,7 @@ type APIResponse = {
   } | null;
 };
 
-const API_URL = "http://localhost:8000"; // via nginx proxy
+const API_URL = "http://localhost:8080"; // via nginx proxy
 
 export function ImageUploader() {
   const [file, setFile] = useState<File | undefined>(undefined);
