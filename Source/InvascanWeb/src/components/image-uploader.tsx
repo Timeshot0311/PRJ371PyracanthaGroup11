@@ -65,11 +65,11 @@ export function ImageUploader() {
                 return;
             }
 
-            const model = apiResponse.dynamicModel;
+            const { imageUrl, speciesName, confidenceScore } = apiResponse.dynamicModel;
 
-            setUploadedImageUrl(model.imageUrl);
-            setSpeciesLabel(model.speciesName);
-            setConfidenceScore(model.confidenceScore);
+            setUploadedImageUrl(imageUrl);
+            setSpeciesLabel(speciesName);
+            setConfidenceScore(confidenceScore);
 
             toast.success("Success", {
                 duration: 4000,
@@ -135,7 +135,7 @@ export function ImageUploader() {
                                 setSpeciesLabel("");
                                 setConfidenceScore(0);
                             }}
-                            title='Clear'
+                            title='Clear Image'
                         >
                             <Trash className='text-destructive' />
                         </Button>

@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { createServerFn } from "@tanstack/react-start";
 
 export type APIRequestBody = {
@@ -20,7 +21,7 @@ export type APIResponseBody = {
     } | null;
 };
 
-const BACKEND_API_URL = process.env.BACKEND_API_URL;
+const BACKEND_API_URL = env.BACKEND_API_URL;
 
 export const $analyzeImage = createServerFn({ method: "POST" })
     .validator((img: string) => img)
@@ -30,7 +31,7 @@ export const $analyzeImage = createServerFn({ method: "POST" })
                 throw new Error("Missing BACKEND_API_URL from env file.");
             }
 
-            //should pass in the actual auth details eventually.
+            //TODO should pass in the actual auth details eventually.
             const requestBody: APIRequestBody = {
                 user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
                 image_data: data,
