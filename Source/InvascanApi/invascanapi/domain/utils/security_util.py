@@ -8,8 +8,6 @@ class SecurityUtil:
     async def hash_password(self, plain_password: str) -> dict[str, str]:
         password_salt = bcrypt.gensalt()
         hashed_password = bcrypt.hashpw(plain_password.encode('utf-8'), password_salt)
-        # password = hashed_password.decode('utf-8')
-        # salt = password_salt.decode('utf-8')
         return {
             "password": hashed_password.decode('utf-8'),
             "salt": password_salt.decode('utf-8'),

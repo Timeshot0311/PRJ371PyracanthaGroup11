@@ -1,0 +1,24 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files first
+COPY package*.json ./
+COPY yarn.lock* ./
+
+# Install all dependencies (including dev dependencies)
+RUN if [ -f "yarn.lock" ]; then \
+      npm install -g yarn && \
+      yarn install --frozen-lockfile; \
+    else \
+      npm install --no-audit --no-fund; \
+    fi
+
+# Copy source code
+COPY . .
+
+# Expose Vite's default port
+EXPOSE 5173
+
+# Start development server with host binding
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

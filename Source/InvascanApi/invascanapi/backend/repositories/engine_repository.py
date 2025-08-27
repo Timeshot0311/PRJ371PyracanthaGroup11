@@ -110,6 +110,8 @@ class EngineRepository:
 
 
 
+
+
 class EngineRepositoryV2:
     def __init__(self, session_factory: sessionmaker):
         self._session_factory = session_factory
@@ -127,21 +129,11 @@ class EngineRepositoryV2:
                     message="success",
                     data=detection
                 )
-
-            # self.db.add(detection)
-            # await self.db.commit()
-            # await self.db.refresh(detection)
-            # return GenericBackendResponse(
-            #     success=True,
-            #     code=200,
-            #     message="success",
-            #     data=detection
-            # )
         except Exception as e:
             print(f"\n\n=======================================================================")
             print(f"insert_detection error :- {e}")
             print(f"=======================================================================\n\n")
-            await self.db.rollback()
+            # await self.db.rollback()
             return GenericBackendResponse(
                 success=False,
                 code=500,
@@ -162,20 +154,11 @@ class EngineRepositoryV2:
                     message="success",
                     data=images
                 )
-
-            # await self.db.commit()
-            # await self.db.refresh(images)
-            # return GenericBackendResponse(
-            #     success=True,
-            #     code=200,
-            #     message="success",
-            #     data=images
-            # )
         except Exception as e:
             print(f"\n\n=======================================================================")
             print(f"insert_images error :- {e}")
             print(f"=======================================================================\n\n")
-            await self.db.rollback()
+            # await self.db.rollback()
             return GenericBackendResponse(
                 success=False,
                 code=500,
@@ -196,21 +179,11 @@ class EngineRepositoryV2:
                     message="success",
                     data=geo_data
                 )
-
-            # self.db.add(geo_data)
-            # await self.db.commit()
-            # await self.db.refresh(geo_data)
-            # return GenericBackendResponse(
-            #     success=True,
-            #     code=200,
-            #     message="success",
-            #     data=geo_data
-            # )
         except Exception as e:
             print(f"\n\n=======================================================================")
             print(f"insert_geo_data error :- {e}")
             print(f"=======================================================================\n\n")
-            await self.db.rollback()
+            # await self.db.rollback()
             return GenericBackendResponse(
                 success=False,
                 code=500,
@@ -231,20 +204,11 @@ class EngineRepositoryV2:
                     message="success",
                     data=validation
                 )
-            # self.db.add(validation)
-            # await self.db.commit()
-            # await self.db.refresh(validation)
-            # return GenericBackendResponse(
-            #     success=True,
-            #     code=200,
-            #     message="success",
-            #     data=validation
-            # )
         except Exception as e:
             print(f"\n\n=======================================================================")
             print(f"insert_validations error :- {e}")
             print(f"=======================================================================\n\n")
-            await self.db.rollback()
+            # await self.db.rollback()
             return GenericBackendResponse(
                 success=False,
                 code=500,

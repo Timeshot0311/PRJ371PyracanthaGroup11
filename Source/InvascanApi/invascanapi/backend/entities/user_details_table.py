@@ -18,7 +18,7 @@ class UserDetails(Base):
         ForeignKey("Users.Id", name="FK_UserDetails_UserId"),
         index=True,
         nullable=False)
-    User = relationship("Users", lazy="joined")  # eager load if needed
+    User = relationship("Users", lazy="joined", back_populates="Details")  # eager load if needed
     Firstname = Column(String(255), index=True, nullable=False)
     Lastname = Column(String(255), index=True, nullable=False)
     PhoneNumber = Column(String(255), index=True, nullable=True)

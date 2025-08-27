@@ -29,17 +29,17 @@ class EngineService:
         self.engine_repository = repository
         self.engine = InvascanEngine(repository)
         self.util = StorageUtil()
-        self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     async def do_identification_async(self, model: InvestigateRequest, url:str) -> GenericApiResponse[DetectionResponse]:
-        print("Pyracantha version: ", self.base_dir)
+        # print("Pyracantha version: ", self.base_dir)
         save_image_response = self.util.save_image(model.image_data)
         if not save_image_response or not save_image_response.filepath:
             return GenericApiResponse(status = True, statusCode = 404, statusMessage = "Internal router error saving image", dynamicModel=None)
 
 
         identification_response = self.engine.identify_pyracantha(save_image_response.filepath)
-        if identification_response.code == 2005 or identification_response.code == 2004:
+        if identification_response.code == 2005 or identification_response.code == 2004 or identification_response.code == 2003:
             return GenericApiResponse(status=True, statusCode=200, statusMessage=identification_response.message,
                                       dynamicModel=identification_response.dynamicModel)
 
@@ -57,50 +57,6 @@ class EngineService:
         asyncio.create_task(
             self.save_detections_in_background(model, identification_response, identification_result_image)
         )
-
-        # status_id = uuid.UUID("3041ADFC-400B-4FE0-B209-47FE75DEDB0C") # REJECTED DETECTION
-        # common_name = ""
-        # if identification_response.code == 2002:
-        #     status_id = uuid.UUID("585B6A2E-0A37-45C5-B347-6F2B9860F1CE") # VALIDATION REQUIRED
-        # elif identification_response.code == 2000:
-        #     status_id = uuid.UUID("AEFA556C-A285-4838-B54C-0CD8A50A3D37") # CONFIRMED DETECTION
-        #     common_name = "Pyracantha Angustifolia"
-        #
-        # detection_save = Detections(
-        #     SpeciesName=identification_response.dynamicModel.speciesName,
-        #     CommonName=common_name,
-        #     ConfidenceScore=identification_response.dynamicModel.confidenceScore,
-        #     UserId=uuid.UUID(model.user_id),
-        #     StatusId=status_id,
-        # )
-        #
-        # save_detection_response = await self.engine_repository.insert_detection(detection_save)
-        # if save_detection_response.success:
-        #     decoded_image_bytes = bytearray(base64.b64decode(identification_result_image))
-        #     images = Images(
-        #         DetectionId = save_detection_response.dynamicModel.Id,
-        #         ImageUrl = identification_response.dynamicModel.imageUrl,
-        #         ImageData = decoded_image_bytes
-        #     )
-        #     await self.engine_repository.insert_images(images)
-        #
-        #     geo_data = GeoData(
-        #         DetectionId=save_detection_response.dynamicModel.Id,
-        #         Latitude=model.latitude,
-        #         Longitude=model.longitude,
-        #         Placename=model.address,
-        #         Province=get_province(latitude=model.latitude, longitude=model.longitude),
-        #     )
-        #     await self.engine_repository.insert_geo_data(geo_data)
-        #
-        #     if identification_response.code == 2002:
-        #         print(f"we are creating a validation entry")
-        #         validations = Validations(
-        #             DetectionId = save_detection_response.dynamicModel.Id,
-        #             DecisionId = uuid.UUID("8B721BD2-5A32-4F85-B5E4-D0979A5A82AF"),
-        #         )
-        #         await self.engine_repository.insert_validations(validations)
-
         #endregion
 
 

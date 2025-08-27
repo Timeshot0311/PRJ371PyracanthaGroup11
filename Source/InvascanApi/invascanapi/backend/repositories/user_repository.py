@@ -7,6 +7,7 @@ from sqlalchemy.future import select
 from sqlalchemy.orm import joinedload
 
 from invascanapi.backend.entities.user_details_table import UserDetails
+from invascanapi.backend.entities.user_roles_table import UserRoles
 from invascanapi.backend.entities.users_table import Users
 from invascanapi.domain.models.responses.generic_backend_response import GenericBackendResponse
 
@@ -21,10 +22,44 @@ class UserRepository:
         return result.scalars().first()
 
 
+
+    async def get_user_profile(self, user_id: uuid.UUID):
+        stmt = (
+            select(UserDetails, Users, UserRoles)
+            .join(Users, Users.Id == UserDetails.UserId)
+            .join(UserRoles, UserRoles.Id == Users.RoleId)
+            .where(Users.Id == user_id)
+        )
+        result = await self.db.execute(stmt)
+        return result.scalars().first()
+
+
+
     async def get_user_by_email(self, user_email: str) -> Users | None:
         stmt = (
             select(Users)
             .options(joinedload(Users.Role))  # eager load status
+            .where(Users.EmailAddress == user_email)
+        )
+        result = await self.db.execute(stmt)
+        return result.scalars().first()
+
+
+    async def user_login_async(self, username: str) -> Users | None:
+        stmt = (
+            select(Users)
+            .options(joinedload(Users.Role))  # eager load status
+            .where(Users.EmailAddress == username or Users.Username == username)
+        )
+        result = await self.db.execute(stmt)
+        return result.scalars().first()
+
+
+    async def get_user_details(self, user_email: str):
+        stmt = (
+            select(UserDetails, Users, UserRoles)
+            .join(Users, Users.Id == UserDetails.UserId)
+            .join(UserRoles, UserRoles.Id == Users.RoleId)
             .where(Users.EmailAddress == user_email)
         )
         result = await self.db.execute(stmt)
@@ -54,6 +89,9 @@ class UserRepository:
                 code= 200
             )
         except Exception as e:
+            print(f"\n\n=======================================================================")
+            print(f"create_user error :- {e}")
+            print(f"=======================================================================\n\n")
             await self.db.rollback()
             return GenericBackendResponse(
                 success=False,
@@ -76,6 +114,9 @@ class UserRepository:
                 code= 200
             )
         except Exception as e:
+            print(f"\n\n=======================================================================")
+            print(f"create_user_details error :- {e}")
+            print(f"=======================================================================\n\n")
             await self.db.rollback()
             return GenericBackendResponse(
                 success=False,

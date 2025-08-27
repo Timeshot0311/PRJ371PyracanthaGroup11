@@ -4,15 +4,17 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 from invascanapi.lifespan_handler import lifespan
+from invascanapi.routers.token_router import router as token_router
 from invascanapi.routers.user_router import router as user_router
 from invascanapi.routers.engine_router import router as engine_router
 from invascanapi.routers.version_router import router as version_router
+from invascanapi.routers.reports_router import router as reports_router
 
 app = FastAPI(
     lifespan=lifespan,
-    title = "Invascan AI Engine API",
-    description = "API for user registration, plant detection, and system interaction in the Invascan project.",
-    version = "1.0.0",
+    title = "Invascan API",
+    description = "API for user account management, plant detection, and system interaction in the Invascan project.",
+    version = "3.3.8",
     contact = {
         "name": "Invascan",
         "email": "invascan@gmail.com",
@@ -48,7 +50,10 @@ app.add_middleware(
 
 
 
-app.mount("/images", StaticFiles(directory="invascanapi/domain/images"), name="images")
+# app.mount("/images", StaticFiles(directory="invascanapi/domain/images"), name="images")
+app.mount("/images", StaticFiles(directory="/var/opt/images"), name="images")
+
+app.include_router(token_router)
 
 app.include_router(user_router)
 
@@ -56,6 +61,8 @@ app.include_router(engine_router)
 
 app.include_router(version_router)
 
+app.include_router(reports_router)
 
-# if __name__ == "__main__":
-#     uvicorn.run("invascanapi.main:app", host="0.0.0.0", port=8086, reload=True)
+
+if __name__ == "__main__":
+    uvicorn.run("invascanapi.main:app", host="0.0.0.0", port=80, reload=True)

@@ -53,3 +53,4 @@ dkms.conf
 /Source/InvascanWin/InvascanWin/bin
 /Source/InvascanWin/InvascanWin/obj
 /Source/PyracanthaAI/.venv/Lib
+/Source/InvascanDataSync/.vs

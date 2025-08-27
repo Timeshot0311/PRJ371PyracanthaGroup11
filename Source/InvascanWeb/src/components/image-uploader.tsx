@@ -17,7 +17,8 @@ type APIResponse = {
   } | null;
 };
 
-const API_URL = "http://localhost:8000";
+// const API_URL = "http://localhost:8080";
+const API_URL = "http://invascanapi_container:80";
 
 // --- helpers to detect & format image sources ---
 const isDataUrl = (s: string) => s.startsWith("data:image/");

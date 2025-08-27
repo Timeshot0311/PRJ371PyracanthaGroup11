@@ -4,7 +4,85 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="" />
+    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/reports_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/account_details.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/location_details.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/province_statistics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/models/token_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/domain/services/reports_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/routers/reports_router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invascanapi/routers/token_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project_21-08-2025/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Docs/docker-setup/invascan-project_21-08-2025/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/user_details_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/user_details_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/user_roles_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/user_roles_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/repositories/engine_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/engine_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/0b42231a-7491-41cd-877a-1b2b0785cefd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/1bf70129-cfd2-4def-83ce-0f84acf9468a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/1d047208-85b5-4112-8580-342ce6e74b89.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/1e7ea6b6-b852-4eea-9a8f-4e43c7f0f5f3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/2110c984-2860-4a4d-ae91-c0cec98ef32b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/253de597-5622-4e82-b690-c2c0b7d8d602.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/2c6459b3-cd51-4ff2-bd21-cf8f06988912.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/328ee037-3635-492b-b481-e491e473045b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/40f38474-42c5-4841-a646-8ea23e5870d0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/433ee977-acfa-47ab-9375-2b782bc179bc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/6768d883-8647-4f14-97b5-5a2c38b6d1e2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/697c3198-647c-4620-97ca-e6606bfb40e1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/6de32017-4916-48cb-ac83-464feccb7d47.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/6e17d79c-6b0f-4bf8-9600-7fe83695dedd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/7587e1b1-6993-48cb-9913-576a065fe503.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/895d847c-80e2-4382-b235-57b1923e2823.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/90ae84fc-57df-490c-a889-1f09d84aed79.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/933cffa2-2bac-455d-856a-d19cc7e99683.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/93515ec2-eb0e-49a9-8fd9-a08a187b6f5b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/95aaea4e-0f21-45b4-b00f-b54aa9bd86bd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/aff8306d-8a59-4f00-8820-f15af87dc8fb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/bbf3d6a2-743a-47d9-a29b-ff03f8ab0944.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/c1ddead5-35ca-4bae-802a-7ab45b2cb57a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/c3c4aa4d-4b41-4d9d-ae38-eb095f86851f.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/d3c46280-1db8-4d44-883c-d6e70957141e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/e2d84bb7-94ae-41de-b7c4-4e97f84b6116.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/f0affa27-3e73-4683-9587-03535b1fdabf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/f0fb5722-a409-4987-a481-25692797ddba.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/images/fb210d7f-8e9c-4b43-9b74-bcb338a7cdd5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/requests/create_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/models/requests/create_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/token_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/token_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/utils/jwt_token_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/utils/jwt_token_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/utils/security_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/utils/security_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/domain/utils/storage_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/utils/storage_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/routers/engine_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/routers/engine_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invascanapi/routers/user_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/routers/user_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/1c95ff3a-633d-4f61-b896-15729e09f195.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/21051cba-2855-437f-9f51-45565abbc5aa.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/90cfed55-8a13-4425-91b5-1e4f70c3fa67.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/a312dabd-bf47-4f2a-9047-5206b9292848.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/FileContentIndex/dba43e4d-2e5c-479e-afe6-6d6569c94e71.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/DocumentLayout.backup.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/DocumentLayout.backup.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/.vs/InvascanDataSync/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/InvascanDataSync.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/InvascanDataSync.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/bin/Debug/net8.0/invascan.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/bin/Debug/net8.0/invascan.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/invascan.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/invascan.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanDataSync/InvascanDataSync/obj/Debug/net8.0/InvascanDataSync.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/nginx_backup.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/image-uploader.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,37 +121,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for storagetester.MyTestCase.test_check_email_exists.executor": "Run",
-    "Python tests.Python tests in storagetest.py.executor": "Run",
-    "Python tests.Python tests in storagetester.py.executor": "Run",
-    "Python.balancedimagedownloader.executor": "Run",
-    "Python.imagedatasets.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.maincontroller.executor": "Run",
-    "Python.storagetest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Development",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanApi/invascanapi/backend/seeders",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for storagetester.MyTestCase.test_check_email_exists.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in storagetest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in storagetester.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.balancedimagedownloader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.imagedatasets.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maincontroller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.storagetest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Repository/Personal/BELGIUMCAMPUS/PRJ371PyracanthaGroup11/Source/InvascanApi/invascanapi/backend/seeders&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Repository\Personal\BELGIUMCAMPUS\PRJ371PyracanthaGroup11\Source\InvascanApi\invascanapi\backend\seeders" />
@@ -175,6 +253,9 @@
       <workItem from="1755937577523" duration="41000" />
       <workItem from="1756119890718" duration="7489000" />
       <workItem from="1756151853481" duration="5763000" />
+      <workItem from="1756222950799" duration="6971000" />
+      <workItem from="1756282571117" duration="13080000" />
+      <workItem from="1756299381121" duration="6035000" />
     </task>
     <servers />
   </component>

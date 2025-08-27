@@ -1,9 +1,10 @@
 from jose import JWTError, jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
+
 # Configuration
-SECRET_KEY = "your_secret_key_here"
+SECRET_KEY = "MWi3tACe0wOdu#On"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60*8  # 1 hour
 

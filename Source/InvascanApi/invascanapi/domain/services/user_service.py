@@ -7,8 +7,10 @@ from fastapi import HTTPException, status
 from invascanapi.backend.repositories.user_repository import UserRepository
 from invascanapi.backend.entities.users_table import Users
 from invascanapi.backend.entities.user_details_table import UserDetails
+from invascanapi.domain.models.account_details import AccountDetail
 from invascanapi.domain.models.requests.create_account import CreateAccount
 from invascanapi.domain.models.responses.generic_api_response import GenericApiResponse
+from invascanapi.domain.models.token_model import TokenResponseModel
 from invascanapi.domain.utils.security_util import SecurityUtil
 from invascanapi.domain.utils.jwt_token_util import JwtTokenUtil
 
@@ -20,25 +22,82 @@ class UserService:
     async def get_user_account(self, user_email: str):
         return await self.repository.get_user_by_email(user_email)
 
-    async def user_authentication(self, email: str, password: str):
+
+    async def get_user_details(self, user_email: str) -> AccountDetail | None:
+        user = await self.repository.get_user_details(user_email)
+        if user is None:
+            return None
+
+        user_details = AccountDetail(
+            userId = user.User.Id,
+            firstname = user.Firstname,
+            lastname = user.Lastname,
+            emailAddress = user.User.EmailAddress,
+            username = user.User.Username,
+            phoneNumber = user.PhoneNumber,
+            location = user.Location,
+            experienceLevel = user.ExperienceLevel,
+            privacySetting = user.PrivacySetting,
+            imageSharingConsent = user.ImageSharingConsent,
+            role = user.User.Role.Description
+        )
+        print(f"========================================")
+        print(f"Id \t:\t\t {user.User.Id}")
+        print(f"Name \t:\t\t {user.Firstname}")
+        print(f"Surname \t:\t\t {user.Lastname}")
+        print(f"Email \t:\t\t {user.User.EmailAddress}")
+        print(f"Role \t:\t\t {user.User.Role.Description}")
+        print(f"========================================")
+        return user_details
+
+
+    async def get_user_profile(self, user_id: str) -> AccountDetail | None:
+        user_uid = uuid.UUID(user_id)
+        user = await self.repository.get_user_profile(user_uid)
+        if user is None:
+            return None
+
+        user_details = AccountDetail(
+            userId=user.User.Id,
+            firstname=user.Firstname,
+            lastname=user.Lastname,
+            emailAddress=user.User.EmailAddress,
+            username=user.User.Username,
+            phoneNumber=user.PhoneNumber,
+            location=user.Location,
+            experienceLevel=user.ExperienceLevel,
+            privacySetting=user.PrivacySetting,
+            imageSharingConsent=user.ImageSharingConsent,
+            role=user.User.Role.Description
+        )
+        return user_details
+
+
+    async def user_authentication(self, email: str, password: str) -> TokenResponseModel:
         security = SecurityUtil()
         token = JwtTokenUtil()
-        user = await self.repository.get_user_by_email(email)
+        user = await self.repository.user_login_async(email)
+        if not user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"})
+
         verified = security.verify_password(password, user.PasswordHash, user.PasswordSalt)
         if not user or not verified:
-            raise HTTPException(status_code=401, detail="Invalid credentials")
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"})
 
         access_token = token.create_access_token(data={
             "sub": str(user.Id),
-            "role":"ADMIN"
+            "email": str(user.EmailAddress),
+            "role": user.Role.Description
         })
+        return TokenResponseModel(
+            access_token=access_token,
+            token_type="Bearer",
+        )
 
-        return {
-            "access_token": access_token,
-            "token_type": "bearer"
-        }
 
-    async def create_user_account(self, user_data: CreateAccount):
+    async def create_user_account(self, user_data: CreateAccount) -> GenericApiResponse[CreateAccount]:
         try:
             logging.error(f"user email: {user_data.email}")
             existing_user = await self.repository.get_user_by_email(user_data.email)

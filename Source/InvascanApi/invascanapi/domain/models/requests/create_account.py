@@ -27,7 +27,8 @@ class AccountStatus(GenericBaseModel):
     class Config:
         from_attributes = True
 
-# class UserDetails(CreateAccount):
+
+# class AccountDetail(CreateAccount):
 #     id: uuid.UUID = GenericField(..., alias='Id')
 #     status_id:uuid.UUID = GenericField(..., alias='StatusId')
 #     status: Optional[AccountStatus] = GenericField(None, alias='Status')

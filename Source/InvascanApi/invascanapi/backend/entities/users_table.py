@@ -22,7 +22,9 @@ class Users(Base):
         index=True,
         nullable=False,
         default=uuid.UUID("490FEF64-F752-4A67-A5E6-4CFF0896536A"))
-    Role = relationship("UserRoles", lazy="joined")  # eager load if needed
+    Role = relationship("UserRoles", lazy="joined", back_populates="Users")  # eager load if needed
+
+    Details = relationship("UserDetails", back_populates="User", uselist=False)
     PasswordHash = Column(String, nullable=False)
     PasswordSalt = Column(String, nullable=False)
     CreatedAt = Column(DateTime, index=True, nullable=False, default=gmt2_now)

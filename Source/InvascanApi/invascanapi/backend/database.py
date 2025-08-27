@@ -10,6 +10,7 @@ import logging
 
 server = 'mssql_container' #docker deployment
 port = '1433' #docker deployment
+# username = quote_plus("invascan")
 # server = 'localhost'
 # port = '1406'
 database = 'InvascanDb'

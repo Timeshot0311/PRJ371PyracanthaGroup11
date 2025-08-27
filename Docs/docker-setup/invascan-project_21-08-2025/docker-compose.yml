@@ -8,6 +8,7 @@ networks:
         - subnet: 172.20.0.0/16
           gateway: 172.20.0.1 #added the gateway so all network know and can communicate with one another.
 
+
 services:
   # Microsoft SQL Server Container
   mssql_container:
@@ -40,6 +41,8 @@ services:
       timeout: 5s
       retries: 5
 
+
+
   # INVASCAN API Container
   invascanapi_container:
     image: invascan/dev:invascanapi_v3.38
@@ -62,6 +65,7 @@ services:
       - DATABASE_URL=mssql+pyodbc://sa:G9e@7I4RiCT#@mssql_container:1433/InvascanDb?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes
       - TZ=Africa/Johannesburg # Adding SA timezone so date and time are correct.
     volumes:
+      - engine_images:/var/opt/images
       - /etc/localtime:/etc/localtime:ro # Adding SA timezone so date and time are correct.
       - /etc/timezone:/etc/timezone:ro # Adding SA timezone so date and time are correct.
     restart: unless-stopped
@@ -71,6 +75,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+
 
   # Data Sync Container
   # datasync_container:
@@ -101,37 +107,41 @@ services:
   #     timeout: 10s
   #     retries: 3
 
-  # # Enhanced Web Reporting Container
-  # webreporting_container:
-  #   image: invascan/invascanweb:latest
-  #   logging: # Added logging options and restricting log file growth to only 10MB with rotation to 3 files
-  #     driver: "json-file"
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
-  #   # build:
-  #   #   context: .
-  #   #   dockerfile: Dockerfile.webreporting
-  #   container_name: webreporting_container
-  #   ports:
-  #     - "8082:80"  # Changed port to avoid conflict
-  #   networks:
-  #     INVASCAN:
-  #       ipv4_address: 172.20.0.5
-  #   depends_on:
-  #     invascanapi_container:
-  #       condition: service_healthy
-  #     datasync_container:
-  #       condition: service_healthy
-  #   environment:
-  #     - API_ENDPOINT=http://invascanapi_container:80
-  #     - SYNC_ENDPOINT=http://datasync_container:8081
-  #   restart: unless-stopped
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "curl -f http://localhost:80/health || exit 1"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 3
+
+
+  # Enhanced Web Reporting Container
+  webreporting_container:
+    image: invascan/dev:invascanweb_v1.16
+    logging: # Added logging options and restricting log file growth to only 10MB with rotation to 3 files
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    container_name: webreporting_container
+    pull_policy: always
+    ports:
+      - "8082:3000"  # Changed port to avoid conflict
+    networks:
+      INVASCAN:
+        ipv4_address: 172.20.0.5
+    depends_on:
+      invascanapi_container:
+        condition: service_healthy
+      # datasync_container:
+      #   condition: service_healthy
+    environment:
+      - API_ENDPOINT=http://invascanapi_container:80
+      # - SYNC_ENDPOINT=http://datasync_container:8081
+    restart: unless-stopped
+    healthcheck:
+      # test: ["CMD-SHELL", "curl -f http://localhost:3000/health || exit 1"]
+      test: ["CMD-SHELL", "nc -z localhost 3000 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      # start_period: 10s
+
+
 
   # Nginx Reverse Proxy Container 
   nginx_proxy:
@@ -142,6 +152,7 @@ services:
         max-size: "10m"
         max-file: "3"
     container_name: nginx_proxy
+    pull_policy: always
     ports:
       - "8000:80"   # Main entry point for the application
     networks:
@@ -151,8 +162,8 @@ services:
     #  - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # file-to-file mount
     depends_on:
-      # webreporting_container:
-      #   condition: service_healthy
+      webreporting_container:
+        condition: service_healthy
       invascanapi_container:
         condition: service_healthy
       # datasync_container:
@@ -166,4 +177,6 @@ services:
 
 volumes:
   mssql_data:
+    driver: local
+  engine_images:
     driver: local

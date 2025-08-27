@@ -14,7 +14,7 @@ from invascanapi.domain.models.responses.save_image_response import SaveImageRes
 class StorageUtil:
     def __init__(self):
         #self.base_dir = os.path.dirname(os.path.dirname(__file__))
-        self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.base_dir = "/var/opt/" #os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.images_upload_directory = os.path.join("invascanapi", "domain", "images")
         self.image_path = os.path.join(self.base_dir, "images")
         os.makedirs(os.path.dirname(self.image_path), exist_ok=True)
