@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98b7de4c-95f0-46ba-b6ec-e1b142e18aea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/InvascanWeb/src/app/(home)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InvascanWeb/src/app/(home)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InvascanWeb/src/components/image-uploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InvascanWeb/src/components/image-uploader.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,9 +12,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2wwy8PW3rxThntz9CN4KtFFChzn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,12 +27,13 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "Development",
     "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/Users/ryant/source/repos/projects/prj371-project",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "ts.external.directory.path": "C:\\Users\\ryant\\source\\repos\\projects\\prj371-project\\Source\\InvascanWeb\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\ryant\\source\\repos\\web\\personal\\prj371-project\\Source\\InvascanWeb\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -51,10 +52,22 @@
       <option name="presentableId" value="Default" />
       <updated>1746966770436</updated>
       <workItem from="1746966771699" duration="87000" />
+      <workItem from="1756316941339" duration="14000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Source/InvascanWeb/src/components/hero.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

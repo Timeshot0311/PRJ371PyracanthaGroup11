@@ -59,6 +59,7 @@ export function ImageUploader() {
             }
 
             if (!apiResponse.dynamicModel) {
+                toast.info("No pyracantha detected!");
                 setSpeciesLabel("No pyracantha detected!");
                 setConfidenceScore(0);
                 return;
@@ -70,7 +71,7 @@ export function ImageUploader() {
             setSpeciesLabel(model.speciesName);
             setConfidenceScore(model.confidenceScore);
 
-            toast.success(apiResponse.statusMessage, {
+            toast.success("Success", {
                 duration: 4000,
             });
         } catch (error) {
@@ -112,7 +113,7 @@ export function ImageUploader() {
                     </Button>
                 </div>
 
-                <div className='relative min-h-60 flex flex-col gap-2'>
+                <div className='relative flex flex-col gap-2'>
                     {uploadedImageUrl ?
                         <img
                             src={uploadedImageUrl}

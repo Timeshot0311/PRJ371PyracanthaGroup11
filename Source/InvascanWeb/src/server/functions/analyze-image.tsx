@@ -22,8 +22,6 @@ export type APIResponseBody = {
 
 const BACKEND_API_URL = process.env.BACKEND_API_URL;
 
-console.log(BACKEND_API_URL);
-
 export const $analyzeImage = createServerFn({ method: "POST" })
     .validator((img: string) => img)
     .handler(async ({ data }): Promise<APIResponseBody> => {
