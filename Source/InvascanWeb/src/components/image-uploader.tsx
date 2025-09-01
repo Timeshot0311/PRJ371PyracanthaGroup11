@@ -126,8 +126,7 @@ export function ImageUploader() {
                     }
                     {uploadedImageUrl && (
                         <Button
-                            className='absolute top-2 right-2'
-                            variant='ghost'
+                            className='absolute top-2 right-2 bg-white'
                             size='icon'
                             onClick={() => {
                                 setUploadedImage(undefined);

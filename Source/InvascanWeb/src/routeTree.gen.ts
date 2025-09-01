@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as UploadIndexRouteImport } from './routes/upload/index'
 import { Route as SignUpIndexRouteImport } from './routes/sign-up/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as AnalyticsIndexRouteImport } from './routes/analytics/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,15 +35,22 @@ const LoginIndexRoute = LoginIndexRouteImport.update({
   path: '/login/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyticsIndexRoute = AnalyticsIndexRouteImport.update({
+  id: '/analytics/',
+  path: '/analytics/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsIndexRoute
   '/login': typeof LoginIndexRoute
   '/sign-up': typeof SignUpIndexRoute
   '/upload': typeof UploadIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsIndexRoute
   '/login': typeof LoginIndexRoute
   '/sign-up': typeof SignUpIndexRoute
   '/upload': typeof UploadIndexRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics/': typeof AnalyticsIndexRoute
   '/login/': typeof LoginIndexRoute
   '/sign-up/': typeof SignUpIndexRoute
   '/upload/': typeof UploadIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/sign-up' | '/upload'
+  fullPaths: '/' | '/analytics' | '/login' | '/sign-up' | '/upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/sign-up' | '/upload'
-  id: '__root__' | '/' | '/login/' | '/sign-up/' | '/upload/'
+  to: '/' | '/analytics' | '/login' | '/sign-up' | '/upload'
+  id: '__root__' | '/' | '/analytics/' | '/login/' | '/sign-up/' | '/upload/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsIndexRoute: typeof AnalyticsIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   SignUpIndexRoute: typeof SignUpIndexRoute
   UploadIndexRoute: typeof UploadIndexRoute
@@ -99,11 +109,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analytics/': {
+      id: '/analytics/'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsIndexRoute: AnalyticsIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   SignUpIndexRoute: SignUpIndexRoute,
   UploadIndexRoute: UploadIndexRoute,
