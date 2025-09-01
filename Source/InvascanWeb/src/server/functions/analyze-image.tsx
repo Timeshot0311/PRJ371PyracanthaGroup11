@@ -27,10 +27,6 @@ export const $analyzeImage = createServerFn({ method: "POST" })
     .validator((img: string) => img)
     .handler(async ({ data }): Promise<APIResponseBody> => {
         try {
-            if (!BACKEND_API_URL) {
-                throw new Error("Missing BACKEND_API_URL from env file.");
-            }
-
             //TODO should pass in the actual auth details eventually.
             const requestBody: APIRequestBody = {
                 user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
