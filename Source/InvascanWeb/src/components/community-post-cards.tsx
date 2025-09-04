@@ -12,7 +12,7 @@ export function CommunityPostCards() {
 
     return (
         <>
-            {posts.feed.length > 0 && (
+            {posts.feed.length > 0 ? (
                 posts.feed.map((post) => (
                     <Card className="hover:shadow-md transition-shadow" key={post.id}>
                         <CardHeader className="flex items-center justify-between">
@@ -50,9 +50,9 @@ export function CommunityPostCards() {
                         </CardContent>
                     </Card>
                 ))
-            )} : (
-            <p className="text-muted-foreground">No posts found.</p>
-            ) )
+            ) : (
+                <p className="text-muted-foreground">No posts found.</p>
+            )}
         </>
     );
 }
