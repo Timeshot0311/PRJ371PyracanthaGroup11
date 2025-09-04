@@ -12,7 +12,7 @@ export function Header() {
                         <h1 className="text-2xl font-bold text-foreground hidden md:flex">Invascan</h1>
                     </Link>
                     <nav className="flex items-center gap-4">
-                        <Link to="/">
+                        <Link to="/community">
                             <Button variant="ghost" className="flex items-center gap-2">
                                 <Users className="size-4"/>
                                 <span className="hidden md:flex">Community</span>

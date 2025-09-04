@@ -20,7 +20,7 @@ export function Hero() {
                                 Upload & Identify
                             </Button>
                         </Link>
-                        <Link to="/">
+                        <Link to="/analytics">
                             <Button variant="outline" size="lg" className="flex items-center gap-2 bg-transparent">
                                 <BarChart3 className="h-5 w-5"/>
                                 View Analytics
