@@ -45,5 +45,6 @@ export const $getCommunityFeed = createServerFn({ method: "GET" }).handler(async
             location: "uMngeni, KZN",
         }
     ];
+
     return { feed };
 });
