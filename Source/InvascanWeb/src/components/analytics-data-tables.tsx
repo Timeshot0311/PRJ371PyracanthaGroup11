@@ -1,9 +1,8 @@
-import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "@/components/shared/DataTable";
 import type { ColumnDef } from "@tanstack/react-table";
 
-// This component now expects the real API shape: array of province totals
+// This component expects the real API shape: array of province totals
 export type ProvinceStat = {
   province?: string;
   provinces?: string;
@@ -22,7 +21,8 @@ export function AnalyticsDataTables({ stats }: Props) {
     totals: typeof r.totals === "number" ? r.totals : 0,
   }));
 
-  const columns: ColumnDef<Row>[] = [
+  // NOTE: ColumnDef<TData, TValue> needs two type args
+  const columns: ColumnDef<Row, unknown>[] = [
     { accessorKey: "province", header: "Province" },
     { accessorKey: "totals", header: "Detections" },
   ];
@@ -34,15 +34,14 @@ export function AnalyticsDataTables({ stats }: Props) {
           <CardTitle>Detections by Province</CardTitle>
         </CardHeader>
         <CardContent>
-          <DataTable<Row>
+          {/* DataTable<TData, TValue> also needs two type args */}
+          <DataTable<Row, unknown>
             columns={columns}
             data={tableRows}
             searchableColumn="province"
           />
         </CardContent>
       </Card>
-
-      {/* If/when you add more analytics (year/month, locations), add more cards here */}
     </div>
   );
 }
