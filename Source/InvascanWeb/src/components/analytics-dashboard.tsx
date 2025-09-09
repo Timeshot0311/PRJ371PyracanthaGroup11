@@ -20,6 +20,7 @@ import {
   PieChart,
   Pie,
   Cell,
+  Sector, // ⬅️ added
 } from "recharts";
 import za from "@/assets/za.json"; // South Africa provinces GeoJSON (FeatureCollection)
 
@@ -71,7 +72,6 @@ export function AnalyticsDashboard() {
   const topProvince = provinceTotals.slice().sort((a, b) => b.totals - a.totals)[0]?.province ?? "—";
 
   // 4) queries for detailed panels
-  // year locations: we’ll make a monthly trend from this (Jan..Dec)
   const { data: yearLocRaw } = useQuery({
     queryKey: ["reports", "year", year],
     queryFn: async () => {
@@ -82,7 +82,6 @@ export function AnalyticsDashboard() {
     staleTime: 60_000,
   });
 
-  // year+month locations: show daily trend for selected month
   const { data: monthLocRaw } = useQuery({
     queryKey: ["reports", "year-month", year, month],
     queryFn: async () => {
@@ -94,7 +93,6 @@ export function AnalyticsDashboard() {
     staleTime: 60_000,
   });
 
-  // province drill-in: list of locations for the province
   const { data: provinceLocRaw } = useQuery({
     queryKey: ["reports", "province-locations", province],
     queryFn: async () => {
@@ -111,10 +109,9 @@ export function AnalyticsDashboard() {
   const provinceLoc: LocationRow[] = Array.isArray(provinceLocRaw) ? provinceLocRaw : [];
 
   // 5) chart series
-  // Province bars (fancy vertical gradient)
   const provinceBarData = provinceTotals.map((r) => ({ name: r.province, value: r.totals }));
 
-  // Province share pie with hover “pop”
+  // Province share pie
   const [activePieIndex, setActivePieIndex] = React.useState<number>(-1);
   const pieData = provinceBarData;
 
@@ -142,16 +139,14 @@ export function AnalyticsDashboard() {
     }
   }
 
-  // Province drill-in: top places within that province
+  // Province drill-in
   const byPlaceMap = groupBy(provinceLoc, (r) => r.place || "Unknown");
   const placeSeries = Array.from(byPlaceMap.entries())
     .map(([place, arr]) => ({ name: place, value: arr.length }))
     .sort((a, b) => b.value - a.value)
     .slice(0, 12);
 
-  // --- Map coloring: join totals to geojson by province name ---
-  // Expecting each feature.properties.NAME_1 (or similar) matches the string in provinceTotals.
-  // If your property key differs, adjust nameProp below.
+  // Map coloring
   type ZAFeature = {
     type: "Feature";
     properties: Record<string, any>;
@@ -165,12 +160,35 @@ export function AnalyticsDashboard() {
 
   const maxTotals = Math.max(1, ...provinceTotals.map((p) => p.totals || 0));
   const colorFor = (t: number) => {
-    // soft purple scale, 0 -> very light, max -> deeper
     const pct = Math.min(1, t / maxTotals);
-    const base = 210; // hue-ish
+    const base = 210;
     const sat = 60;
     const light = 92 - Math.round(pct * 35);
     return `hsl(${base} ${sat}% ${light}%)`;
+  };
+
+  // ---------- pie slice renderer (push OUT + glow) ----------
+  const renderActiveSlice = (props: any) => {
+    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload, value } = props;
+    return (
+      <g>
+        <defs>
+          <filter id="sliceGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor={fill} floodOpacity="0.65" />
+          </filter>
+        </defs>
+        <Sector
+          cx={cx}
+          cy={cy}
+          innerRadius={Math.max(0, innerRadius - 2)}
+          outerRadius={outerRadius + 10}   // push outward
+          startAngle={startAngle}
+          endAngle={endAngle}
+          fill={fill}
+          filter="url(#sliceGlow)"         // glow
+        />
+      </g>
+    );
   };
 
   return (
@@ -223,7 +241,7 @@ export function AnalyticsDashboard() {
         <KPI title="Total Detections" value={totalDetections.toLocaleString()} />
         <KPI title="Provinces Covered" value={provincesCovered} />
         <KPI title="Top Province" value={topProvince} />
-        <KPI title="Active Users" value={0} /> {/* hook up when you have it */}
+        <KPI title="Active Users" value={0} />
       </div>
 
       {/* Province bars + share pie + map */}
@@ -235,8 +253,8 @@ export function AnalyticsDashboard() {
               <BarChart data={provinceBarData} barSize={26}>
                 <defs>
                   <linearGradient id="glassPurple" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="rgba(160, 174, 255, 0.95)" />
-                    <stop offset="100%" stopColor="rgba(160, 174, 255, 0.25)" />
+                    <stop offset="0%" stopColor="rgba(160, 255, 192, 0.95)" />
+                    <stop offset="100%" stopColor="rgba(160, 249, 255, 0.25)" />
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="name" tickLine={false} axisLine={false} />
@@ -254,6 +272,7 @@ export function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
+        {/* --------- ONLY THIS CARD CHANGED --------- */}
         <Card className="md:col-span-2">
           <CardHeader><CardTitle>Province Share</CardTitle></CardHeader>
           <CardContent className="h-72">
@@ -266,17 +285,17 @@ export function AnalyticsDashboard() {
                   innerRadius={50}
                   outerRadius={80}
                   paddingAngle={2}
+                  isAnimationActive
+                  activeIndex={activePieIndex}           // highlight which slice
+                  activeShape={renderActiveSlice}        // custom renderer: push out + glow
                   onMouseEnter={(_, i) => setActivePieIndex(i)}
                   onMouseLeave={() => setActivePieIndex(-1)}
-                  isAnimationActive
                 >
                   {pieData.map((_, i) => (
                     <Cell
                       key={i}
                       fill={COLORS[i % COLORS.length]}
-                      style={{ transition: "transform 160ms ease" }}
-                      // scale up the active slice (hover “pop”)
-                      transform={i === activePieIndex ? "scale(1.06)" : "scale(1.0)"}
+                      style={{ cursor: "pointer" }}
                     />
                   ))}
                 </Pie>
@@ -285,6 +304,7 @@ export function AnalyticsDashboard() {
             </ResponsiveContainer>
           </CardContent>
         </Card>
+        {/* ------------------------------------------ */}
 
         <Card className="md:col-span-1">
           <CardHeader><CardTitle>Map</CardTitle></CardHeader>
@@ -293,17 +313,13 @@ export function AnalyticsDashboard() {
               {features?.map((f, i) => {
                 const provName = f.properties?.[nameProp] ?? "";
                 const tot = provinceTotals.find((p) => p.province === provName)?.totals ?? 0;
-                // simple path renderer (assumes ZA JSON already projected to lon/lat degrees around SA range)
-                // We’ll do a super-lightweight fit transform: normalize lon[-35..35], lat[-35..-20] to svg box.
-                // (If your JSON uses a different bbox, tweak these bounds)
                 const toXY = (lon: number, lat: number) => {
-                  const minLon = 16, maxLon = 33;  // SA approx
+                  const minLon = 16, maxLon = 33;
                   const minLat = -35, maxLat = -21;
                   const x = ((lon - minLon) / (maxLon - minLon)) * 240 + 10;
                   const y = ((maxLat - lat) / (maxLat - minLat)) * 200 + 10;
                   return [x, y];
                 };
-
                 const drawPoly = (coords: any[]): string =>
                   coords
                     .map((ring) =>
@@ -313,12 +329,10 @@ export function AnalyticsDashboard() {
                     )
                     .map((ringStr) => `M ${ringStr} Z`)
                     .join(" ");
-
                 const d =
                   f.geometry.type === "Polygon"
                     ? drawPoly(f.geometry.coordinates as any[])
                     : (f.geometry.coordinates as any[][][]).map(drawPoly).join(" ");
-
                 return (
                   <path
                     key={i}
@@ -353,7 +367,7 @@ export function AnalyticsDashboard() {
                 <Line
                   type="monotone"
                   dataKey="value"
-                  stroke="#9fa8ff"
+                  stroke="#9fa1ffff"
                   strokeWidth={2}
                   dot={false}
                   animationBegin={200}
@@ -375,7 +389,7 @@ export function AnalyticsDashboard() {
               <BarChart data={province !== ALL ? placeSeries : []} barSize={22}>
                 <defs>
                   <linearGradient id="glassPurpleH" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="rgba(160, 174, 255, 0.95)" />
+                    <stop offset="0%" stopColor="rgba(160, 255, 211, 0.95)" />
                     <stop offset="100%" stopColor="rgba(160, 174, 255, 0.25)" />
                   </linearGradient>
                 </defs>
