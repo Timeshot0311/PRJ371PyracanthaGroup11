@@ -5,6 +5,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/shared/Header.tsx";
+import { authQueryOptions } from "@/queries/auth-query-options.ts";
 
 interface RouterContext {
     queryClient: QueryClient;
@@ -44,6 +45,13 @@ export const Route = createRootRouteWithContext<RouterContext>()({
             },
         ],
     }),
+    beforeLoad: ({ context }) => {
+        const auth = context.queryClient.ensureQueryData(authQueryOptions());
+
+        return {
+            auth
+        };
+    },
     component: () => (
         <RootDocument>
             <Outlet/>
