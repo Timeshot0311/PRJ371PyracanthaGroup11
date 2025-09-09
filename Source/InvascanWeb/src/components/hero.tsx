@@ -14,7 +14,7 @@ export function Hero() {
                         identification of invasive species like Pyracantha, complete with confidence scores and species labels.
                     </p>
                     <div className="flex gap-4 justify-center">
-                        <Link to="/">
+                        <Link to="/upload">
                             <Button size="lg" className="flex items-center gap-2">
                                 <Camera className="h-5 w-5"/>
                                 Upload & Identify
