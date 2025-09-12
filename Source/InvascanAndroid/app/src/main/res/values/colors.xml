@@ -8,6 +8,10 @@
     <color name="colorAccent">#FDB813</color>
     <color name="float_transparent">#0098d2</color>
 
+    <color name="primary">#005071</color>
+    <color name="accent">#DAB950</color>
+
+
     <color name="background">#f3f3f3</color>
     <color name="inner_grey">#FEF9FA</color>
     <color name="base_overlay">#CC004E6F</color>

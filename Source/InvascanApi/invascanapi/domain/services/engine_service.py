@@ -38,12 +38,13 @@ class EngineService:
             return GenericApiResponse(status = True, statusCode = 404, statusMessage = "Internal router error saving image", dynamicModel=None)
 
 
-        identification_response = self.engine.identify_pyracantha(save_image_response.filepath)
+        identification_response = self.engine.identify_pyracantha(save_image_response.filepath,
+                                                                  save_image_response.width, save_image_response.height)
         if identification_response.code == 2005 or identification_response.code == 2004 or identification_response.code == 2003:
             return GenericApiResponse(status=True, statusCode=200, statusMessage=identification_response.message,
                                       dynamicModel=identification_response.dynamicModel)
 
-        self.util.delete_image(save_image_response.filepath)
+        # self.util.delete_image(save_image_response.filepath)
         identification_result_image = identification_response.dynamicModel.imageData
         save_identification_image_response = self.util.save_image(identification_result_image)
         print(f"save_response2: {save_identification_image_response}")

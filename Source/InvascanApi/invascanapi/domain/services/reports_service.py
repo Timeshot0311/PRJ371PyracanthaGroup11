@@ -56,6 +56,17 @@ class ReportsService:
         return api_response
 
 
+    async def get_province_year_location_positions(self, province_name: str, year_filter: int) -> GenericApiResponse[list[LocationDetails]]:
+        response = await self.repository.get_province_year_location_positions(province_name, year_filter)
+        api_response = GenericApiResponse(
+            status=response.success,
+            statusCode=response.code,
+            statusMessage=response.message,
+            dynamicModel=response.dynamicModel
+        )
+        return api_response
+
+
     async def get_location_positions_by_year(self, year_filter: int) -> GenericApiResponse[list[LocationDetails]]:
         response = await self.repository.get_location_positions_by_year(year_filter)
         api_response = GenericApiResponse(

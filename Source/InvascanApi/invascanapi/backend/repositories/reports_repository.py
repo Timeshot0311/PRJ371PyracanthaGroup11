@@ -196,6 +196,58 @@ class ReportsRepository:
             )
 
 
+
+    async def get_province_year_location_positions(self, province_name: str, year_filter: int) -> GenericBackendResponse[list[LocationDetails]]:
+        try:
+            async with self._session_factory() as session:
+                query = (
+                    select(
+                        GeoData.Id,
+                        GeoData.Province,
+                        GeoData.Placename,
+                        GeoData.Latitude,
+                        GeoData.Longitude,
+                        func.cast(GeoData.CreatedAt, Date).label("CreatedAt")
+                    )
+                    .where(GeoData.CreatedAt.isnot(None))
+                    .where(GeoData.Province == province_name,
+                        func.year(GeoData.CreatedAt) == year_filter)
+                    .order_by(GeoData.Province)
+                )
+                result = await session.execute(query)
+                rows = result.all()
+
+                statistics_list = [
+                    LocationDetails(
+                        id=str(r.Id),
+                        province=r.Province,
+                        place=r.Placename,
+                        latitude=r.Latitude,
+                        longitude=r.Longitude,
+                        created_at=r.CreatedAt
+                    )
+                    for r in rows
+                ]
+
+                return GenericBackendResponse(
+                    success=True,
+                    code=200,
+                    message="success",
+                    data=statistics_list
+                )
+        except Exception as e:
+            print(f"\n\n=======================================================================")
+            print(f"get_all_location_positions error :- {e}")
+            print(f"=======================================================================\n\n")
+            # await self.db.rollback()
+            return GenericBackendResponse(
+                success=False,
+                code=500,
+                message=f"failed: {str(e)}",
+                data=None
+            )
+
+
     async def get_location_positions_by_year(self, year_filter: int) -> GenericBackendResponse[list[LocationDetails]]:
         try:
             async with self._session_factory() as session:

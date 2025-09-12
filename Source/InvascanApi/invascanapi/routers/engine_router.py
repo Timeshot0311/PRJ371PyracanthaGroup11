@@ -37,6 +37,7 @@ async def investigate(model: InvestigateRequest, request: Request, user_id: str 
             statusMessage = "Image is required for investigations",
             dynamicModel = None
         )
+
     identification_response = await service.do_identification_async(model, base_url)
     return identification_response
 

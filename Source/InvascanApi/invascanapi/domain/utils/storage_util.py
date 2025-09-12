@@ -13,7 +13,7 @@ from invascanapi.domain.models.responses.save_image_response import SaveImageRes
 
 class StorageUtil:
     def __init__(self):
-        #self.base_dir = os.path.dirname(os.path.dirname(__file__))
+        # self.base_dir = os.path.dirname(os.path.dirname(__file__))
         self.base_dir = "/var/opt/" #os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.images_upload_directory = os.path.join("invascanapi", "domain", "images")
         self.image_path = os.path.join(self.base_dir, "images")
@@ -35,10 +35,16 @@ class StorageUtil:
             image = Image.open(BytesIO(image_data))
             image.save(image_location)
 
+            # Get width and height
+            width, height = image.size
+            w_32, h_32 = self.round_to_32(width), self.round_to_32(height)
+
             print(f"Image file name {image_file_name}")
             print(f"Image saved to {image_location}")
+            print(f"Image width: {width} => {w_32}")
+            print(f"Image height: {height} => {h_32}")
 
-            return SaveImageResponse(filename = image_file_name, filepath=image_location)
+            return SaveImageResponse(filename = image_file_name, filepath=image_location, width=w_32, height=h_32)
             # return {
             #     "image_location": image_location,
             #     "image_name": image_file_name
@@ -61,3 +67,6 @@ class StorageUtil:
         except Exception as ex:
             print(f"Error deleting image: {ex}")
             return False
+
+    def round_to_32(self, x):
+        return int((x + 31) // 32 * 32)

@@ -7,6 +7,8 @@ from sqlalchemy.future import select
 from sqlalchemy.orm import joinedload
 
 from invascanapi.backend.entities.user_details_table import UserDetails
+from invascanapi.backend.entities.user_feedback_comment_table import UserFeedbackComment
+from invascanapi.backend.entities.user_feedback_table import UserFeedback
 from invascanapi.backend.entities.user_roles_table import UserRoles
 from invascanapi.backend.entities.users_table import Users
 from invascanapi.domain.models.responses.generic_backend_response import GenericBackendResponse
@@ -76,7 +78,6 @@ class UserRepository:
         return result.scalars().first()
 
 
-
     async def create_user(self, user: Users) -> GenericBackendResponse[Users]:
         try:
             self.db.add(user)
@@ -101,7 +102,6 @@ class UserRepository:
             )
 
 
-
     async def create_user_details(self, user_details: UserDetails) -> GenericBackendResponse[UserDetails]:
         try:
             self.db.add(user_details)
@@ -124,3 +124,5 @@ class UserRepository:
                 data=None,
                 code= 500
             )
+
+

@@ -16,8 +16,10 @@ async def insert_geodata_stored_procedure(session: AsyncSession):
         AS
         BEGIN
             SET NOCOUNT ON;
+            DECLARE @status BIT = 1, @code INT = 200, @message VARCHAR(MAX) = 'Successful'
             INSERT INTO GeoData (Id, DetectionId, Latitude, Longitude, Province, Placename, CreatedAt)
             VALUES (NEWID(), @detectionId, @latitude, @longitude, @province, @placename, ISNULL(@createdAt, GETDATE()));
+            SELECT @status AS [Status], @code AS [Code], @message AS [Message]
         END
         """)
     await session.execute(sp_invascan_add_geodata_sql)

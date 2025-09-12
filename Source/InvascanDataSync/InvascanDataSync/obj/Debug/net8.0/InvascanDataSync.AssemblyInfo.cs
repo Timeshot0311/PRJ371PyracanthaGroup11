@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InvascanDataSync")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.11.11")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d67449ad19448d55ca5ad702ad4a3fc634aed9eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53c801f80037c82d12733121e08eb0ca8154ad2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("InvascanDataSync")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InvascanDataSync")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.11.11")]

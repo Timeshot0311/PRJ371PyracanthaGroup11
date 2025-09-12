@@ -22,7 +22,7 @@ class InvascanEngine:
         #self.base_dir = os.path.dirname(os.path.dirname(__file__))
         self.engine_repository = engine_repository
         self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        self.model_location = os.path.join(self.base_dir, "models", "machinelearning", "best.pt")
+        self.model_location = os.path.join(self.base_dir, "models", "machinelearning", "best_old.pt")
         #self.model_location = f"{os.getcwd()}/invascanapi/domain/best.pt"
         self.default_image_size = 640
         self.confidence_threshold_low = 0.50
@@ -52,13 +52,14 @@ class InvascanEngine:
     #   2002 => score below highest thresh_hold requiring manual verification
     #   2003 => no detections
     #   2004 => internal error or exception
-    def identify_pyracantha(self, image_path:str) -> GenericBackendResponse[DetectionResponse]:
+    def identify_pyracantha(self, image_path:str, image_width:int, image_height:int) -> GenericBackendResponse[DetectionResponse]:
         response = DetectionResponse()
         try:
             logging.info(f"Pyracantha version: {torch.__version__}")
 
             # Run inference on the source
             predict_result = self.model.predict(image_path, save=False, imgsz=self.default_image_size, conf=self.confidence_threshold_low)[0]
+            # predict_result = self.model.predict(image_path, save=False, imgsz=(image_width, image_height), conf=self.confidence_threshold_low)[0]
 
             # Render a detection result (returns list of BGR numpy arrays). This includes bounding boxes, labels, etc.
             predict_result_list = predict_result.plot()

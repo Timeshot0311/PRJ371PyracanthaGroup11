@@ -4,11 +4,15 @@ import uuid
 import bcrypt
 from fastapi import HTTPException, status
 
+from invascanapi.backend.entities.user_feedback_comment_table import UserFeedbackComment
+from invascanapi.backend.entities.user_feedback_table import UserFeedback
+from invascanapi.backend.repositories.community_repository import CommunityRepository
 from invascanapi.backend.repositories.user_repository import UserRepository
 from invascanapi.backend.entities.users_table import Users
 from invascanapi.backend.entities.user_details_table import UserDetails
 from invascanapi.domain.models.account_details import AccountDetail
 from invascanapi.domain.models.requests.create_account import CreateAccount
+from invascanapi.domain.models.requests.create_user_feedback import CreateUserFeedback, CreateUserFeedbackComment
 from invascanapi.domain.models.responses.generic_api_response import GenericApiResponse
 from invascanapi.domain.models.token_model import TokenResponseModel
 from invascanapi.domain.utils.security_util import SecurityUtil
@@ -141,3 +145,4 @@ class UserService:
         except Exception as e:
             logging.error(f"Create failed: {e}")
             return GenericApiResponse(status=False, statusCode=status.HTTP_500_INTERNAL_SERVER_ERROR, statusMessage=f'{e}')
+

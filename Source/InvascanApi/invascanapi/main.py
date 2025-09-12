@@ -9,6 +9,7 @@ from invascanapi.routers.user_router import router as user_router
 from invascanapi.routers.engine_router import router as engine_router
 from invascanapi.routers.version_router import router as version_router
 from invascanapi.routers.reports_router import router as reports_router
+from invascanapi.domain.services.data_sync_service import DataSyncService
 
 app = FastAPI(
     lifespan=lifespan,
@@ -36,18 +37,6 @@ app.add_middleware(
     allow_methods=["*"],  # allow GET, POST, PUT, DELETE
     allow_headers=["*"],  # allow all headers
 )
-
-#
-# @app.on_event("startup")
-# async def on_startup():
-#     async with engine.begin() as conn:
-#         print(f'running {conn.info}')
-#         await conn.run_sync(Base.metadata.create_all)
-#         await seed_detection_status(conn)
-#         await seed_roles(conn)
-#         await seed_account_status(conn)
-#         await seed_user_account(conn)
-
 
 
 # app.mount("/images", StaticFiles(directory="invascanapi/domain/images"), name="images")

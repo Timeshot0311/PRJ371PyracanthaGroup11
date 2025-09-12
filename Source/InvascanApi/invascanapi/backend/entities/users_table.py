@@ -25,6 +25,8 @@ class Users(Base):
     Role = relationship("UserRoles", lazy="joined", back_populates="Users")  # eager load if needed
 
     Details = relationship("UserDetails", back_populates="User", uselist=False)
+    Feedbacks = relationship("UserFeedback", back_populates="User", uselist=False)
+    FeedbackComments = relationship("UserFeedbackComment", back_populates="User", uselist=False)
     PasswordHash = Column(String, nullable=False)
     PasswordSalt = Column(String, nullable=False)
     CreatedAt = Column(DateTime, index=True, nullable=False, default=gmt2_now)
