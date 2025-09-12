@@ -8,10 +8,8 @@ export const Route = createFileRoute("/")({
 
 export default function Home() {
     return (
-        <section className='py-20'>
-            <PageLayout>
-                <Hero />
-            </PageLayout>
-        </section>
+        <PageLayout>
+            <Hero/>
+        </PageLayout>
     );
 }

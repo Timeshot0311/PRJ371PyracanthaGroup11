@@ -1,61 +1,73 @@
+import { env } from "@/env";
 import { createServerFn } from "@tanstack/react-start";
 
-type ClientPayload = {
-    success: boolean;
-    message: string;
-    imgUrl: string;
-    label: string;
-    score: number;
+export type APIRequestBody = {
+    user_id: string;
+    image_data: string;
+    latitude: number;
+    longitude: number;
+    address: string;
 };
 
-type APIResponse = {
+export type APIResponseBody = {
     status: boolean;
-    statuscode: number;
-    message: string;
-    img: string;
-    labelname: string;
-    score: number;
+    statusCode: number;
+    statusMessage: string;
+    dynamicModel: {
+        speciesName: string;
+        confidenceScore: number;
+        imageData: string;
+        imageUrl: string;
+    } | null;
 };
 
-export const $analyzeImage = createServerFn()
-    .validator((base64Image: string) => base64Image)
-    .handler(async ({ data }): Promise<ClientPayload> => {
-        try {
-            const apiUrl = "http://localhost:8006";
-            console.log(`calling api ${apiUrl}`);
+const BACKEND_API_URL = env.BACKEND_API_URL;
 
-            const response = await fetch(`${apiUrl}/identifyasync`, {
+export const $analyzeImage = createServerFn({ method: "POST" })
+    .validator((img: string) => img)
+    .handler(async ({ data }): Promise<APIResponseBody> => {
+        try {
+            //TODO should pass in the actual auth details eventually.
+            const requestBody: APIRequestBody = {
+                user_id: "2b9d35f8-97e6-47f0-a033-d5675d6344b6",
+                image_data: data,
+                latitude: 0,
+                longitude: 0,
+                address: "",
+            };
+
+            const request = await fetch(`${BACKEND_API_URL}/api/engine/investigate`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    userid: "12345",
-                    imagedata: data,
-                }),
+                body: JSON.stringify(requestBody),
             });
 
-            const result: APIResponse = await response.json();
+            const response: APIResponseBody = await request.json();
 
-            if (!response.ok) {
+            if (response.statusCode !== 200 || !response.dynamicModel) {
                 return {
-                    success: result.status,
-                    message: result.message,
-                    imgUrl: "",
-                    label: "",
-                    score: 0,
+                    status: response.status,
+                    statusCode: response.statusCode,
+                    statusMessage: response.statusMessage,
+                    dynamicModel: null,
                 };
             }
 
             return {
-                success: result.status,
-                message: result.message,
-                imgUrl: result.img ? `data:image/jpeg;base64,${result.img}` : "",
-                label: result.labelname,
-                score: result.score,
+                status: response.status,
+                statusCode: response.statusCode,
+                statusMessage: response.statusMessage,
+                dynamicModel: response.dynamicModel,
             };
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Unknown error";
-            return { success: false, message: errorMessage, imgUrl: "", label: "", score: 0 };
+            console.error(error);
+            return {
+                status: false,
+                statusCode: 500,
+                statusMessage: "Internal Server Error",
+                dynamicModel: null,
+            };
         }
     });
