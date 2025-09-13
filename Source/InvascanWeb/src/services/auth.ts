@@ -1,5 +1,6 @@
 // src/services/auth.ts
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+// NEW — if VITE_API_BASE_URL is set, use it; otherwise use "" so `/api/...` works via Vite proxy
+const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "");
 
 export type TokenResponse = {
   access_token: string;
@@ -13,7 +14,7 @@ export async function getToken(username: string, password: string): Promise<Toke
   body.set("password", password);
   body.set("scope", "");
 
-  const r = await fetch(`${BASE}/api/token`, {
+  const r = await fetch(`${BASE}/token`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: body.toString(),

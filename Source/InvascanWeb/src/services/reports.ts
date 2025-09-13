@@ -1,7 +1,8 @@
 // src/services/reports.ts
 import { authToken } from "@/lib/auth";
 
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+// NEW — if VITE_API_BASE_URL is set, use it; otherwise use "" so `/api/...` works via Vite proxy
+const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "");
 
 async function authedGet(path: string) {
   const token = authToken.get();
@@ -32,27 +33,27 @@ async function authedGet(path: string) {
 export async function getAllProvinceStats() {
   // Most endpoints in your docs wrap results in { status, statusCode, statusMessage, dynamicModel }
   // Return it raw; your query will unwrap to an array.
-  return authedGet(`/api/reports/all_province`);
+  return authedGet(`/reports/all_province`);
 }
 
 export async function getProvinceStats(province: string) {
-  return authedGet(`/api/reports/province/${encodeURIComponent(province)}`);
+  return authedGet(`/reports/province/${encodeURIComponent(province)}`);
 }
 
 export async function getAllLocations() {
-  return authedGet(`/api/reports/locationDetails`);
+  return authedGet(`/reports/locationDetails`);
 }
 
 export async function getProvinceLocations(province: string) {
-  return authedGet(`/api/reports/locationDetails/province/${encodeURIComponent(province)}`);
+  return authedGet(`/reports/locationDetails/province/${encodeURIComponent(province)}`);
 }
 
 export async function getYearLocations(year: string | number) {
-  return authedGet(`/api/reports/locationDetails/year/${encodeURIComponent(String(year))}`);
+  return authedGet(`/reports/locationDetails/year/${encodeURIComponent(String(year))}`);
 }
 
 export async function getYearMonthLocations(year: string | number, month: string | number) {
   return authedGet(
-    `/api/reports/locationDetails/month/${encodeURIComponent(String(year))}/${encodeURIComponent(String(month))}`,
+    `/reports/locationDetails/month/${encodeURIComponent(String(year))}/${encodeURIComponent(String(month))}`,
   );
 }

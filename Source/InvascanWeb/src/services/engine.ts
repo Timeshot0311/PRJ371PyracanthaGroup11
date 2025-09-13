@@ -1,5 +1,6 @@
 // src/services/engine.ts
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+// NEW — if VITE_API_BASE_URL is set, use it; otherwise use "" so `/api/...` works via Vite proxy
+const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "");
 
 export type InvestigateRequest = {
   user_id: string;
@@ -25,7 +26,7 @@ export async function investigateImage(
   body: InvestigateRequest,
   token?: string
 ): Promise<InvestigateResponse> {
-  const r = await fetch(`${BASE}/api/engine/investigate`, {
+  const r = await fetch(`${BASE}/engine/investigate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
