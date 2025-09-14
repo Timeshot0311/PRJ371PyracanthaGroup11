@@ -29,6 +29,7 @@ hiltNavigationCompose = "1.2.0"
 sweetAlertDialogVersion = "1.6.2"
 smartSpinnerVersion = "2.0.0"
 jwtVersion = "2.0.2"
+mpAndroidChart = "v3.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +48,7 @@ gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+mp-android-chart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpAndroidChart" }
 
 #google service specifically maps
 google-services-kts = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "googleServices" }

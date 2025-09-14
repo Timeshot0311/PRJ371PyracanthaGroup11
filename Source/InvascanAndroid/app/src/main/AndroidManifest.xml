@@ -29,13 +29,16 @@
         android:theme="@style/Theme.Invascan"
         tools:targetApi="31">
         <activity
+            android:name=".ui.analytics.AnalyticsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.dashboard.DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".ui.account.CreateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.analyze.AnalyzePlantActivity"
             android:exported="false" />
 
         <meta-data

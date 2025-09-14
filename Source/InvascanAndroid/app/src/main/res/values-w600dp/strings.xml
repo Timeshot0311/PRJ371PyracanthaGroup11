@@ -46,4 +46,8 @@
     <string name="person_address">Enter Residential Address</string>
     <string name="person_create_account">Submit</string>
     <string name="enter_username">Enter username</string>
+    <string name="analytics_title">Analytics</string>
+    <string name="community_title">Community</string>
+    <string name="app_version">Version</string>
+    <string name="app_footer">\@2025 Invascan Systems</string>
 </resources>

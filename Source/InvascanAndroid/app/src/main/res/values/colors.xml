@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#0098D2</color>
+    <color name="colorPrimary">#005071</color>
     <color name="colorPrimaryDark">#005071</color>
     <color name="colorAccent">#FDB813</color>
     <color name="float_transparent">#0098d2</color>
@@ -13,6 +13,19 @@
 
 
     <color name="background">#f3f3f3</color>
+    <color name="toolbar_background">#005071</color>
+
+    <color name="analyze_background">#f3f3f3</color>
+    <color name="analytic_background">#f3f3f3</color>
+    <color name="community_background">#f3f3f3</color>
+    <color name="profile_background">#f3f3f3</color>
+
+    <color name="analyze_content">@color/primary</color>
+    <color name="analytic_content">@color/green_800</color>
+    <color name="community_content">@color/deep_orange_600</color>
+    <color name="profile_content">@color/md_purple_800</color>
+
+
     <color name="inner_grey">#FEF9FA</color>
     <color name="base_overlay">#CC004E6F</color>
     <color name="white_overlay">#F2FFFFFF</color>

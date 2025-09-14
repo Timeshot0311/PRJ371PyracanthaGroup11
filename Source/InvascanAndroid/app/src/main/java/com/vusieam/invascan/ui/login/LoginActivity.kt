@@ -13,21 +13,27 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.vusieam.invascan.R
 import com.vusieam.invascan.databinding.ActivityLoginBinding
 import com.vusieam.invascan.domain.InvascanSessionManager
-import com.vusieam.invascan.models.responses.login.LoginResponse
-import com.vusieam.invascan.services.RetrofitServiceBase
-import com.vusieam.invascan.ui.main.MainActivity
+import com.vusieam.invascan.domain.Versioning
+import com.vusieam.invascan.domain.models.responses.login.LoginResponse
+import com.vusieam.invascan.domain.services.RetrofitServiceBase
 import com.vusieam.invascan.ui.account.CreateAccountActivity
-import com.vusieam.invascan.utils.GenericHelpers
-import com.vusieam.invascan.utils.InternetAccess
+import com.vusieam.invascan.ui.dashboard.DashboardActivity
+import com.vusieam.invascan.domain.utils.GenericHelpers
+import com.vusieam.invascan.domain.utils.InternetAccess
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     //#region -- protected properties --
+
+    @Inject
+    internal lateinit var versioning: Versioning
+
     private lateinit var binding: ActivityLoginBinding
     //#endregion
 
@@ -55,6 +61,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         binding.contentLogin.loginSignup.setOnClickListener(this)
         binding.contentLogin.loginUsername.setText("vusieam")
         binding.contentLogin.loginPassword.setText("vusieam")
+
+
+        binding.contentLogin.txtVersion.text = versioning.toString()
+        Log.d(GenericHelpers.logID(), "version: ${versioning.toString()}")
 
     }
 
@@ -158,7 +168,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                     // Go to main activity
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                     finish()
 
                 }

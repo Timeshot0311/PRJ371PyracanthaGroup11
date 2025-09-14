@@ -13,13 +13,21 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.vusieam.invascan.R
 import com.vusieam.invascan.databinding.ActivityDashboardBinding
 import com.vusieam.invascan.domain.InvascanSessionManager
+import com.vusieam.invascan.domain.Versioning
 import com.vusieam.invascan.ui.login.LoginActivity
-import com.vusieam.invascan.utils.GenericHelpers
-import com.vusieam.invascan.utils.InternetAccess
+import com.vusieam.invascan.ui.analyze.AnalyzePlantActivity
+import com.vusieam.invascan.domain.utils.GenericHelpers
+import com.vusieam.invascan.ui.analytics.AnalyticsActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DashboardActivity : AppCompatActivity(), View.OnClickListener  {
 
     //#region -- protected properties --
+
+    @Inject
+    internal lateinit var versioning: Versioning
     private lateinit var binding: ActivityDashboardBinding
     //#endregion
 
@@ -51,14 +59,13 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener  {
             finish()
         }
         else{
-            //binding.contentMain.btnLoadImageContainer.setOnClickListener(this)
-            //binding.contentMain.btnCameraImageContainer.setOnClickListener(this)
-            //binding.contentMain.btnIdentifyContainer.setOnClickListener(this)
-            //binding.actionBack.setOnClickListener(this)
-            //imageView = binding.contentMain.inputImage
-            //outputImage = binding.contentMain.outputImage
-            //detectedName = binding.contentMain.txtLabelName
-            //detectedScore = binding.contentMain.txtLabelScore
+            binding.contentDashboard.cardAnalyzePlant.setOnClickListener(this)
+            binding.contentDashboard.cardAnalytics.setOnClickListener(this)
+            binding.contentDashboard.cardCommunity.setOnClickListener(this)
+            binding.contentDashboard.cardAccount.setOnClickListener(this)
+
+            binding.contentDashboard.txtVersion.text = versioning.toString()
+            Log.d(GenericHelpers.logID(), "version: ${versioning.toString()}")
         }
     }
 
@@ -74,6 +81,78 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener  {
                 )
                 startActivity(intent, options.toBundle())
                 finish()
+            }
+
+            R.id.card_analyze_plant ->{
+                val intent = Intent(this, AnalyzePlantActivity::class.java)
+                val options = ActivityOptions.makeCustomAnimation(
+                    this,
+                    R.anim.slide_in_right,
+                    R.anim.slide_in_left
+                )
+                startActivity(intent, options.toBundle())
+                finish()
+            }
+
+            R.id.card_analytics ->{
+                //val dialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                //dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                //dialog.confirmText = "DISMISS"
+                //dialog.titleText = GenericHelpers.titleID()
+                //dialog.contentText = "Function is not available yet."
+                //dialog.setConfirmClickListener {
+                //    dialog.dismissWithAnimation()
+                //}
+                //dialog.setCancelable(false)
+                //dialog.show()
+                val intent = Intent(this, AnalyticsActivity::class.java)
+                val options = ActivityOptions.makeCustomAnimation(
+                    this,
+                    R.anim.slide_in_right,
+                    R.anim.slide_in_left
+                )
+                startActivity(intent, options.toBundle())
+                finish()
+            }
+            R.id.card_community ->{
+                val dialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.confirmText = "DISMISS"
+                dialog.titleText = GenericHelpers.titleID()
+                dialog.contentText = "Function is not available yet."
+                dialog.setConfirmClickListener {
+                    dialog.dismissWithAnimation()
+                }
+                dialog.setCancelable(false)
+                dialog.show()
+                //val intent = Intent(this, AnalyzePlantActivity::class.java)
+                //val options = ActivityOptions.makeCustomAnimation(
+                //    this,
+                //    R.anim.slide_in_right,
+                //    R.anim.slide_in_left
+                //)
+                //startActivity(intent, options.toBundle())
+                //finish()
+            }
+            R.id.card_account ->{
+                val dialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.confirmText = "DISMISS"
+                dialog.titleText = GenericHelpers.titleID()
+                dialog.contentText = "Function is not available yet."
+                dialog.setConfirmClickListener {
+                    dialog.dismissWithAnimation()
+                }
+                dialog.setCancelable(false)
+                dialog.show()
+                //val intent = Intent(this, AnalyzePlantActivity::class.java)
+                //val options = ActivityOptions.makeCustomAnimation(
+                //    this,
+                //    R.anim.slide_in_right,
+                //    R.anim.slide_in_left
+                //)
+                //startActivity(intent, options.toBundle())
+                //finish()
             }
 
         }

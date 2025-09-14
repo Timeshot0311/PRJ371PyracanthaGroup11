@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,17 +8,53 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
+
+
+
 android {
     namespace = "com.vusieam.invascan"
     compileSdk = 35
+
+    var majorVersionCode:Int = 1
+    var versionNameCode:String = "1.0.0"
+    val versionPropsFile = rootProject.file("version.properties")
+    if (versionPropsFile.exists() && versionPropsFile.canRead()) {
+        val versionProps = Properties()
+        versionProps.load(FileInputStream(versionPropsFile))
+
+        majorVersionCode = versionProps["MAJOR_CODE"].toString().toInt()
+        var minorVersionCode = versionProps["MINOR_CODE"].toString().toInt()
+        val buildVersionCode = versionProps["BUILD_CODE"].toString().toInt() + 1
+        versionNameCode = versionProps["VERSION_NAME"].toString()
+
+        val runTasks = gradle.startParameter.getTaskNames()
+        if (runTasks.any { it.contains("assembleRelease") }) {
+            minorVersionCode += 1
+        }
+
+        val isReleaseBuild = gradle.startParameter.taskNames.any { it.contains("assembleRelease") }
+        if (isReleaseBuild) minorVersionCode += 1
+        if (minorVersionCode >= 10) {
+            minorVersionCode = 0
+            majorVersionCode += 1
+        }
+
+        versionNameCode = "$majorVersionCode.$minorVersionCode.$buildVersionCode"
+        versionProps["MAJOR_CODE"] = majorVersionCode.toString()
+        versionProps["MINOR_CODE"] = minorVersionCode.toString()
+        versionProps["BUILD_CODE"] = buildVersionCode.toString()
+        versionProps["VERSION_NAME"] = versionNameCode.toString()
+        versionProps.store(versionPropsFile.writer(), null)
+    }
+
 
     defaultConfig {
         applicationId = "com.vusieam.invascan"
         minSdk = 24
         //noinspection OldTargetApi
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = majorVersionCode
+        versionName = versionNameCode
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,6 +74,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+    lint {
+        disable.add("Deprecation")
+        // or to ignore multiple:
+        // disable.addAll(listOf("Deprecation", "ObsoleteLintCustomCheck"))
     }
     buildFeatures {
         viewBinding = true
@@ -60,6 +104,7 @@ dependencies {
     implementation(libs.sweet.alerts.dialog)
     implementation(libs.smart.material.spinner)
     implementation(libs.jwt)
+    implementation(libs.mp.android.chart)
     ksp(libs.hilt.compiler)
     ksp(libs.glide.compiler)
     testImplementation(libs.junit)

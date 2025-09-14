@@ -12,9 +12,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.vusieam.invascan.R
 import com.vusieam.invascan.databinding.ActivitySplashBinding
+import com.vusieam.invascan.domain.Versioning
 import com.vusieam.invascan.ui.login.LoginActivity
-import com.vusieam.invascan.utils.GenericHelpers
+import com.vusieam.invascan.domain.utils.GenericHelpers
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
@@ -22,6 +24,7 @@ class SplashActivity : AppCompatActivity() {
     //#region -- protected properties --
     private lateinit var binding: ActivitySplashBinding
     private val splashTimeout: Long = 3500
+
     //#endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {

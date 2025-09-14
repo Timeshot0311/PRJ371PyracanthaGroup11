@@ -45,6 +45,12 @@
     <string name="person_address">Enter Residential Address</string>
     <string name="person_create_account">Submit</string>
     <string name="enter_username">Enter username</string>
-    <string name="image_detections">Image Detections</string>
+    <string name="image_detections">Analyze Plant Image</string>
+    <string name="analytics_title">Analytics</string>
+    <string name="community_title">Community</string>
+    <string name="profile_title">Profile Maintenance</string>
+    <string name="app_version">Version</string>
+    <string name="app_footer">&#169; 2025 Invascan Product</string>
+    <string name="detections_by_province">Detections by Province</string>
 
 </resources>
