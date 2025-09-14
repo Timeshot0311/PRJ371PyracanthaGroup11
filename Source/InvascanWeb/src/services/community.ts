@@ -33,38 +33,32 @@ async function authed<T>(fn: () => Promise<T>) {
   return fn();
 }
 
-// Always produce an RFC4122 v4 GUID (works even if crypto.randomUUID is missing)
-function guidv4(): string {
-  if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
-  // polyfill
-  // eslint-disable-next-line no-bitwise
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
-    const r = (globalThis.crypto?.getRandomValues?.(new Uint8Array(1))[0] ?? Math.random()*256) & 15;
-    const v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
-// don’t hide the envelope anymore — check status first
-type ApiEnvelope<T> = { status?: boolean; statusCode?: number; statusMessage?: string; dynamicModel?: T };
+// API envelope
+type ApiEnvelope<T> = {
+  status?: boolean;
+  statusCode?: number;
+  statusMessage?: string;
+  dynamicModel?: T;
+};
 
 // ---------- API calls ----------
-export async function postFeedback(body: Pick<Feedback, "Comments" | "Ratings"> & { Id?: string }) {
+export async function postFeedback(
+  body: Pick<Feedback, "Comments" | "Ratings"> & { Id?: string }
+) {
   return authed(async () => {
+    // CREATE => Id must be "" (or null); UPDATE => pass body.Id
     const payload = {
-      Id: body.Id ?? guidv4(),                      // real GUID
+      Id: body.Id ?? "", // empty string for new posts
       Comments: String(body.Comments ?? ""),
       Ratings: Number(body.Ratings) || 0,
     };
+
     const res = await postJson<ApiEnvelope<Feedback>>("/users/community/post", payload, {
       headers: { Authorization: `Bearer ${authToken.get()}` },
     });
 
-    console.debug("POST /users/community/post ->", res); // <-- watch this in DevTools
-
-    if (res?.status === false) {
-      throw new Error(res.statusMessage || "API returned status:false");
-    }
+    console.debug("POST /users/community/post ->", res);
+    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
     return (res?.dynamicModel ?? (res as any)) as Feedback;
   });
 }
@@ -95,15 +89,20 @@ export async function postFeedbackComment(
   body: Pick<FeedbackComment, "FeedbackId" | "Comments" | "Ratings"> & { Id?: string }
 ) {
   return authed(async () => {
+    // CREATE => Id ""; UPDATE => pass body.Id
     const payload = {
-      Id: body.Id ?? guidv4(),                      // real GUID for comment too
+      Id: body.Id ?? "", // empty string for new comments
       FeedbackId: String(body.FeedbackId),
       Comments: String(body.Comments ?? ""),
       Ratings: Number(body.Ratings) || 0,
     };
-    const res = await postJson<ApiEnvelope<FeedbackComment>>("/users/community/post/comment", payload, {
-      headers: { Authorization: `Bearer ${authToken.get()}` },
-    });
+
+    const res = await postJson<ApiEnvelope<FeedbackComment>>(
+      "/users/community/post/comment",
+      payload,
+      { headers: { Authorization: `Bearer ${authToken.get()}` } }
+    );
+
     console.debug("POST /users/community/post/comment ->", res);
     if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
     return (res?.dynamicModel ?? (res as any)) as FeedbackComment;
