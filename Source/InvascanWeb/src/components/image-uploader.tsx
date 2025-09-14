@@ -1,37 +1,18 @@
-"use client";
-
-import { analyzeImage } from "@/actions/analyze-image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { useState } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { $analyzeImage } from "@/server/functions/analyze-image";
+import { Camera, Trash } from "lucide-react";
+import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
-export default function ImageUploader() {
-    const [imageUrl, setImageUrl] = useState<string | undefined>();
-    const [file, setFile] = useState<File | undefined>(undefined);
-    const [loading, setLoading] = useState(false);
-    const [responseMessage, setResponseMessage] = useState<string>("");
+export function ImageUploader() {
+    const [uploadedImage, setUploadedImage] = useState<File | undefined>();
+    const [uploadedImageUrl, setUploadedImageUrl] = useState<string | undefined>();
+    const [isPending, setIsPending] = useState(false);
+    const [speciesLabel, setSpeciesLabel] = useState("");
+    const [confidenceScore, setConfidenceScore] = useState(0);
 
-    const maxFileSize = 5 * 1024 * 1024; // 5MB
-
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            const selectedFile = e.target.files[0];
-
-            if (selectedFile.size > maxFileSize) {
-                toast.error("File too large. Maximum size is 5MB.");
-                return;
-            }
-
-            setFile(selectedFile);
-
-            const imageUrl = URL.createObjectURL(selectedFile);
-            setImageUrl(imageUrl);
-        }
-    };
-
-    const convertToBase64 = (file: File): Promise<string> => {
+    const convertToBase64 = async (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -47,75 +28,131 @@ export default function ImageUploader() {
         });
     };
 
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const uploadedFile = e.target.files[0];
+            setUploadedImage(uploadedFile);
+
+            const imageUrl = URL.createObjectURL(uploadedFile);
+            setUploadedImageUrl(imageUrl);
+
+            setSpeciesLabel("");
+            setConfidenceScore(0);
+        }
+    };
+
     const submitImage = async () => {
-        if (!file) {
-            toast.error("No image selected.");
-            return;
+        if (!uploadedImage) {
+            return toast.info("Please select an image");
         }
 
-        setLoading(true);
+        setIsPending(true);
 
         try {
-            const base64Image = await convertToBase64(file);
-            const result = await analyzeImage(base64Image);
+            const base64Image = await convertToBase64(uploadedImage);
+            const apiResponse = await $analyzeImage({ data: base64Image });
 
-            if (!result.success || !result.imgUrl) {
-                toast.error("API error occured", {
-                    duration: 3000,
+            if (apiResponse.statusCode !== 200) {
+                return toast.error("An API error occurred. Please try again", {
+                    duration: 4000,
                 });
+            }
+
+            if (!apiResponse.dynamicModel) {
+                toast.info("No pyracantha detected!");
+                setSpeciesLabel("No pyracantha detected!");
+                setConfidenceScore(0);
                 return;
             }
 
-            setImageUrl(result.imgUrl);
-            setResponseMessage(result.message);
+            const { imageUrl, speciesName, confidenceScore } = apiResponse.dynamicModel;
 
-            toast.success("Successfully analyzed image", {
-                duration: 3000,
+            setUploadedImageUrl(imageUrl);
+            setSpeciesLabel(speciesName);
+            setConfidenceScore(confidenceScore);
+
+            toast.success("Success", {
+                duration: 4000,
             });
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Unknown error";
-            toast.error(errorMessage);
+            console.error(error);
+            toast.error("Internal Server Error");
         } finally {
-            setLoading(false);
+            setIsPending(false);
         }
     };
 
     return (
-        <>
-            <div className='flex flex-col justify-between gap-4 min-h-60'>
-                <label
-                    htmlFor='file-upload'
-                    className='flex-1 w-full flex p-4 border-dashed border rounded-lg text-muted-foreground items-center justify-center cursor-pointer'
-                >
-                    <input
-                        id='file-upload'
-                        type='file'
-                        accept='image/jpeg'
-                        className='sr-only'
-                        onChange={handleImageChange}
-                    />
-                    <div className='flex flex-col gap-2 items-center text-center'>
-                        <div>Upload Image</div>
-                        <span className='text-xs'>JPEG (Max 5MB)</span>
-                    </div>
-                </label>
-                <Button className='w-full' disabled={!file || loading} onClick={submitImage}>
-                    {loading ? "Analyzing..." : "Analyze image"}
-                </Button>
-            </div>
+        <Card>
+            <CardHeader>
+                <CardTitle>Pyracantha Image Analyzer</CardTitle>
+                <CardDescription>Upload an image to start analyzing</CardDescription>
+            </CardHeader>
+            <CardContent className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <div className='flex flex-col justify-between gap-4 min-h-60'>
+                    <label
+                        htmlFor='file-upload'
+                        className='flex-1 w-full flex p-4 border-dashed border-2 border-primary rounded-md text-muted-foreground items-center justify-center cursor-pointer'
+                    >
+                        <input
+                            id='file-upload'
+                            type='file'
+                            accept='image/jpeg,image/jpg,image/png'
+                            className='sr-only'
+                            onChange={handleImageChange}
+                        />
+                        <div className='flex flex-col gap-2 items-center text-center'>
+                            <Camera className='size-10 text-primary' />
+                            <div className='text-base'>
+                                {uploadedImage ? uploadedImage.name : "Select an image to get started"}
+                            </div>
+                        </div>
+                    </label>
+                    <Button className='w-full' disabled={!uploadedImage || isPending} onClick={submitImage}>
+                        {isPending ? "Analyzing..." : "Analyze image"}
+                    </Button>
+                </div>
 
-            {imageUrl ? (
-                <div className='max-w-3xl w-full'>
-                    <AspectRatio ratio={4 / 3} className='w-full overflow-hidden rounded-md'>
-                        <Image src={imageUrl} alt='Image preview' className='rounded-md object-cover' fill priority />
-                    </AspectRatio>
+                <div className='relative flex flex-col gap-2'>
+                    {uploadedImageUrl ?
+                        <img
+                            src={uploadedImageUrl}
+                            alt='Image preview'
+                            className='rounded-md border border-muted shadow-sm'
+                        />
+                    :   <div className='flex justify-center items-center text-muted-foreground text-center min-h-60 border border-dashed rounded-md'>
+                            <div>No image selected</div>
+                        </div>
+                    }
+                    {uploadedImageUrl && (
+                        <Button
+                            className='absolute top-2 right-2 bg-white'
+                            size='icon'
+                            onClick={() => {
+                                setUploadedImage(undefined);
+                                setUploadedImageUrl(undefined);
+                                setSpeciesLabel("");
+                                setConfidenceScore(0);
+                            }}
+                            title='Clear Image'
+                        >
+                            <Trash className='text-destructive' />
+                        </Button>
+                    )}
+                    {!!speciesLabel && (
+                        <div className='text-sm flex flex-col gap-y-2'>
+                            <div>
+                                <b>Species:</b> {speciesLabel}
+                            </div>
+                            {confidenceScore > 0 && (
+                                <div>
+                                    <b>Confidence:</b> {(confidenceScore * 100).toFixed(2)}%
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
-            ) : (
-                <div className='flex justify-center items-center text-muted-foreground text-center h-48'>
-                    <div>No image selected</div>
-                </div>
-            )}
-            {responseMessage && <div className='mt-4 text-center text-lg col-span-2'>{responseMessage}</div>}
-        </>
+            </CardContent>
+        </Card>
     );
 }

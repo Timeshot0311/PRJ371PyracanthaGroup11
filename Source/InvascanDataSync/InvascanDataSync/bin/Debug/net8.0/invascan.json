@@ -1,0 +1,15 @@
+{
+  "ConnectionStrings": {
+    //"InvascanDb": "Data Source=localhost,1406; Database=InvascanDb; UID=sa; PWD=G9e@7I4RiCT#;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;"
+    "InvascanDb": "Data Source=localhost; Database=InvascanDb; UID=invascan; PWD=G9e@7I4RiCT#;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;"
+  },
+  "Inaturalist": {
+    "Endpoint": "https://api.inaturalist.org/v1/",
+    "TaxonId": 54053,
+    "Photos": true,
+    "TotalPerPage": 50,
+    "TotalPages": 1,
+    "PlaceId": 6986,
+    "QualityGrade": "research"
+  }
+}

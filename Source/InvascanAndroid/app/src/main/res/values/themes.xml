@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Invascan" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Invascan" parent="Base.Theme.Invascan">
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorAccent</item>
+
+        <!-- Secondary branding -->
+        <item name="colorSecondary">@color/base_overlay</item>
+        <item name="colorOnSecondary">@color/c_teal</item>
+
+        <!-- This affects all dialog buttons -->
+<!--        <item name="android:buttonBarPositiveButtonStyle">@style/DialogButtonPositive</item>-->
+<!--        <item name="android:buttonBarNegativeButtonStyle">@style/DialogButtonNegative</item>-->
+    </style>
+
+    <style name="TextInputLayoutDropDownStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/text_input_box_stroke</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
+</resources>

@@ -34,13 +34,16 @@ class AIEngineService:
         response = GenericResponse
         defaultImageSize = 640
         confidenceThreshold = 0.5
-        model_path = f"{os.getcwd()}/webapi/tools/yolomodel.pt"
+        model_path = f"{os.getcwd()}/webapi/tools/yolov8nmodel_7.pt"
         print(f"yolo model path: {model_path}")
         #model_location = os.getcwd() + '/tools/yolomodel.pt' #"D:/DATA/PRJ371/apidata/trainedmodel/best.pt"
         model_location = model_path #"../tools/yolomodel.pt"
         try:
             model = YOLO(model_location)
             print('model loaded!')
+
+            # Get class name mapping
+            class_names = model.names
 
             # Run inference on the source
             #model_result = model(image_path)[0]  # list of Results objects
@@ -59,13 +62,42 @@ class AIEngineService:
             buffered = BytesIO()
             pil_img.save(buffered, format="JPEG")
 
+            # Extract class names with confidence scores
+            detections = []
+            for box in model_result.boxes:
+                class_id = int(box.cls[0])
+                class_name = class_names[class_id]
+                confidence = float(box.conf[0])
+                detections.append({
+                    "label": class_name,
+                    "confidence": round(confidence, 4)  # Rounded for readability
+                })
+
+            # Print results
+            for det in detections:
+                print(f"{det['label']}: {det['confidence']}")
+
+            if detections:
+                first = detections[0]
+                label = first['label']
+                score = first['confidence']
+                response.labelname = first['label']
+                response.score = round(float(first['confidence']),2)
+
+                print(f"Label: {label}")
+                print(f"Score: {score}")
+            else:
+                print("No detections found.")
+                response.labelname = ""
+                response.score = 0
+
             # Encode to base64
             base64_encoded_image = base64.b64encode(buffered.getvalue()).decode("utf-8")
             response.status = True
             response.statuscode = 200
             response.img = base64_encoded_image
             response.message = "Successfully processed image."
-            return GenericResponse(status=response.status, statuscode=response.statuscode, message=response.message, img=response.img)
+            return GenericResponse(status=response.status, statuscode=response.statuscode, message=response.message, img=response.img, labelname= response.labelname, score= response.score)
 
         except Exception as ex:
             print('No Nvidia GPU in system!')
