@@ -4,9 +4,9 @@ A collection of solutions to help detect and report on invasive species like **P
 > **Contents**
 > - API & Swagger (try-it tutorial + admin creds)
 > - Database (SSMS connection)
-> - Docker (one-command compose + first-run disclaimers)
+> - Docker (one-command compose + first-run disclaimers + network access)
 > - Android App (build & run)
-> - Web App (beginner steps + dev tunneling/port forwarding + admin creds)
+> - Web App (beginner steps + dev tunneling/port forwarding + admin creds + network access)
 
 ---
 
@@ -16,7 +16,7 @@ A collection of solutions to help detect and report on invasive species like **P
 
 **Swagger URL (local):**
 ```
-http://localhost:8080/docs or your neteork:8080/docs 
+http://localhost:8080/docs
 ```
 
 **How to try calls in Swagger:**
@@ -90,6 +90,42 @@ docker logs <container_name>       # View logs for troubleshooting
 docker-compose down                # Stop & remove containers (keeps images/volumes)
 ```
 
+### Accessing Invascan on Your Network (Static IP + Port Forwarding)
+> This may be **necessary for the API to work** from other devices (e.g., your phone) on your network.
+
+1) **Assign a Static IP (so it doesn’t change)**
+- Open your router’s admin page in a browser (often `http://192.168.0.1` or `http://192.168.1.1`).
+- Log in (ask whoever set it up if you don’t know the password).
+- Find **DHCP → Address Reservation** (or **LAN Settings**).
+- Locate your laptop in the connected devices list (name + current IP, e.g., `192.168.1.101`).
+- Click **Reserve / Add / Bind** → permanently assign that IP to your laptop.
+- Save and reboot the router if needed.
+
+2) **Forward the Ports (so others can connect)**
+In **NAT Forwarding → Port Forwarding**, add **two** rules:
+
+| Service | External Port | Internal Port | Internal IP         | Protocol |
+|--------:|--------------:|--------------:|---------------------|:--------:|
+| API     | 8080          | 8080          | your laptop’s IP    |   TCP    |
+| Proxy   | 8000          | 8000          | your laptop’s IP    |   TCP    |
+
+Example:
+- **Service Name**: InvascanAPI  
+- **Internal IP**: `192.168.1.101` (replace with your static IP)  
+- **External Port**: `8080`  
+- **Internal Port**: `8080`  
+- **Protocol**: TCP (or **All** if TCP/UDP isn’t separate)  
+Repeat for port **8000**.
+
+3) **Test on Your Phone (same Wi‑Fi)**
+- Open:
+  - `http://192.168.1.101:8000`  → Proxy (main entry point)  
+  - `http://192.168.1.101:8080/docs` → API Swagger  
+  Replace `192.168.1.101` with the static IP you set.
+
+✅ Use **8000** for the main site (via reverse proxy).  
+✅ Use **8080** to hit the API directly.
+
 </details>
 
 ---
@@ -154,7 +190,13 @@ Password: 1nv9sc9n
   4. Locate the forwarded **3000** entry, set **Visibility** to **Public** (it’s often **Private** by default).
   5. Copy the **Public** URL to share or open it in a browser.
 
-> If you cannot see the site from another device, re-check that the forwarded port is **Public**, you are signed into GitHub, and the tunnel is online.
+> **Before starting any dev tunnel/forwarding for port 3000**, complete the **Static IP + Port Forwarding** steps from the Docker section so API calls work from other devices. With the current iteration of the code, even **localhost** access may require forwarding **8080/8000** for the API/reverse proxy when testing across devices or networks.
+
+### Accessing Invascan on Your Network (Static IP + Port Forwarding)
+Follow the same **Static IP** and **Port Forwarding** instructions described in the **Docker** section above.  
+This must be done **before** setting up a public dev tunnel for the **3000** port, otherwise the web app won’t be able to reach the API from phones/other devices.  
+- Forward: **8080** (API) and **8000** (proxy) to your laptop’s static IP.  
+- Then forward/share **3000** (web dev server) as **Public** in your tunnel.
 
 </details>
 
@@ -164,7 +206,7 @@ Password: 1nv9sc9n
 
 - **Swagger not loading** → Confirm Docker containers are running: `docker ps`. If needed, `docker-compose down` then `docker-compose up -d` again.  
 - **SSMS can’t connect** → Use `localhost,1406` and the SA password above; ensure the SQL container is running.  
-- **Web can’t reach API** → Make sure the API container is up and Swagger at `http://localhost:8080/docs` is reachable; if using tunnels, ensure the API URL is accessible from the web app environment.
+- **Web can’t reach API** → Make sure the API container is up and Swagger at `http://localhost:8080/docs` is reachable; if using tunnels or testing from a phone, ensure static IP + router **port forwarding** (8080/8000) is configured, and your **3000** tunnel visibility is **Public**.
 
 ---
 
