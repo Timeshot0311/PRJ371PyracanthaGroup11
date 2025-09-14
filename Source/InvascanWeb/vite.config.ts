@@ -15,6 +15,21 @@ const config = defineConfig({
         }),
         viteReact(),
     ],
+
+     server: {
+    port: 3000,
+    host: true,                 // allow LAN/dev-tunnels if you want
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
+    },
+  },
+  preview: {
+    host: true,
+    port: 3000,
+  },
 });
 
 export default config;

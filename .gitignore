@@ -54,3 +54,5 @@ dkms.conf
 /Source/InvascanWin/InvascanWin/obj
 /Source/PyracanthaAI/.venv/Lib
 /Source/InvascanDataSync/.vs
+Source/InvascanWeb/src/routeTree.gen.ts
+Source/InvascanWeb/src/routeTree.gen.ts

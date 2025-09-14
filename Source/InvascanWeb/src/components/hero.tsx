@@ -14,13 +14,13 @@ export function Hero() {
                         identification of invasive species like Pyracantha, complete with confidence scores and species labels.
                     </p>
                     <div className="flex gap-4 justify-center">
-                        <Link to="/">
+                        <Link to="/upload">
                             <Button size="lg" className="flex items-center gap-2">
                                 <Camera className="h-5 w-5"/>
                                 Upload & Identify
                             </Button>
                         </Link>
-                        <Link to="/">
+                        <Link to="/analytics">
                             <Button variant="outline" size="lg" className="flex items-center gap-2 bg-transparent">
                                 <BarChart3 className="h-5 w-5"/>
                                 View Analytics
