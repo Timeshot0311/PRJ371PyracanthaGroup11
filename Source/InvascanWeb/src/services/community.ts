@@ -1,13 +1,12 @@
 // src/services/community.ts
 import { authToken } from "@/lib/auth";
+import { getJson, postJson } from "@/lib/api";
 
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
-// ---------- Types from your Swagger ----------
+// ---------- Types ----------
 export type Feedback = {
-  Id?: string;        // server may generate if omitted
+  Id?: string;
   Comments: string;
-  Ratings: number;    // 0..5?
-  // Optionally include author fields if backend returns them
+  Ratings: number;
   UserId?: string;
   Username?: string;
   CreatedAt?: string;
@@ -17,75 +16,108 @@ export type FeedbackComment = {
   Id?: string;
   FeedbackId: string;
   Comments: string;
-  Ratings: number;    // if not used for comments, set 0
+  Ratings: number;
   UserId?: string;
   Username?: string;
   CreatedAt?: string;
 };
 
 // ---------- Helpers ----------
-async function authedFetch(url: string, init?: RequestInit) {
+async function authed<T>(fn: () => Promise<T>) {
   const token = authToken.get();
   if (!token) {
     const err = new Error("Not authenticated");
     (err as any).status = 401;
     throw err;
   }
+  return fn();
+}
 
-  const r = await fetch(url, {
-    ...init,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-      ...(init?.headers || {}),
-    },
+// Always produce an RFC4122 v4 GUID (works even if crypto.randomUUID is missing)
+function guidv4(): string {
+  if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
+  // polyfill
+  // eslint-disable-next-line no-bitwise
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+    const r = (globalThis.crypto?.getRandomValues?.(new Uint8Array(1))[0] ?? Math.random()*256) & 15;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
   });
-
-  if (!r.ok) {
-    const msg = await r.text().catch(() => r.statusText);
-    const err = new Error(msg || `Request failed: ${r.status}`);
-    (err as any).status = r.status;
-    throw err;
-  }
-  return r.json();
 }
 
-function unwrap<T = any>(res: any): T {
-  // Your backend often wraps in { status, statusCode, statusMessage, dynamicModel }
-  return (res?.dynamicModel ?? res) as T;
-}
+// don’t hide the envelope anymore — check status first
+type ApiEnvelope<T> = { status?: boolean; statusCode?: number; statusMessage?: string; dynamicModel?: T };
 
 // ---------- API calls ----------
-export async function postFeedback(body: Pick<Feedback, "Comments" | "Ratings">) {
-  const res = await authedFetch(`${BASE}/api/users/community/post`, {
-    method: "POST",
-    body: JSON.stringify(body),
+export async function postFeedback(body: Pick<Feedback, "Comments" | "Ratings"> & { Id?: string }) {
+  return authed(async () => {
+    const payload = {
+      Id: body.Id ?? guidv4(),                      // real GUID
+      Comments: String(body.Comments ?? ""),
+      Ratings: Number(body.Ratings) || 0,
+    };
+    const res = await postJson<ApiEnvelope<Feedback>>("/users/community/post", payload, {
+      headers: { Authorization: `Bearer ${authToken.get()}` },
+    });
+
+    console.debug("POST /users/community/post ->", res); // <-- watch this in DevTools
+
+    if (res?.status === false) {
+      throw new Error(res.statusMessage || "API returned status:false");
+    }
+    return (res?.dynamicModel ?? (res as any)) as Feedback;
   });
-  return unwrap<Feedback>(res);
 }
 
 export async function getAllFeedback() {
-  const res = await authedFetch(`${BASE}/api/users/community/posts`);
-  return unwrap<any[]>(res) as Feedback[];
+  return authed(async () => {
+    const res = await getJson<ApiEnvelope<Feedback[]>>("/users/community/posts", {
+      headers: { Authorization: `Bearer ${authToken.get()}` },
+    });
+    console.debug("GET /users/community/posts ->", res);
+    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
+    return (res?.dynamicModel ?? (res as any)) as Feedback[];
+  });
 }
 
 export async function getMyFeedback() {
-  const res = await authedFetch(`${BASE}/api/users/community/user/posts`);
-  return unwrap<any[]>(res) as Feedback[];
+  return authed(async () => {
+    const res = await getJson<ApiEnvelope<Feedback[]>>("/users/community/user/posts", {
+      headers: { Authorization: `Bearer ${authToken.get()}` },
+    });
+    console.debug("GET /users/community/user/posts ->", res);
+    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
+    return (res?.dynamicModel ?? (res as any)) as Feedback[];
+  });
 }
 
-export async function postFeedbackComment(body: Pick<FeedbackComment, "FeedbackId" | "Comments" | "Ratings">) {
-  const res = await authedFetch(`${BASE}/api/users/community/post/comment`, {
-    method: "POST",
-    body: JSON.stringify(body),
+export async function postFeedbackComment(
+  body: Pick<FeedbackComment, "FeedbackId" | "Comments" | "Ratings"> & { Id?: string }
+) {
+  return authed(async () => {
+    const payload = {
+      Id: body.Id ?? guidv4(),                      // real GUID for comment too
+      FeedbackId: String(body.FeedbackId),
+      Comments: String(body.Comments ?? ""),
+      Ratings: Number(body.Ratings) || 0,
+    };
+    const res = await postJson<ApiEnvelope<FeedbackComment>>("/users/community/post/comment", payload, {
+      headers: { Authorization: `Bearer ${authToken.get()}` },
+    });
+    console.debug("POST /users/community/post/comment ->", res);
+    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
+    return (res?.dynamicModel ?? (res as any)) as FeedbackComment;
   });
-  return unwrap<FeedbackComment>(res);
 }
 
 export async function getFeedbackComments(feedbackId: string) {
-  const url = new URL(`${BASE}/api/users/community/posts/comments`);
-  url.searchParams.set("feedback_id", feedbackId);
-  const res = await authedFetch(url.toString());
-  return unwrap<any[]>(res) as FeedbackComment[];
+  return authed(async () => {
+    const res = await getJson<ApiEnvelope<FeedbackComment[]>>(
+      `/users/community/posts/comments?feedback_id=${encodeURIComponent(feedbackId)}`,
+      { headers: { Authorization: `Bearer ${authToken.get()}` } }
+    );
+    console.debug("GET /users/community/posts/comments ->", res);
+    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
+    return (res?.dynamicModel ?? (res as any)) as FeedbackComment[];
+  });
 }

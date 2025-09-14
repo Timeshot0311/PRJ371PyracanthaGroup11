@@ -5,7 +5,7 @@ import Textarea from "./ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postFeedback } from "@/services/community";
+import * as Community from "@/services/community";
 import { toast } from "sonner";
 
 export function CommunityComposer() {
@@ -15,7 +15,7 @@ export function CommunityComposer() {
   const creating = useMutation({
     mutationFn: async () => {
       if (!text.trim()) throw new Error("Please write something.");
-      return postFeedback({ Comments: text.trim(), Ratings: Number(rating) || 0 });
+      return Community.postFeedback({ Comments: text.trim(), Ratings: Number(rating) || 0 });
     },
     onSuccess() {
       setText("");
