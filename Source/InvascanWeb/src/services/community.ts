@@ -1,7 +1,10 @@
 // src/services/community.ts
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const BASE = API_URL;
 
+import { env } from "@/env";
 import { authToken } from "@/lib/auth";
+import { API_URL } from "@/lib/utils";
+import { en } from "zod/v4/locales";
 
 // ---------- Types ----------
 export type Feedback = {
@@ -59,7 +62,7 @@ function jsonHeaders(token?: string) {
 
 // ---------- API calls ----------
 export async function postFeedback(
-  body: Pick<Feedback, "Comments" | "Ratings"> & { Id?: string }
+  body: Pick<Feedback, "Comments" | "Ratings"> & { Id?: string },
 ) {
   return authed(async (token) => {
     // CREATE => Id must be "" (or null); UPDATE => pass body.Id
@@ -69,47 +72,52 @@ export async function postFeedback(
       Ratings: Number(body.Ratings) || 0,
     };
 
-    const res = await fetchJson<ApiEnvelope<Feedback>>(
-      `/api/users/community/post`,
-      {
-        method: "POST",
-        headers: jsonHeaders(token),
-        body: JSON.stringify(payload),
-      }
-    );
+    const res = await fetch(`${API_URL}/api/users/community/post`, {
+      method: "POST",
+      headers: jsonHeaders(token),
+      body: JSON.stringify(payload),
+    });
+
+    const resJson = await res.json();
 
     console.debug("POST /api/users/community/post ->", res);
-    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
-    return (res?.dynamicModel ?? (res as any)) as Feedback;
+    if (resJson?.status === false)
+      throw new Error(resJson.statusMessage || "API status:false");
+    return (resJson?.dynamicModel ?? (res as any)) as Feedback;
   });
 }
 
 export async function getAllFeedback() {
   return authed(async (token) => {
-    const res = await fetchJson<ApiEnvelope<Feedback[]>>(
-      `/api/users/community/posts`,
-      { headers: jsonHeaders(token) }
-    );
+    const res = await fetch(`${API_URL}/api/users/community/posts`, {
+      headers: jsonHeaders(token),
+    });
+    const resJson = await res.json();
     console.debug("GET /api/users/community/posts ->", res);
-    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
-    return (res?.dynamicModel ?? (res as any)) as Feedback[];
+    if (resJson?.status === false)
+      throw new Error(resJson.statusMessage || "API status:false");
+    return (resJson?.dynamicModel ?? (res as any)) as Feedback[];
   });
 }
 
 export async function getMyFeedback() {
   return authed(async (token) => {
-    const res = await fetchJson<ApiEnvelope<Feedback[]>>(
-      `/api/users/community/user/posts`,
-      { headers: jsonHeaders(token) }
-    );
+    const res = await fetch(`${API_URL}/api/users/community/user/posts`, {
+      headers: jsonHeaders(token),
+    });
+
+    const resJson = await res.json();
     console.debug("GET /api/users/community/user/posts ->", res);
-    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
-    return (res?.dynamicModel ?? (res as any)) as Feedback[];
+    if (resJson?.status === false)
+      throw new Error(resJson.statusMessage || "API status:false");
+    return (resJson?.dynamicModel ?? (res as any)) as Feedback[];
   });
 }
 
 export async function postFeedbackComment(
-  body: Pick<FeedbackComment, "FeedbackId" | "Comments" | "Ratings"> & { Id?: string }
+  body: Pick<FeedbackComment, "FeedbackId" | "Comments" | "Ratings"> & {
+    Id?: string;
+  },
 ) {
   return authed(async (token) => {
     // CREATE => Id ""; UPDATE => pass body.Id
@@ -120,18 +128,18 @@ export async function postFeedbackComment(
       Ratings: Number(body.Ratings) || 0,
     };
 
-    const res = await fetchJson<ApiEnvelope<FeedbackComment>>(
-      `/api/users/community/post/comment`,
-      {
-        method: "POST",
-        headers: jsonHeaders(token),
-        body: JSON.stringify(payload),
-      }
-    );
+    const res = await fetch(`${API_URL}/api/users/community/post/comment`, {
+      method: "POST",
+      headers: jsonHeaders(token),
+      body: JSON.stringify(payload),
+    });
+
+    const resJson = await res.json();
 
     console.debug("POST /api/users/community/post/comment ->", res);
-    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
-    return (res?.dynamicModel ?? (res as any)) as FeedbackComment;
+    if (resJson?.status === false)
+      throw new Error(resJson.statusMessage || "API status:false");
+    return (resJson?.dynamicModel ?? (res as any)) as FeedbackComment;
   });
 }
 
@@ -139,10 +147,11 @@ export async function getFeedbackComments(feedbackId: string) {
   return authed(async (token) => {
     const res = await fetchJson<ApiEnvelope<FeedbackComment[]>>(
       `/api/users/community/posts/comments?feedback_id=${encodeURIComponent(feedbackId)}`,
-      { headers: jsonHeaders(token) }
+      { headers: jsonHeaders(token) },
     );
     console.debug("GET /api/users/community/posts/comments ->", res);
-    if (res?.status === false) throw new Error(res.statusMessage || "API status:false");
+    if (res?.status === false)
+      throw new Error(res.statusMessage || "API status:false");
     return (res?.dynamicModel ?? (res as any)) as FeedbackComment[];
   });
 }

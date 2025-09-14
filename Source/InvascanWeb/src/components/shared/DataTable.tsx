@@ -8,10 +8,16 @@ import {
   getSortedRowModel,
   ColumnFiltersState,
   getFilteredRowModel,
-  
 } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ArrowUpDown } from "lucide-react";
 
@@ -22,10 +28,16 @@ type DataTableProps<TData, TValue> = {
   title?: string;
 };
 
-export function DataTable<TData, TValue>({ columns, data, searchableColumn, title }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+  searchableColumn,
+  title,
+}: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
 
   const table = useReactTable({
     data,
@@ -33,11 +45,10 @@ export function DataTable<TData, TValue>({ columns, data, searchableColumn, titl
     state: {
       sorting,
       columnFilters,
-      
     },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
-    
+
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -54,11 +65,16 @@ export function DataTable<TData, TValue>({ columns, data, searchableColumn, titl
           {searchKey ? (
             <Input
               placeholder={`Search ${searchKey}...`}
-              value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
-              onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
+              value={
+                (table.getColumn(searchKey)?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn(searchKey)?.setFilterValue(event.target.value)
+              }
               className="h-9 w-[220px]"
             />
-          ) : null}</div>
+          ) : null}
+        </div>
       </div>
       <div className="rounded-xl border">
         <Table>
@@ -69,10 +85,17 @@ export function DataTable<TData, TValue>({ columns, data, searchableColumn, titl
                   <TableHead key={header.id}>
                     {header.isPlaceholder ? null : (
                       <div
-                        className={header.column.getCanSort() ? "cursor-pointer select-none" : ""}
+                        className={
+                          header.column.getCanSort()
+                            ? "cursor-pointer select-none"
+                            : ""
+                        }
                         onClick={header.column.getToggleSortingHandler()}
                       >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                         {header.column.getIsSorted() ? (
                           <ArrowUpDown className="ml-2 inline h-3.5 w-3.5" />
                         ) : null}
@@ -86,15 +109,26 @@ export function DataTable<TData, TValue>({ columns, data, searchableColumn, titl
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>

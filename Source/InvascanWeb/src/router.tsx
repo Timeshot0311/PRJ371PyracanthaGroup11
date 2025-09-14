@@ -5,32 +5,32 @@ import { routeTree } from "@/routeTree.gen";
 import { dehydrate, hydrate } from "@tanstack/react-query";
 
 export const createRouter = () => {
-    const { queryClient } = TanstackQuery.getContext();
-    const router = routerWithQueryClient(
-        createTanstackRouter({
-            routeTree,
-            context: {
-                queryClient,
-            },
-            scrollRestoration: true,
-            defaultPreloadStaleTime: 0,
-            dehydrate: () => {
-                return {
-                    queryClientState: dehydrate(queryClient),
-                };
-            },
-            hydrate: (dehydrated) => {
-                hydrate(queryClient, dehydrated.queryClientState);
-            },
-        }),
-        queryClient
-    );
+  const { queryClient } = TanstackQuery.getContext();
+  const router = routerWithQueryClient(
+    createTanstackRouter({
+      routeTree,
+      context: {
+        queryClient,
+      },
+      scrollRestoration: true,
+      defaultPreloadStaleTime: 0,
+      dehydrate: () => {
+        return {
+          queryClientState: dehydrate(queryClient),
+        };
+      },
+      hydrate: (dehydrated) => {
+        hydrate(queryClient, dehydrated.queryClientState);
+      },
+    }),
+    queryClient,
+  );
 
-    return router;
+  return router;
 };
 
 declare module "@tanstack/react-router" {
-    interface Register {
-        router: ReturnType<typeof createRouter>;
-    }
+  interface Register {
+    router: ReturnType<typeof createRouter>;
+  }
 }

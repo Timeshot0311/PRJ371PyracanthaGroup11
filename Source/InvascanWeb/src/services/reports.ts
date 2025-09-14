@@ -1,7 +1,8 @@
 // src/services/reports.ts
 import { authToken } from "@/lib/auth";
+import { API_URL } from "@/lib/utils";
 
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const BASE = API_URL;
 
 async function authedGet(path: string) {
   const token = authToken.get();
@@ -44,14 +45,21 @@ export async function getAllLocations() {
 }
 
 export async function getProvinceLocations(province: string) {
-  return authedGet(`/api/reports/locationDetails/province/${encodeURIComponent(province)}`);
+  return authedGet(
+    `/api/reports/locationDetails/province/${encodeURIComponent(province)}`,
+  );
 }
 
 export async function getYearLocations(year: string | number) {
-  return authedGet(`/api/reports/locationDetails/year/${encodeURIComponent(String(year))}`);
+  return authedGet(
+    `/api/reports/locationDetails/year/${encodeURIComponent(String(year))}`,
+  );
 }
 
-export async function getYearMonthLocations(year: string | number, month: string | number) {
+export async function getYearMonthLocations(
+  year: string | number,
+  month: string | number,
+) {
   return authedGet(
     `/api/reports/locationDetails/month/${encodeURIComponent(String(year))}/${encodeURIComponent(String(month))}`,
   );

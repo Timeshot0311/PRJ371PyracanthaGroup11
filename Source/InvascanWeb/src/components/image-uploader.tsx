@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { investigateImage } from "@/services/engine";
 import { getMyProfile } from "../services/user";
 import { authToken } from "@/lib/auth";
@@ -9,7 +15,9 @@ import { toast } from "sonner";
 
 export function ImageUploader() {
   const [uploadedImage, setUploadedImage] = useState<File | undefined>();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | undefined>();
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<
+    string | undefined
+  >();
   const [isPending, setIsPending] = useState(false);
   const [speciesLabel, setSpeciesLabel] = useState("");
   const [confidenceScore, setConfidenceScore] = useState(0);
@@ -65,11 +73,13 @@ export function ImageUploader() {
           longitude: 0,
           address: "",
         },
-        token // pass token if your engine endpoint requires auth
+        token, // pass token if your engine endpoint requires auth
       );
 
       if (apiResponse.statusCode !== 200) {
-        return toast.error("An API error occurred. Please try again", { duration: 4000 });
+        return toast.error("An API error occurred. Please try again", {
+          duration: 4000,
+        });
       }
 
       if (!apiResponse.dynamicModel) {
@@ -79,7 +89,8 @@ export function ImageUploader() {
         return;
       }
 
-      const { imageUrl, speciesName, confidenceScore } = apiResponse.dynamicModel;
+      const { imageUrl, speciesName, confidenceScore } =
+        apiResponse.dynamicModel;
       if (imageUrl) setUploadedImageUrl(imageUrl);
       setSpeciesLabel(speciesName || "");
       setConfidenceScore(confidenceScore || 0);
@@ -114,18 +125,28 @@ export function ImageUploader() {
             <div className="flex flex-col gap-2 items-center text-center">
               <Camera className="size-10 text-primary" />
               <div className="text-base">
-                {uploadedImage ? uploadedImage.name : "Select an image to get started"}
+                {uploadedImage
+                  ? uploadedImage.name
+                  : "Select an image to get started"}
               </div>
             </div>
           </label>
-          <Button className="w-full" disabled={!uploadedImage || isPending} onClick={submitImage}>
+          <Button
+            className="w-full"
+            disabled={!uploadedImage || isPending}
+            onClick={submitImage}
+          >
             {isPending ? "Analyzing..." : "Analyze image"}
           </Button>
         </div>
 
         <div className="relative flex flex-col gap-2">
           {uploadedImageUrl ? (
-            <img src={uploadedImageUrl} alt="Image preview" className="rounded-md border border-muted shadow-sm" />
+            <img
+              src={uploadedImageUrl}
+              alt="Image preview"
+              className="rounded-md border border-muted shadow-sm"
+            />
           ) : (
             <div className="flex justify-center items-center text-muted-foreground text-center min-h-60 border border-dashed rounded-md">
               <div>No image selected</div>

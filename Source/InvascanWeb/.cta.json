@@ -1,11 +1,11 @@
 {
-    "projectName": "prj371-front",
-    "mode": "file-router",
-    "typescript": true,
-    "tailwind": true,
-    "packageManager": "bun",
-    "git": true,
-    "version": 1,
-    "framework": "react-cra",
-    "chosenAddOns": ["shadcn", "start", "store", "t3env", "tanstack-query"]
+  "projectName": "prj371-front",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "bun",
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": ["shadcn", "start", "store", "t3env", "tanstack-query"]
 }

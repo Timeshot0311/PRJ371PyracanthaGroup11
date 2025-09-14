@@ -1,12 +1,17 @@
+import { API_URL } from "@/lib/utils";
+
 // src/services/auth.ts
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const BASE = API_URL;
 
 export type TokenResponse = {
   access_token: string;
   token_type: string;
 };
 
-export async function getToken(username: string, password: string): Promise<TokenResponse> {
+export async function getToken(
+  username: string,
+  password: string,
+): Promise<TokenResponse> {
   const body = new URLSearchParams();
   body.set("grant_type", "password");
   body.set("username", username);

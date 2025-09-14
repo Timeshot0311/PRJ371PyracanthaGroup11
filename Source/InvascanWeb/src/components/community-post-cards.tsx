@@ -1,17 +1,20 @@
 // src/components/community-post-cards.tsx
-import * as React from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MessageSquare, ThumbsUp } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import { MessageSquare } from "lucide-react";
+import * as React from "react";
 
-import { communityAllQuery, feedbackCommentsQuery } from "@/queries/community-query-options";
-import { postFeedbackComment } from "@/services/community";
 import { authToken } from "@/lib/auth"; // only read on the client
-
+import { API_URL } from "@/lib/utils";
+import {
+  communityAllQuery,
+  feedbackCommentsQuery,
+} from "@/queries/community-query-options";
+import { postFeedbackComment } from "@/services/community";
 
 type Post = {
   Id?: string;
@@ -27,6 +30,7 @@ type Post = {
   name?: string;
   DisplayName?: string;
   Email?: string;
+  Firstname?: string;
 
   // possible nested containers with user info
   User?: any;
@@ -58,6 +62,7 @@ type Comment = {
   name?: string;
   DisplayName?: string;
   Email?: string;
+  Firstname?: string;
 
   // nested
   User?: any;
@@ -81,7 +86,8 @@ type Me = {
 
 // ---------- helpers ----------
 function firstDefined<T>(...vals: (T | undefined)[]) {
-  for (const v of vals) if (v !== undefined && v !== null && String(v).trim() !== "") return v as T;
+  for (const v of vals)
+    if (v !== undefined && v !== null && String(v).trim() !== "") return v as T;
   return undefined as any;
 }
 
@@ -119,7 +125,7 @@ function extractNameLike(obj: any): string | undefined {
     obj.Profile?.DisplayName,
     obj.Profile?.Name,
     obj.Email ? String(obj.Email).split("@")[0] : undefined,
-    obj.User?.Email ? String(obj.User.Email).split("@")[0] : undefined
+    obj.User?.Email ? String(obj.User.Email).split("@")[0] : undefined,
   );
 }
 
@@ -143,11 +149,24 @@ function getNameFromAny(record: any, me?: Me): string {
 }
 
 function getProvinceLabel(post: Post): string {
-  return firstDefined(post.Province, post.ProvinceName, post.Location, "Unknown")!;
+  return firstDefined(
+    post.Province,
+    post.ProvinceName,
+    post.Location,
+    "Unknown",
+  )!;
 }
 
 // ----- small helper subcomponent to render comments for a post -----
-function CommentSection({ feedbackId, enabled, me }: { feedbackId: string; enabled: boolean; me?: Me }) {
+function CommentSection({
+  feedbackId,
+  enabled,
+  me,
+}: {
+  feedbackId: string;
+  enabled: boolean;
+  me?: Me;
+}) {
   const { data, isLoading } = useQuery({
     ...feedbackCommentsQuery(feedbackId),
     enabled: enabled && !!feedbackId,
@@ -155,21 +174,26 @@ function CommentSection({ feedbackId, enabled, me }: { feedbackId: string; enabl
 
   const comments: Comment[] = Array.isArray(data) ? data : [];
 
-  if (isLoading) return <p className="text-xs text-muted-foreground">Loading comments…</p>;
-  if (!comments.length) return <p className="text-xs text-muted-foreground">No comments yet.</p>;
+  if (isLoading)
+    return <p className="text-xs text-muted-foreground">Loading comments…</p>;
+  if (!comments.length)
+    return <p className="text-xs text-muted-foreground">No comments yet.</p>;
 
   return (
     <div className="mt-2 space-y-2">
       {comments.map((c) => {
-        const author = getNameFromAny(c, me);
+        const author = c.Firstname;
         const created = c.CreatedAt ?? new Date().toISOString();
 
         return (
-          <div key={c.Id ?? `${feedbackId}-${created}-${Math.random()}`} className="flex items-start gap-2">
+          <div
+            key={c.Id ?? `${feedbackId}-${created}-${Math.random()}`}
+            className="flex items-start gap-2"
+          >
             <Avatar className="size-6">
               <AvatarImage src="" />
               <AvatarFallback className="text-[10px]">
-                {author.slice(0, 1).toUpperCase()}
+                {author![0]}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1">
@@ -178,7 +202,9 @@ function CommentSection({ feedbackId, enabled, me }: { feedbackId: string; enabl
                 <span>·</span>
                 <span>{dayjs(created).format("YYYY-MM-DD")}</span>
               </div>
-              <div className="text-sm whitespace-pre-wrap">{c.Comments ?? ""}</div>
+              <div className="text-sm whitespace-pre-wrap">
+                {c.Comments ?? ""}
+              </div>
             </div>
           </div>
         );
@@ -195,7 +221,7 @@ export function CommunityPostCards() {
   // read token only in the browser
   const token = React.useMemo(
     () => (typeof window !== "undefined" ? authToken.get() : null),
-    [ready]
+    [ready],
   );
 
   const qc = useQueryClient();
@@ -211,10 +237,12 @@ export function CommunityPostCards() {
     queryKey: ["me"],
     enabled: ready && !!token,
     queryFn: async (): Promise<Me> => {
-      const res = await getJson<any>("/users/", {
+      const res = await fetch(`${API_URL}/users`, {
         headers: { Authorization: `Bearer ${authToken.get()}` },
       });
-      const model = (res?.dynamicModel ?? res) as any;
+
+      const resJson = await res.json();
+      const model = (resJson?.dynamicModel ?? res) as any;
       return model ?? {};
     },
     staleTime: 5 * 60_000,
@@ -224,20 +252,28 @@ export function CommunityPostCards() {
 
   // One-time debug to see the exact shape coming back
   React.useEffect(() => {
-    if (process.env.NODE_ENV !== "production" && posts.length > 0) {
+    if (import.meta.env.NODE_ENV !== "production" && posts.length > 0) {
       // eslint-disable-next-line no-console
       console.debug("Community posts sample:", posts[0]);
     }
   }, [posts]);
 
-  const [quickReply, setQuickReply] = React.useState<Record<string, string>>({});
+  const [quickReply, setQuickReply] = React.useState<Record<string, string>>(
+    {},
+  );
   const commentMut = useMutation({
     mutationFn: async (p: { FeedbackId: string; Comments: string }) =>
-      postFeedbackComment({ FeedbackId: p.FeedbackId, Comments: p.Comments, Ratings: 0 }),
+      postFeedbackComment({
+        FeedbackId: p.FeedbackId,
+        Comments: p.Comments,
+        Ratings: 0,
+      }),
     onSuccess(_, vars) {
       // refresh feed and that post’s comments; clear the input
       qc.invalidateQueries({ queryKey: ["community", "all"] });
-      qc.invalidateQueries({ queryKey: ["community", "comments", vars.FeedbackId] });
+      qc.invalidateQueries({
+        queryKey: ["community", "comments", vars.FeedbackId],
+      });
       setQuickReply((m) => ({ ...m, [vars.FeedbackId]: "" }));
     },
   });
@@ -247,7 +283,11 @@ export function CommunityPostCards() {
     return <p className="text-muted-foreground">Loading community…</p>;
   }
   if (!token) {
-    return <p className="text-muted-foreground">Please sign in to view the community feed.</p>;
+    return (
+      <p className="text-muted-foreground">
+        Please sign in to view the community feed.
+      </p>
+    );
   }
 
   return (
@@ -255,7 +295,7 @@ export function CommunityPostCards() {
       {posts.length > 0 ? (
         posts.map((post) => {
           const id = String(post.Id ?? "");
-          const author = getNameFromAny(post, me);
+          const author = post.Firstname;
           const where = getProvinceLabel(post);
           const created = post.CreatedAt ?? new Date().toISOString();
           const content = post.Comments ?? "";
@@ -271,11 +311,10 @@ export function CommunityPostCards() {
                 <div className="flex items-center gap-x-4">
                   <Avatar className="size-5">
                     <AvatarImage src="" />
-                    <AvatarFallback>{author.slice(0, 1).toUpperCase()}</AvatarFallback>
+                    <AvatarFallback>{author![0]}</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col gap-y-1">
                     <CardTitle className="text-base">{author}</CardTitle>
-                    <span className="text-xs text-muted-foreground">{where}</span>
                   </div>
                 </div>
                 <span className="text-xs text-muted-foreground">
@@ -284,7 +323,9 @@ export function CommunityPostCards() {
               </CardHeader>
 
               <CardContent className="space-y-3">
-                <p className="text-sm leading-relaxed whitespace-pre-wrap">{content}</p>
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                  {content}
+                </p>
 
                 {tags.length > 0 && (
                   <div className="flex flex-wrap gap-1">
@@ -297,7 +338,11 @@ export function CommunityPostCards() {
                 )}
 
                 {/* --- Comments for this post --- */}
-                <CommentSection feedbackId={id} enabled={ready && !!token} me={me} />
+                <CommentSection
+                  feedbackId={id}
+                  enabled={ready && !!token}
+                  me={me}
+                />
 
                 {/* --- Quick reply composer --- */}
                 <div className="flex items-center gap-2 pt-2">
@@ -315,7 +360,10 @@ export function CommunityPostCards() {
                     className="flex items-center gap-1"
                     disabled={!id || !quickReply[id] || commentMut.isPending}
                     onClick={() =>
-                      commentMut.mutate({ FeedbackId: id, Comments: quickReply[id] ?? "" })
+                      commentMut.mutate({
+                        FeedbackId: id,
+                        Comments: quickReply[id] ?? "",
+                      })
                     }
                   >
                     <MessageSquare className="size-4" />

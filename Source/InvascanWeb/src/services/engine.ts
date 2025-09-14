@@ -1,5 +1,7 @@
+import { API_URL } from "@/lib/utils";
+
 // src/services/engine.ts
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const BASE = API_URL;
 
 export type InvestigateRequest = {
   user_id: string;
@@ -23,7 +25,7 @@ export type InvestigateResponse = {
 
 export async function investigateImage(
   body: InvestigateRequest,
-  token?: string
+  token?: string,
 ): Promise<InvestigateResponse> {
   const r = await fetch(`${BASE}/api/engine/investigate`, {
     method: "POST",
