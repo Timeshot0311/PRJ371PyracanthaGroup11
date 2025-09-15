@@ -56,3 +56,4 @@ dkms.conf
 /Source/InvascanDataSync/.vs
 Source/InvascanWeb/src/routeTree.gen.ts
 Source/InvascanWeb/src/routeTree.gen.ts
+Source/InvascanWeb/src/routeTree.gen.ts
