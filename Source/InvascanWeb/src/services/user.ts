@@ -1,6 +1,7 @@
+import { API_URL } from "@/lib/utils";
+
 // src/services/user.ts
-// NEW — if VITE_API_BASE_URL is set, use it; otherwise use "" so `/api/...` works via Vite proxy
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "");
+const BASE = API_URL;
 
 export type LoggedInUser = {
   UserId: string;
@@ -18,8 +19,7 @@ export type LoggedInUser = {
 
 // GET /api/users/ (logged-in user's profile)
 export async function getMyProfile(token: string): Promise<LoggedInUser> {
-  const r = await fetch(`./api/users/`, {
-  // const r = await fetch(`${BASE}/users/`, {
+  const r = await fetch(`${BASE}/api/users/`, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ export type CreateAccountBody = {
 };
 
 export async function createAccount(body: CreateAccountBody) {
-  const r = await fetch(`${BASE}/users/`, {
+  const r = await fetch(`${BASE}/api/users/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),

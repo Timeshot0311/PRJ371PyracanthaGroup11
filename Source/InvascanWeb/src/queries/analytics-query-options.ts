@@ -7,7 +7,7 @@ export const analyticsQueryOptions = () =>
     queryFn: async () => {
       const res = await getAllProvinceStats();
       // unwrap common envelope shape
-      return Array.isArray(res) ? res : res?.dynamicModel ?? [];
+      return Array.isArray(res) ? res : (res?.dynamicModel ?? []);
     },
     staleTime: 60_000,
     retry(failureCount, error: any) {

@@ -6,7 +6,7 @@ A collection of solutions to help detect and report on invasive species like **P
 > - Database (SSMS connection)
 > - Docker (one-command compose + first-run disclaimers + network access)
 > - Android App (build & run)
-> - Web App (beginner steps + dev tunneling/port forwarding + admin creds + network access)
+> - Web App (beginner steps + dev tunneling/port forwarding + admin creds + network access + dockerized access)
 
 ---
 
@@ -197,6 +197,14 @@ Follow the same **Static IP** and **Port Forwarding** instructions described in 
 This must be done **before** setting up a public dev tunnel for the **3000** port, otherwise the web app won’t be able to reach the API from phones/other devices.  
 - Forward: **8080** (API) and **8000** (proxy) to your laptop’s static IP.  
 - Then forward/share **3000** (web dev server) as **Public** in your tunnel.
+
+### Dockerized Web App (Ease of Access)
+For convenience, we also **dockerized the web application**.  
+- When you run the full `docker-compose up -d` command (see Docker section), the website is automatically served at:
+```
+http://localhost:8082
+```
+This allows you to access the site directly without needing to install Node.js, run npm commands, or set up tunnels manually. It’s a quick-start option for users with no prior web dev knowledge just to test and use the site, dev work still needs to be done through the usual localhost/dev tunnels.
 
 </details>
 

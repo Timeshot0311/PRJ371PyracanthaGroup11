@@ -3,7 +3,13 @@ import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Textarea from "./ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Community from "@/services/community";
 import { toast } from "sonner";
@@ -15,15 +21,17 @@ export function CommunityComposer() {
   const creating = useMutation({
     mutationFn: async () => {
       if (!text.trim()) throw new Error("Please write something.");
-      return Community.postFeedback({ Comments: text.trim(), Ratings: Number(rating) || 0 });
+      return Community.postFeedback({
+        Comments: text.trim(),
+        Ratings: Number(rating) || 0,
+      });
     },
     onSuccess() {
       setText("");
       setRating("5");
       toast.success("Posted!");
-     qc.invalidateQueries({ queryKey: ["community", "all"] });
-     qc.invalidateQueries({ queryKey: ["community", "mine"] });
-
+      qc.invalidateQueries({ queryKey: ["community", "all"] });
+      qc.invalidateQueries({ queryKey: ["community", "mine"] });
     },
     onError(err: any) {
       toast.error(err?.message || "Failed to post");
@@ -39,7 +47,9 @@ export function CommunityComposer() {
         <Textarea
           placeholder="What's happening in your area?"
           value={text}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setText(e.target.value)
+          }
           rows={3}
         />
         <div className="flex items-center justify-between gap-3">
@@ -50,11 +60,19 @@ export function CommunityComposer() {
                 <SelectValue placeholder="0" />
               </SelectTrigger>
               <SelectContent>
-                {[0,1,2,3,4,5].map((n) => <SelectItem key={n} value={String(n)}>{n}</SelectItem>)}
+                {[0, 1, 2, 3, 4, 5].map((n) => (
+                  <SelectItem key={n} value={String(n)}>
+                    {n}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
-          <Button size="sm" onClick={() => creating.mutate()} disabled={creating.isPending}>
+          <Button
+            size="sm"
+            onClick={() => creating.mutate()}
+            disabled={creating.isPending}
+          >
             {creating.isPending ? "Posting…" : "Post"}
           </Button>
         </div>

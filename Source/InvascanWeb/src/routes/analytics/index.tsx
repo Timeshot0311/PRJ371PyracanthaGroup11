@@ -7,22 +7,23 @@ import { AnalyticsDashboard } from "@/components/analytics-dashboard";
 import { authToken } from "@/lib/auth.ts";
 
 export const Route = createFileRoute("/analytics/")({
-    beforeLoad: () => {
-        if (!authToken.get()) {
-            throw redirect({ to: "/login" });
-        }
-    },
-    component: AnalyticsPage,
+  beforeLoad: () => {
+    if (!authToken.get()) {
+      throw redirect({ to: "/login" });
+    }
+  },
+  ssr: false,
+  component: AnalyticsPage,
 });
 
 export default function AnalyticsPage() {
-    return (
-        <PageLayout>
-            <div className="my-10">
-                <React.Suspense fallback={<PendingFallback/>}>
-                    <AnalyticsDashboard/>
-                </React.Suspense>
-            </div>
-        </PageLayout>
-    );
+  return (
+    <PageLayout>
+      <div className="my-10">
+        <React.Suspense fallback={<PendingFallback />}>
+          <AnalyticsDashboard />
+        </React.Suspense>
+      </div>
+    </PageLayout>
+  );
 }
