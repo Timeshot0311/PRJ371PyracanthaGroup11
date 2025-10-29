@@ -17,6 +17,7 @@ import com.vusieam.invascan.domain.Versioning
 import com.vusieam.invascan.ui.login.LoginActivity
 import com.vusieam.invascan.ui.analyze.AnalyzePlantActivity
 import com.vusieam.invascan.domain.utils.GenericHelpers
+import com.vusieam.invascan.ui.account.ProfileActivity
 import com.vusieam.invascan.ui.analytics.AnalyticsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -63,6 +64,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener  {
             binding.contentDashboard.cardAnalytics.setOnClickListener(this)
             binding.contentDashboard.cardCommunity.setOnClickListener(this)
             binding.contentDashboard.cardAccount.setOnClickListener(this)
+            binding.actionBack.setOnClickListener(this)
 
             binding.contentDashboard.txtVersion.text = versioning.toString()
             Log.d(GenericHelpers.logID(), "version: ${versioning.toString()}")
@@ -135,24 +137,24 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener  {
                 //finish()
             }
             R.id.card_account ->{
-                val dialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.confirmText = "DISMISS"
-                dialog.titleText = GenericHelpers.titleID()
-                dialog.contentText = "Function is not available yet."
-                dialog.setConfirmClickListener {
-                    dialog.dismissWithAnimation()
-                }
-                dialog.setCancelable(false)
-                dialog.show()
-                //val intent = Intent(this, AnalyzePlantActivity::class.java)
-                //val options = ActivityOptions.makeCustomAnimation(
-                //    this,
-                //    R.anim.slide_in_right,
-                //    R.anim.slide_in_left
-                //)
-                //startActivity(intent, options.toBundle())
-                //finish()
+                //val dialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                //dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                //dialog.confirmText = "DISMISS"
+                //dialog.titleText = GenericHelpers.titleID()
+                //dialog.contentText = "Function is not available yet."
+                //dialog.setConfirmClickListener {
+                //    dialog.dismissWithAnimation()
+                //}
+                //dialog.setCancelable(false)
+                //dialog.show()
+                val intent = Intent(this, ProfileActivity::class.java)
+                val options = ActivityOptions.makeCustomAnimation(
+                    this,
+                    R.anim.slide_in_right,
+                    R.anim.slide_in_left
+                )
+                startActivity(intent, options.toBundle())
+                finish()
             }
 
         }

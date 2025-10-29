@@ -9,7 +9,10 @@ import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.google.gson.Gson
 import com.vusieam.invascan.R
 import com.vusieam.invascan.databinding.ActivityLoginBinding
 import com.vusieam.invascan.domain.InvascanSessionManager
@@ -44,11 +47,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
         initializeUI()
 
-        //ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-        //    val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-        //    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-        //    insets
-        //}
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
     }
 
@@ -58,9 +61,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun initializeUI(){
 
         binding.contentLogin.btnLogin.setOnClickListener(this)
-        binding.contentLogin.loginSignup.setOnClickListener(this)
-        binding.contentLogin.loginUsername.setText("vusieam")
-        binding.contentLogin.loginPassword.setText("vusieam")
+        binding.contentLogin.layoutLoginSignup.setOnClickListener(this)
+        //binding.contentLogin.loginUsername.setText("vusieam")
+        //binding.contentLogin.loginPassword.setText("123456")
 
 
         binding.contentLogin.txtVersion.text = versioning.toString()
@@ -89,7 +92,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
             }
 
-            R.id.login_signup ->{
+            R.id.layout_login_signup ->{
                 val intent = Intent(this, CreateAccountActivity::class.java)
                 val options = ActivityOptions.makeCustomAnimation(
                     this,
@@ -128,16 +131,30 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     response: Response<LoginResponse>
                 ) {
                     if(!response.isSuccessful){
-                        runOnUiThread {
-                            if (loader.isShowing)
-                                loader.dismiss()
-
-                            val dialog = SweetAlertDialog(this@LoginActivity, SweetAlertDialog.ERROR_TYPE)
-                            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                            dialog.titleText = GenericHelpers.titleID()
-                            dialog.contentText = "Internal api error: ${response.message()}."
-                            dialog.show()
+                        if(response.code() == 401){
+                            runOnUiThread {
+                                if (loader.isShowing)
+                                    loader.dismiss()
+                                val dialog = SweetAlertDialog(this@LoginActivity, SweetAlertDialog.ERROR_TYPE)
+                                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                dialog.titleText = GenericHelpers.titleID()
+                                dialog.contentText = "Login failed, username or password incorrect."
+                                dialog.show()
+                            }
                         }
+                        else{
+                            runOnUiThread {
+                                if (loader.isShowing)
+                                    loader.dismiss()
+
+                                val dialog = SweetAlertDialog(this@LoginActivity, SweetAlertDialog.ERROR_TYPE)
+                                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                dialog.titleText = GenericHelpers.titleID()
+                                dialog.contentText = "Internal api error: ${response.message()}."
+                                dialog.show()
+                            }
+                        }
+
                         return
                     }
                     val responseBody = response.body()

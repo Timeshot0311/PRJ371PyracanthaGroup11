@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import uuid
 
+from sqlalchemy import or_
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import joinedload
@@ -24,7 +25,6 @@ class UserRepository:
         return result.scalars().first()
 
 
-
     async def get_user_profile(self, user_id: uuid.UUID):
         stmt = (
             select(UserDetails, Users, UserRoles)
@@ -34,7 +34,6 @@ class UserRepository:
         )
         result = await self.db.execute(stmt)
         return result.scalars().first()
-
 
 
     async def get_user_by_email(self, user_email: str) -> Users | None:
@@ -51,10 +50,25 @@ class UserRepository:
         stmt = (
             select(Users)
             .options(joinedload(Users.Role))  # eager load status
-            .where(Users.EmailAddress == username or Users.Username == username)
+            #.where(Users.EmailAddress == username or Users.Username == username)
+            .where(
+                or_(
+                    Users.EmailAddress == username,
+                    Users.Username == username
+                )
+            )
         )
         result = await self.db.execute(stmt)
-        return result.scalars().first()
+        user = result.scalars().first()
+
+        print(f"\n\n=======================================================================")
+        print(f"user_login_async username :- {username}")
+        print(f"user_login_async stmt :- {stmt}")
+        print(f"user_login_async result :- {result}")
+        print(f"user_login_async user :- {user}")
+        print(f"=======================================================================\n\n")
+
+        return user
 
 
     async def get_user_details(self, user_email: str):
@@ -126,3 +140,42 @@ class UserRepository:
             )
 
 
+    async  def change_password(self, user_id: uuid.UUID, password_hash: str, password_salt:str) -> GenericBackendResponse[None]:
+        try:
+            print(f"\n\n=======================================================================")
+            print(f"change_password user id :- {user_id}")
+            print(f"=======================================================================\n\n")
+
+            user = await self.get_user_by_id(user_id)
+
+            print(f"\n\n=======================================================================")
+            print(f"change_password user :- {user}")
+            print(f"=======================================================================\n\n")
+            if not user:
+                return GenericBackendResponse(
+                    success=False,
+                    message="Changed password failed due to user not found",
+                    data=None,
+                    code=404
+                )
+            user.PasswordHash = password_hash
+            user.PasswordSalt = password_salt
+            await self.db.commit()
+            await self.db.refresh(user)
+            return GenericBackendResponse(
+                success = True,
+                message = "Successfully changed password",
+                data= None,
+                code= 200
+            )
+        except Exception as e:
+            print(f"\n\n=======================================================================")
+            print(f"change_password error :- {e}")
+            print(f"=======================================================================\n\n")
+            await self.db.rollback()
+            return GenericBackendResponse(
+                success=False,
+                message= f"Password change failed: {str(e)}",
+                data=None,
+                code= 500
+            )

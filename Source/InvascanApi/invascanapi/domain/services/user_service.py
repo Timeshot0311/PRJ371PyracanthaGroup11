@@ -85,7 +85,18 @@ class UserService:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                 detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"})
 
-        verified = security.verify_password(password, user.PasswordHash, user.PasswordSalt)
+        if not user.PasswordHash or not user.PasswordSalt:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"})
+
+        print(f"\n\n=======================================================================")
+        print(f"user_authentication user.Id :- {user.Id}")
+        print(f"user_authentication password :- {password}")
+        print(f"user_authentication user.PasswordHash :- {user.PasswordHash}")
+        print(f"user_authentication user.PasswordSalt :- {user.PasswordSalt}")
+        print(f"=======================================================================\n\n")
+
+        verified = await security.verify_password(password, user.PasswordHash, user.PasswordSalt)
         if not user or not verified:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                 detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"})
@@ -95,6 +106,7 @@ class UserService:
             "email": str(user.EmailAddress),
             "role": user.Role.Description
         })
+
         return TokenResponseModel(
             access_token=access_token,
             token_type="Bearer",
@@ -144,5 +156,35 @@ class UserService:
             return GenericApiResponse(status=True, statusCode=status.HTTP_200_OK, statusMessage='User account created successful')
         except Exception as e:
             logging.error(f"Create failed: {e}")
+            return GenericApiResponse(status=False, statusCode=status.HTTP_500_INTERNAL_SERVER_ERROR, statusMessage=f'{e}')
+
+
+
+
+    async def change_password(self, user_id: str, password: str) -> GenericApiResponse[None]:
+        try:
+            logging.error(f"user id: {user_id}")
+            userid = uuid.UUID(user_id)
+            existing_user = await self.repository.get_user_by_id(userid)
+            if not existing_user:
+                return GenericApiResponse(status=False, statusCode=status.HTTP_400_BAD_REQUEST, statusMessage='Cannot change password due to user not found')
+
+            salt = bcrypt.gensalt()
+            pwd_hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+            password_hashed = pwd_hashed.decode('utf-8')
+            password_salt = salt.decode('utf-8')
+
+            print(f"\n\n=======================================================================")
+            print(f"userService: change_password user id :- {user_id}")
+            print(f"userService: change_password password :- {password}")
+            print(f"userService: change_password hash :- {password_hashed}")
+            print(f"userService: change_password salt :- {password_salt}")
+            print(f"=======================================================================\n\n")
+
+            response = await self.repository.change_password(userid, password_hashed, password_salt)
+
+            return GenericApiResponse(status=response.success, statusCode=response.code, statusMessage=response.message)
+        except Exception as e:
+            logging.error(f"change_password failed: {e}")
             return GenericApiResponse(status=False, statusCode=status.HTTP_500_INTERNAL_SERVER_ERROR, statusMessage=f'{e}')
 

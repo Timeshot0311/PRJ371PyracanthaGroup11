@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Invascan</string>
-    <string name="button_identify_text">Identify Pyracantha</string>
+    <string name="button_identify_text">Detect</string>
     <string name="open_image">Open Image</string>
     <string name="load_image">Load Image</string>
     <string name="clear_all">Clear All</string>
     <string name="logo">Product Logo</string>
     <string name="identify_invasive_plant_title">Identify Invasive \n Plants</string>
     <string name="upload_image_title">Load an image</string>
-    <string name="engine_response_title">API RESPONSE</string>
+    <string name="engine_response_title">DETECTION RESULTS</string>
     <string name="upload_image_description">Add an image you want to be analyzed for Pyracantha species</string>
     <string name="image_description">Image (PNG, JPG)</string>
     <string name="loading">Loading...</string>
@@ -50,7 +50,17 @@
     <string name="community_title">Community</string>
     <string name="profile_title">Profile Maintenance</string>
     <string name="app_version">Version</string>
-    <string name="app_footer">&#169; 2025 Invascan Product</string>
+    <string name="app_footer">&#169; 2025 Invascan Systems</string>
     <string name="detections_by_province">Detections by Province</string>
+    <string name="heat_map">Heat Map</string>
+    <string name="bar_chart">View Bar Chart</string>
+    <string name="pie_chart">View Pie Chart</string>
+    <string name="image_options">Choose Image Source</string>
+    <string name="custom_dotted_divider">------------------</string>
+    <string name="results_image_description">Detection results to be displayed here indicating if there was any pyracantha detected on the provided image.</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
 
 </resources>

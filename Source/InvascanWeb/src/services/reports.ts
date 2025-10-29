@@ -2,7 +2,8 @@
 import { authToken } from "@/lib/auth";
 
 // NEW — if VITE_API_BASE_URL is set, use it; otherwise use "" so `/api/...` works via Vite proxy
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "");
+// const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "");
+const BASE = "./api";
 
 async function authedGet(path: string) {
   const token = authToken.get();

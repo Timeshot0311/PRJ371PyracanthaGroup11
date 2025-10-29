@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.gson.Gson
 import com.vusieam.invascan.R
@@ -51,10 +52,10 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityAnalyzePlantBinding
     //#endregion
 
-    private var imageView: ImageView? = null
-    private var outputImage: ImageView? = null
-    private var detectedName: TextView? = null
-    private var detectedScore: TextView? = null
+//    private var imageView: ImageView? = null
+//    private var outputImage: ImageView? = null
+//    private var detectedName: TextView? = null
+//    private var detectedScore: TextView? = null
     private var requestImageString:String? = null
     private var currentPhotoUri: Uri? = null
 
@@ -93,15 +94,16 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
             binding.contentMain.btnLoadImageContainer.setOnClickListener(this)
             binding.contentMain.btnCameraImageContainer.setOnClickListener(this)
             binding.contentMain.btnIdentifyContainer.setOnClickListener(this)
+            binding.contentMain.btnImageOptions.setOnClickListener(this)
             binding.actionBack.setOnClickListener(this)
 
             binding.contentMain.txtVersion.text = versioning.toString()
             Log.d(GenericHelpers.logID(), "version: ${versioning.toString()}")
 
-            imageView = binding.contentMain.inputImage
-            outputImage = binding.contentMain.outputImage
-            detectedName = binding.contentMain.txtLabelName
-            detectedScore = binding.contentMain.txtLabelScore
+//            imageView = binding.contentMain.inputImage
+//            outputImage = binding.contentMain.detectionResultsImage
+//            detectedName = binding.contentMain.txtLabelName
+//            detectedScore = binding.contentMain.txtLabelScore
         }
     }
 
@@ -123,21 +125,27 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
                     dialog.show()
                     return
                 }
-                outputImage?.setImageBitmap(null)
-                detectedName?.text = ""
-                detectedScore?.text = ""
+                binding.contentMain.detectionResultsImage.setImageBitmap(null)
+                binding.contentMain.detectLabelName.text = ""
+                binding.contentMain.detectLabelScore.text = ""
                 investigateAsync()
             }
             R.id.btnLoadImageContainer ->{
                 Log.d(GenericHelpers.logID(), "clicking R.id.btnLoadImageContainer: ${requestImageString}")
-                imageView!!.setImageBitmap(null)
+                binding.contentMain.inputImage.setImageBitmap(null)
                 requestImageString = ""
+                binding.contentMain.detectionResultsImage.setImageBitmap(null)
+                binding.contentMain.detectLabelName.text = ""
+                binding.contentMain.detectLabelScore.text = ""
                 pickImage.launch("image/*")
             }
             R.id.btnCameraImageContainer ->{
                 Log.d(GenericHelpers.logID(), "clicking R.id.btnCameraImageContainer: ${requestImageString}")
-                imageView!!.setImageBitmap(null)
+                binding.contentMain.inputImage.setImageBitmap(null)
                 requestImageString = ""
+                binding.contentMain.detectionResultsImage.setImageBitmap(null)
+                binding.contentMain.detectLabelName.text = ""
+                binding.contentMain.detectLabelScore.text = ""
                 captureImage()
             }
             R.id.action_back ->{
@@ -149,6 +157,39 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
                 )
                 startActivity(intent, options.toBundle())
                 finish()
+            }
+
+            R.id.btn_image_options ->{
+                val popup = PopupMenu(this, view)
+                popup.menuInflater.inflate(R.menu.choose_image_menu, popup.menu)
+                popup.setForceShowIcon(true)
+
+                popup.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.menu_option_load_image -> {
+                            Log.d(GenericHelpers.logID(), "clicking R.id.btnLoadImageContainer: ${requestImageString}")
+                            binding.contentMain.inputImage.setImageBitmap(null)
+                            requestImageString = ""
+                            binding.contentMain.detectionResultsImage.setImageBitmap(null)
+                            binding.contentMain.detectLabelName.text = ""
+                            binding.contentMain.detectLabelScore.text = ""
+                            pickImage.launch("image/*")
+                            true
+                        }
+                        R.id.menu_option_capture_image -> {
+                            Log.d(GenericHelpers.logID(), "clicking R.id.btnCameraImageContainer: ${requestImageString}")
+                            binding.contentMain.inputImage.setImageBitmap(null)
+                            requestImageString = ""
+                            binding.contentMain.detectionResultsImage.setImageBitmap(null)
+                            binding.contentMain.detectLabelName.text = ""
+                            binding.contentMain.detectLabelScore.text = ""
+                            captureImage()
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                popup.show()
             }
 
         }
@@ -270,9 +311,9 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
 
                     if(detectionModel.imageData?.isEmpty() == false){
                         val img = Imagehelper.base64ToBitmap(detectionModel.imageData)
-                        outputImage!!.setImageBitmap(img)
-                        detectedName!!.text = if (detectionModel.speciesName!!.isEmpty()) "No Detections" else detectionModel.speciesName
-                        detectedScore!!.text = if (detectionModel.confidenceScore == 0f) "0" else "${(detectionModel.confidenceScore!! * 100)}% confidence"
+                        binding.contentMain.detectionResultsImage.setImageBitmap(img)
+                        binding.contentMain.detectLabelName.text = if (detectionModel.speciesName!!.isEmpty()) "No Detections" else detectionModel.speciesName
+                        binding.contentMain.detectLabelScore.text = if (detectionModel.confidenceScore == 0f) "0" else "${(detectionModel.confidenceScore!! * 100)}% confidence"
                     }
                 }
                 override fun onFailure(call: Call<GenericResponse<DetectionModel>>, t: Throwable) {
@@ -386,7 +427,6 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
         when (result.resultCode) {
             Activity.RESULT_OK -> {
                 Log.d(GenericHelpers.logID(), "RESULT_OK")
-                Log.d(GenericHelpers.logID(), "resultData: ${Gson().toJson(result.data)}")
                 val data: Intent? = result.data
                 val resultUri = UCrop.getOutput(data!!)
                 Log.d(GenericHelpers.logID(), "resultUri: ${Gson().toJson(resultUri!!.path)}")
@@ -397,7 +437,7 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
 
                 if (bitmap != null){
                     runOnUiThread {
-                        imageView!!.setImageBitmap(bitmap)
+                        binding.contentMain.inputImage.setImageBitmap(bitmap)
                     }
                     requestImageString = Imagehelper.bitmapToBase64(bitmap) //get base64 string of the image
                     Log.d(GenericHelpers.logID(), "Image base64: ${requestImageString}")
@@ -412,12 +452,12 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
             }
             Activity.RESULT_CANCELED -> {
                 Log.d(GenericHelpers.logID(), "RESULT_CANCELED")
-                imageView!!.setImageBitmap(null)
+                binding.contentMain.inputImage.setImageBitmap(null)
                 requestImageString = null //get base64 string of the image
             }
             else -> {
                 Log.d(GenericHelpers.logID(), "RESULT_UNKNOWN")
-                imageView!!.setImageBitmap(null)
+                binding.contentMain.inputImage.setImageBitmap(null)
                 requestImageString = null //get base64 string of the image
             }
         }
@@ -435,7 +475,7 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
                     var bitmap = BitmapFactory.decodeStream(
                         contentResolver.openInputStream(resultUri)
                     )
-                    imageView!!.setImageBitmap(bitmap)
+                    binding.contentMain.inputImage.setImageBitmap(bitmap)
                     Log.d(GenericHelpers.logID(), "Image 1 Width: ${bitmap?.width}")
                     Log.d(GenericHelpers.logID(), "Image 1 Height: ${bitmap?.height}")
 
@@ -446,7 +486,7 @@ class AnalyzePlantActivity : AppCompatActivity(), View.OnClickListener {
                     bitmap = BitmapFactory.decodeStream(
                         contentResolver.openInputStream(newUri!!)
                     )
-                    imageView!!.setImageBitmap(bitmap)
+                    binding.contentMain.inputImage.setImageBitmap(bitmap)
 
                     Log.d(GenericHelpers.logID(), "Image Width: ${bitmap?.width}")
                     Log.d(GenericHelpers.logID(), "Image Height: ${bitmap?.height}")

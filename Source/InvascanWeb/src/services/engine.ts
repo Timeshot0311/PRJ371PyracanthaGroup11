@@ -26,7 +26,8 @@ export async function investigateImage(
   body: InvestigateRequest,
   token?: string
 ): Promise<InvestigateResponse> {
-  const r = await fetch(`${BASE}/engine/investigate`, {
+  const r = await fetch(`./api/engine/investigate`, {
+  // const r = await fetch(`${BASE}/engine/investigate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

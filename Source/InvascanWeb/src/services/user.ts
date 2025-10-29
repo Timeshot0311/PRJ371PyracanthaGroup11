@@ -18,7 +18,8 @@ export type LoggedInUser = {
 
 // GET /api/users/ (logged-in user's profile)
 export async function getMyProfile(token: string): Promise<LoggedInUser> {
-  const r = await fetch(`${BASE}/users/`, {
+  const r = await fetch(`./api/users/`, {
+  // const r = await fetch(`${BASE}/users/`, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,

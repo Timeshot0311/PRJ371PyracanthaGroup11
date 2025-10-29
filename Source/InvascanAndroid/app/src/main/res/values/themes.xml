@@ -14,14 +14,61 @@
         <item name="colorSecondary">@color/base_overlay</item>
         <item name="colorOnSecondary">@color/c_teal</item>
 
-        <!-- This affects all dialog buttons -->
-<!--        <item name="android:buttonBarPositiveButtonStyle">@style/DialogButtonPositive</item>-->
-<!--        <item name="android:buttonBarNegativeButtonStyle">@style/DialogButtonNegative</item>-->
+        <!-- Backgrounds -->
+        <item name="android:windowBackground">?attr/colorSurface</item>
+
+        <item name="popupMenuStyle">@style/CustomPopupMenu</item>
+
+        <!-- Text color for menu items -->
+        <item name="android:textColor">#000000</item>
+
     </style>
 
     <style name="TextInputLayoutDropDownStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxStrokeColor">@color/text_input_box_stroke</item>
         <item name="boxStrokeWidth">2dp</item>
+    </style>
+
+    <style name="CustomPopupMenu" parent="@style/Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_background</item>
+
+        <!-- Text color for menu items -->
+        <item name="android:textColor">#000000</item>
+
+        <!-- Optional: if you want pressed/selected background -->
+        <item name="android:itemBackground">@drawable/menu_item_selector</item>
+    </style>
+
+
+    <style name="MyDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="buttonBarNegativeButtonStyle">@style/MyNegativeButton</item>
+        <item name="buttonBarPositiveButtonStyle">@style/MyPositiveButton</item>
+    </style>
+
+    <style name="MyPositiveButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:paddingVertical" tools:ignore="NewApi">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingHorizontal" tools:ignore="NewApi">32dp</item>
+    </style>
+
+    <style name="MyNegativeButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="backgroundTint">@color/orange_500</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:paddingVertical" tools:ignore="NewApi">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingHorizontal" tools:ignore="NewApi">32dp</item>
     </style>
 
 </resources>

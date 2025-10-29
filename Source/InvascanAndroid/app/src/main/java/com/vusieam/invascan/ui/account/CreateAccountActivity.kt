@@ -96,16 +96,15 @@ class CreateAccountActivity : AppCompatActivity(), View.OnClickListener, Adapter
             }
         }
 
-        binding.contentCreateAccount.accountName.setText("Carlos")
-        binding.contentCreateAccount.accountSurname.setText("Magagula")
-        binding.contentCreateAccount.accountUsername.setText("Carlos")
-        binding.contentCreateAccount.accountEmail.setText("carlos@gmail.com")
-        binding.contentCreateAccount.accountPhone.setText("0000000000")
-        binding.contentCreateAccount.accountAddress.setText("142 South Street, Centurion")
-        binding.contentCreateAccount.accountImageSharingConsentYes.isChecked = true
-        binding.contentCreateAccount.accountNewPassword.setText("123456789")
-        binding.contentCreateAccount.accountConfirmPassword.setText("123456789")
-
+        //binding.contentCreateAccount.accountName.setText("Carlos")
+        //binding.contentCreateAccount.accountSurname.setText("Magagula")
+        //binding.contentCreateAccount.accountUsername.setText("Carlos")
+        //binding.contentCreateAccount.accountEmail.setText("carlos@gmail.com")
+        //binding.contentCreateAccount.accountPhone.setText("0000000000")
+        //binding.contentCreateAccount.accountAddress.setText("142 South Street, Centurion")
+        //binding.contentCreateAccount.accountImageSharingConsentYes.isChecked = true
+        //binding.contentCreateAccount.accountNewPassword.setText("123456789")
+        //binding.contentCreateAccount.accountConfirmPassword.setText("123456789")
     }
 
     override fun onClick(view: View?) {

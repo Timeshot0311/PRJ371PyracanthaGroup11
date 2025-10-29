@@ -40,6 +40,9 @@ class EngineService:
 
         identification_response = self.engine.identify_pyracantha(save_image_response.filepath,
                                                                   save_image_response.width, save_image_response.height)
+        #Response Codes:
+        #2003, 2004, 2005 : Error on no detection
+        #2000 : Success
         if identification_response.code == 2005 or identification_response.code == 2004 or identification_response.code == 2003:
             return GenericApiResponse(status=True, statusCode=200, statusMessage=identification_response.message,
                                       dynamicModel=identification_response.dynamicModel)

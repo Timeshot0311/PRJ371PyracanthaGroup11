@@ -21,7 +21,7 @@ class Users(Base):
         ForeignKey("UserRoles.Id", name="FK_Users_RoleId"),
         index=True,
         nullable=False,
-        default=uuid.UUID("490FEF64-F752-4A67-A5E6-4CFF0896536A"))
+        default=uuid.UUID("25232844-4158-4F87-963F-B5F68F98826F"))
     Role = relationship("UserRoles", lazy="joined", back_populates="Users")  # eager load if needed
 
     Details = relationship("UserDetails", back_populates="User", uselist=False)

@@ -1,3 +1,5 @@
+import uuid
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -45,6 +47,18 @@ async def get_user_profile(user_id: str = Depends(get_current_user), db: AsyncSe
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="User not found", headers={"WWW-Authenticate": "Bearer"})
     return user
+
+
+
+@router.get("/changePassword/{password}", summary="Change user password", response_model=GenericApiResponse[str])
+async def change_password(password:str, user_id: str = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
+    service = UserService(UserRepository(db))
+    if not user_id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="User not found", headers={"WWW-Authenticate": "Bearer"})
+    response = await service.change_password(user_id, password)
+    return response
+
 
 
 

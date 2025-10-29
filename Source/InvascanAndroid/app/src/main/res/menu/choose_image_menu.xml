@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_option_load_image"
+        android:title="@string/load_image"
+        android:icon="@drawable/baseline_folder_open_24"
+        android:iconTint="@color/orange_500"
+        android:iconTintMode="screen"
+        app:showAsAction="withText"/>
+
+
+    <item
+        android:id="@+id/menu_option_capture_image"
+        android:title="@string/camera_image"
+        android:icon="@drawable/baseline_camera_24"
+        app:showAsAction="withText"/>
+</menu>

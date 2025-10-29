@@ -40,11 +40,12 @@
                 <ImageView
                     android:id="@+id/logoImage"
                     android:layout_width="100dp"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:contentDescription="@string/logo"
                     android:src="@drawable/logo"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/heading_title" />
 
                 <TextView
@@ -53,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/analytics_title"
                     android:textColor="@color/white_700"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginStart="0dp"
                     android:gravity="center_horizontal|center_vertical"
@@ -64,18 +65,15 @@
 
                 <ImageView
                     android:id="@+id/action_back"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="2dp"
-                    android:layout_margin="16dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:contentDescription="@string/logo"
                     android:src="@drawable/baseline_assignment_return_24"
                     app:layout_constraintStart_toEndOf="@id/heading_title"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginStart="16dp"
-                    app:tint="@color/tertiary_red"/>
+                    app:tint="@color/white_700"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -91,6 +89,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/analytics_app_bar"

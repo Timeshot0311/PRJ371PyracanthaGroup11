@@ -6,8 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.analyze.AnalyzePlantActivity"
-    android:padding="2dp">
+    android:padding="2dp"
+    tools:context=".ui.analyze.AnalyzePlantActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/analyze_plant_app_bar"
         android:layout_width="match_parent"
@@ -64,10 +64,8 @@
 
                 <ImageView
                     android:id="@+id/action_back"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="2dp"
-                    android:layout_margin="16dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:contentDescription="@string/logo"
                     android:src="@drawable/baseline_assignment_return_24"
                     app:layout_constraintStart_toEndOf="@id/heading_title"
@@ -75,7 +73,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginStart="16dp"
-                    app:tint="@color/tertiary_red"/>
+                    app:tint="@color/white_700"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

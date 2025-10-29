@@ -1,0 +1,27 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Pressed state -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/primary"/>
+        </shape>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <layer-list>
+            <!-- white background -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#FFFFFF"/>
+                </shape>
+            </item>
+            <!-- bottom divider line -->
+            <item android:bottom="1dp">
+                <shape android:shape="rectangle">
+                    <size android:height="1dp"/>
+                    <solid android:color="@color/orange_500"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

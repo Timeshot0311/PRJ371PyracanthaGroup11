@@ -5,18 +5,18 @@ import tailwindcss from "@tailwindcss/vite";
 import viteReact from "@vitejs/plugin-react";
 
 const config = defineConfig({
-    plugins: [
-        viteTsConfigPaths({
-            projects: ["./tsconfig.json"],
-        }),
-        tailwindcss(),
-        tanstackStart({
-            customViteReactPlugin: true,
-        }),
-        viteReact(),
-    ],
+  plugins: [
+    viteTsConfigPaths({
+      projects: ["./tsconfig.json"],
+    }),
+    tailwindcss(),
+    tanstackStart({
+      customViteReactPlugin: true,
+    }),
+    viteReact(),
+  ],
 
-     server: {
+  server: {
     port: 3000,
     host: true,                 // allow LAN/dev-tunnels if you want
     proxy: {
