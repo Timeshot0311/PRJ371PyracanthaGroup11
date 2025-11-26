@@ -97,27 +97,62 @@ const ProvinceBar = React.memo(function ProvinceBar({
 }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <BarChart data={data} barSize={26}>
+      <BarChart data={data} barSize={26} margin={{ bottom: 40 }}>
         <defs>
           <linearGradient id="glassPurple" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="rgba(160, 255, 192, 0.95)" />
             <stop offset="100%" stopColor="rgba(160, 249, 255, 0.25)" />
           </linearGradient>
         </defs>
-        <XAxis dataKey="name" tickLine={false} axisLine={false} />
+        <XAxis dataKey="name" tickLine={false} axisLine={false} 
+        interval={0} 
+        // tick={{
+        //     fontSize: 12,
+        //     fill: "#ccc",
+        //   }}
+          height={60}
+          tickFormatter={(value) => value}
+          tick={<CustomizedAxisTick />}
+          />
         <YAxis tickLine={false} axisLine={false} />
         <Tooltip />
         <Bar
           dataKey="value"
           radius={[8, 8, 0, 0]}
-          fill="url(#glassPurple)"
+          // fill="url(#glassPurple)"
           animationBegin={200}
           animationDuration={900}
-        />
+        >
+          {data.map((entry, index) => (
+          <Cell
+            key={`cell-${index}`}
+            fill={["#10B981", "#3B82F6", "#F59E0B", "#EF4444"][index % 4]}
+          />
+        ))}
+        </Bar>
       </BarChart>
     </ResponsiveContainer>
   );
 });
+
+
+const CustomizedAxisTick = ({ x, y, payload }: any) => {
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={10}
+        textAnchor="end"
+        fill="#000"
+        transform="rotate(-45)"
+        style={{ fontSize: 14 }}
+      >
+        {payload.value}
+      </text>
+    </g>
+  );
+};
 
 /** -------- Province Pie -------- */
 const ProvincePie = React.memo(function ProvincePie({
@@ -430,6 +465,7 @@ export function AnalyticsDashboard() {
 
   return (
     <div className="space-y-6">
+      <h1 className="text-lg mb-5 block">Invascan Analytics</h1>
       {/* FILTER BAR */}
       <Card>
         <CardContent className="py-4 flex items-center gap-x-4">
@@ -453,23 +489,6 @@ export function AnalyticsDashboard() {
             </Select>
           </div>
 
-          {/*<div>*/}
-          {/*    <label className="text-sm mb-1 block">Month</label>*/}
-          {/*    <Select value={month} onValueChange={setMonth}>*/}
-          {/*        <SelectTrigger>*/}
-          {/*            <SelectValue placeholder="All months"/>*/}
-          {/*        </SelectTrigger>*/}
-          {/*        <SelectContent>*/}
-          {/*            <SelectItem value={ALL}>All</SelectItem>*/}
-          {/*            {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (*/}
-          {/*                <SelectItem value={String(m)} key={m}>*/}
-          {/*                    {monthLabel(m)}*/}
-          {/*                </SelectItem>*/}
-          {/*            ))}*/}
-          {/*        </SelectContent>*/}
-          {/*    </Select>*/}
-          {/*</div>*/}
-
           <div>
             <label className="text-sm mb-1 block">Province</label>
             <Select value={province} onValueChange={setProvince}>
@@ -490,7 +509,7 @@ export function AnalyticsDashboard() {
       </Card>
 
       {/* KPI row */}
-      <div className="grid gap-6 md:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1">
         <KPI
           title="Total Detections"
           value={totalDetections.toLocaleString()}
@@ -501,8 +520,8 @@ export function AnalyticsDashboard() {
       </div>
 
       {/* Province bars + share pie + map */}
-      <div className="grid gap-6 md:grid-cols-5">
-        <Card className="md:col-span-2">
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card className="md:col-span-1">
           <CardHeader>
             <CardTitle>Detections by Province</CardTitle>
           </CardHeader>
@@ -511,7 +530,7 @@ export function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-2">
+        <Card className="md:col-span-1">
           <CardHeader>
             <CardTitle>Province Share</CardTitle>
           </CardHeader>
@@ -520,11 +539,11 @@ export function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-1">
+        <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Map</CardTitle>
           </CardHeader>
-          <CardContent className="h-72">
+          <CardContent className="h-172">
             <ProvinceMap
               features={features}
               provinceTotals={provinceTotals}

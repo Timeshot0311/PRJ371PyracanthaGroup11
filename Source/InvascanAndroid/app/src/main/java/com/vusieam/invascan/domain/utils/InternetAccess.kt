@@ -7,8 +7,8 @@ import android.os.Build
 
 object InternetAccess {
 
-    fun prodEndpoint():String { return "http://172.16.0.196:8080/api/"}
-//    fun prodEndpoint():String { return "http://192.168.1.63:8080/api/"}
+//    fun prodEndpoint():String { return "http://172.16.0.196:8080/api/"}
+    fun prodEndpoint():String { return "http://192.168.1.63:8080/api/"}
 //    fun prodEndpoint():String { return "http://192.168.18.7:8080/api/"}
 
     fun checkForInternet(context: Context): Boolean {

@@ -5,58 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/release/app-release.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/release/baselineProfiles/0/app-release.dm" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/release/baselineProfiles/0/app-release.dm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/release/baselineProfiles/1/app-release.dm" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/release/baselineProfiles/1/app-release.dm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/release/output-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/services/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/services/ApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/services/RetrofitServiceBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/services/RetrofitServiceBase.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/utils/InternetAccess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/utils/InternetAccess.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/account/CreateAccountActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/account/CreateAccountActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/analytics/AnalyticsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/analytics/AnalyticsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/analyze/AnalyzePlantActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/analyze/AnalyzePlantActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/dashboard/DashboardActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/dashboard/DashboardActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/ui/login/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/drawable/baseline_folder_open_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/drawable/baseline_folder_24.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout-large/content_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout-large/content_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout-xlarge/content_splash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout-xlarge/content_splash.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_analytics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_analytics.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_analyze_plant.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_analyze_plant.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_create_acount.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_create_acount.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/activity_dashboard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_analytics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_analytics.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_analyze_plant.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_analyze_plant.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_create_account.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_create_account.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/layout/content_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-land/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-land/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-night/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-night/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-w1240dp/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-w1240dp/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-w600dp/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values-w600dp/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/res/values/themes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../InvascanAndroid/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/version.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/entities/users_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/backend/repositories/user_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/models/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/engine_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/services/user_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/domain/utils/security_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/domain/utils/security_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invascanapi/routers/user_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/invascanapi/routers/user_router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanImages/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanImages/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanImages/Downloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanImages/Downloader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanImages/PyCharmMiscProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanImages/PyCharmMiscProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/analytics-dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/analytics-dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/layouts/PageLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/layouts/PageLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/routeTree.gen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/services/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/services/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/services/community.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/services/community.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/services/engine.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/services/engine.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/services/reports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/services/reports.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/services/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/services/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../InvascanWeb/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -256,6 +211,8 @@
       <workItem from="1761646094899" duration="11689000" />
       <workItem from="1761676490814" duration="116000" />
       <workItem from="1761724958802" duration="2751000" />
+      <workItem from="1761745707912" duration="2372000" />
+      <workItem from="1764169702166" duration="336000" />
     </task>
     <servers />
   </component>

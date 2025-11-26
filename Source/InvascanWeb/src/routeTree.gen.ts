@@ -8,144 +8,144 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as UploadIndexRouteImport } from "./routes/upload/index";
-import { Route as SignUpIndexRouteImport } from "./routes/sign-up/index";
-import { Route as LoginIndexRouteImport } from "./routes/login/index";
-import { Route as CommunityIndexRouteImport } from "./routes/community/index";
-import { Route as AnalyticsIndexRouteImport } from "./routes/analytics/index";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as UploadIndexRouteImport } from './routes/upload/index'
+import { Route as SignUpIndexRouteImport } from './routes/sign-up/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as CommunityIndexRouteImport } from './routes/community/index'
+import { Route as AnalyticsIndexRouteImport } from './routes/analytics/index'
 
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const UploadIndexRoute = UploadIndexRouteImport.update({
-  id: "/upload/",
-  path: "/upload/",
+  id: '/upload/',
+  path: '/upload/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const SignUpIndexRoute = SignUpIndexRouteImport.update({
-  id: "/sign-up/",
-  path: "/sign-up/",
+  id: '/sign-up/',
+  path: '/sign-up/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
-  id: "/login/",
-  path: "/login/",
+  id: '/login/',
+  path: '/login/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const CommunityIndexRoute = CommunityIndexRouteImport.update({
-  id: "/community/",
-  path: "/community/",
+  id: '/community/',
+  path: '/community/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AnalyticsIndexRoute = AnalyticsIndexRouteImport.update({
-  id: "/analytics/",
-  path: "/analytics/",
+  id: '/analytics/',
+  path: '/analytics/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/analytics": typeof AnalyticsIndexRoute;
-  "/community": typeof CommunityIndexRoute;
-  "/login": typeof LoginIndexRoute;
-  "/sign-up": typeof SignUpIndexRoute;
-  "/upload": typeof UploadIndexRoute;
+  '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsIndexRoute
+  '/community': typeof CommunityIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/sign-up': typeof SignUpIndexRoute
+  '/upload': typeof UploadIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/analytics": typeof AnalyticsIndexRoute;
-  "/community": typeof CommunityIndexRoute;
-  "/login": typeof LoginIndexRoute;
-  "/sign-up": typeof SignUpIndexRoute;
-  "/upload": typeof UploadIndexRoute;
+  '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsIndexRoute
+  '/community': typeof CommunityIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/sign-up': typeof SignUpIndexRoute
+  '/upload': typeof UploadIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/analytics/": typeof AnalyticsIndexRoute;
-  "/community/": typeof CommunityIndexRoute;
-  "/login/": typeof LoginIndexRoute;
-  "/sign-up/": typeof SignUpIndexRoute;
-  "/upload/": typeof UploadIndexRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/analytics/': typeof AnalyticsIndexRoute
+  '/community/': typeof CommunityIndexRoute
+  '/login/': typeof LoginIndexRoute
+  '/sign-up/': typeof SignUpIndexRoute
+  '/upload/': typeof UploadIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | "/"
-    | "/analytics"
-    | "/community"
-    | "/login"
-    | "/sign-up"
-    | "/upload";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/analytics" | "/community" | "/login" | "/sign-up" | "/upload";
+    | '/'
+    | '/analytics'
+    | '/community'
+    | '/login'
+    | '/sign-up'
+    | '/upload'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/analytics' | '/community' | '/login' | '/sign-up' | '/upload'
   id:
-    | "__root__"
-    | "/"
-    | "/analytics/"
-    | "/community/"
-    | "/login/"
-    | "/sign-up/"
-    | "/upload/";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/analytics/'
+    | '/community/'
+    | '/login/'
+    | '/sign-up/'
+    | '/upload/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AnalyticsIndexRoute: typeof AnalyticsIndexRoute;
-  CommunityIndexRoute: typeof CommunityIndexRoute;
-  LoginIndexRoute: typeof LoginIndexRoute;
-  SignUpIndexRoute: typeof SignUpIndexRoute;
-  UploadIndexRoute: typeof UploadIndexRoute;
+  IndexRoute: typeof IndexRoute
+  AnalyticsIndexRoute: typeof AnalyticsIndexRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
+  SignUpIndexRoute: typeof SignUpIndexRoute
+  UploadIndexRoute: typeof UploadIndexRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/upload/": {
-      id: "/upload/";
-      path: "/upload";
-      fullPath: "/upload";
-      preLoaderRoute: typeof UploadIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/sign-up/": {
-      id: "/sign-up/";
-      path: "/sign-up";
-      fullPath: "/sign-up";
-      preLoaderRoute: typeof SignUpIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/login/": {
-      id: "/login/";
-      path: "/login";
-      fullPath: "/login";
-      preLoaderRoute: typeof LoginIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/community/": {
-      id: "/community/";
-      path: "/community";
-      fullPath: "/community";
-      preLoaderRoute: typeof CommunityIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/analytics/": {
-      id: "/analytics/";
-      path: "/analytics";
-      fullPath: "/analytics";
-      preLoaderRoute: typeof AnalyticsIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upload/': {
+      id: '/upload/'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-up/': {
+      id: '/sign-up/'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/': {
+      id: '/community/'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics/': {
+      id: '/analytics/'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -156,7 +156,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginIndexRoute: LoginIndexRoute,
   SignUpIndexRoute: SignUpIndexRoute,
   UploadIndexRoute: UploadIndexRoute,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()

@@ -20,20 +20,6 @@ object RetrofitServiceBase{
 }
 
 
-class AuthInterceptor(private val context: Context) : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val token = InvascanSessionManager.fetchAuthToken(context)
-        val request = if (token != null) {
-            chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer $token")
-                .build()
-        } else {
-            chain.request()
-        }
-        return chain.proceed(request)
-    }
-}
-
 
 
 //object RetrofitAuthenticatedService{
@@ -47,6 +33,20 @@ class AuthInterceptor(private val context: Context) : Interceptor {
 //        .build()
 //    val apiService = RetrofitAuthenticatedService.retrofit.create(ApiService::class.java)
 //}
+
+class AuthInterceptor(private val context: Context) : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val token = InvascanSessionManager.fetchAuthToken(context)
+        val request = if (token != null) {
+            chain.request().newBuilder()
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+        } else {
+            chain.request()
+        }
+        return chain.proceed(request)
+    }
+}
 
 
 
