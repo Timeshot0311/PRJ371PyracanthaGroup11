@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/services/RetrofitServiceBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/services/RetrofitServiceBase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/utils/InternetAccess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/app/src/main/java/com/vusieam/invascan/domain/utils/InternetAccess.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanAndroid/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanAndroid/version.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/analytics-dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/analytics-dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/components/layouts/PageLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/components/layouts/PageLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/src/routeTree.gen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvascanWeb/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../InvascanWeb/vite.config.ts" afterDir="false" />
-    </list>
+    <list default="true" id="0faeeded-40e3-4ccc-9f43-51d720682611" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -212,7 +203,7 @@
       <workItem from="1761676490814" duration="116000" />
       <workItem from="1761724958802" duration="2751000" />
       <workItem from="1761745707912" duration="2372000" />
-      <workItem from="1764169702166" duration="336000" />
+      <workItem from="1764169702166" duration="940000" />
     </task>
     <servers />
   </component>
